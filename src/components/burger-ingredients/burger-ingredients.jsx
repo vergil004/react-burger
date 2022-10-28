@@ -1,7 +1,23 @@
 import React, { useRef } from 'react';
+import PropTypes from "prop-types";
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import Ingredient from "./ingredient/ingredient";
 import ingredientsStyle from './burger-ingredients.module.css'
+
+const ingredientsPropTypes = PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
+        proteins: PropTypes.number.isRequired,
+        fat: PropTypes.number.isRequired,
+        carbohydrates: PropTypes.number.isRequired,
+        calories: PropTypes.number.isRequired,
+        price: PropTypes.number.isRequired,
+        image: PropTypes.string.isRequired,
+        image_mobile: PropTypes.string.isRequired,
+        image_large: PropTypes.string.isRequired,
+        __v: PropTypes.number.isRequired,
+    })
 
 function BurgerIngredients (props){
     const [current, setCurrent] = React.useState('bun')
@@ -42,7 +58,7 @@ function BurgerIngredients (props){
             </div>
             <div className={ingredientsStyle.ingredients__cont}>
                 <section ref={scrollToBun} className={`pt-10 pb-10`}>
-                    <div className='text text_type_main-medium pb-6'>Булки</div>
+                    <h2 className='text text_type_main-medium pb-6'>Булки</h2>
                     <ul className={`${ingredientsStyle.ingredients__list} pl-4 pt-6`}>
                         {bunList.map(item => (
                             <li key={item._id}>
@@ -52,7 +68,7 @@ function BurgerIngredients (props){
                     </ul>
                 </section>
                 <section ref={scrollToSauce} className='pt-10 pb-10'>
-                    <div className='text text_type_main-medium pb-6'>Соусы</div>
+                    <h2 className='text text_type_main-medium pb-6'>Соусы</h2>
                     <ul className={ingredientsStyle.ingredients__list}>
                         {sauceList.map(item => (
                             <li key={item._id}>
@@ -62,7 +78,7 @@ function BurgerIngredients (props){
                     </ul>
                 </section>
                 <section ref={scrollToMain} className='pt-10 pb-10'>
-                    <div className='text text_type_main-medium pb-6'>Начинки</div>
+                    <h2 className='text text_type_main-medium pb-6'>Начинки</h2>
                     <ul className={ingredientsStyle.ingredients__list}>
                         {mainList.map(item => (
                             <li key={item._id}>
@@ -74,6 +90,10 @@ function BurgerIngredients (props){
             </div>
         </div>
     )
+}
+
+BurgerIngredients.propTypes = {
+    ingredients: PropTypes.arrayOf(ingredientsPropTypes).isRequired
 }
 
 export default BurgerIngredients

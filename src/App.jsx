@@ -1,9 +1,9 @@
 import React from 'react';
 import AppHeader from "./components/app-header/app-header";
 import BurgerIngredients from "./components/burger-ingredients/burger-ingredients";
-import ingredientsList from './utils/data.json'
+import BurgerConstructor from "./components/burger-constructor/burger-constructor";
 import './App.css';
-
+import ingredientsList from './utils/data.json'
 
 class App extends React.Component{
 
@@ -15,9 +15,10 @@ class App extends React.Component{
      return (
         <div className="App">
           <AppHeader/>
-          <div className='pt-10 main'>
+          <main className='pt-10 main'>
               <BurgerIngredients ingredients={this.state.ingredients}/>
-          </div>
+              <BurgerConstructor ingredients={this.state.ingredients}/>
+          </main>
         </div>
       )
     }
