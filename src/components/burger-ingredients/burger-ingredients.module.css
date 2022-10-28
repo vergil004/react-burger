@@ -1,0 +1,40 @@
+.ingredients{
+    width: 600px;
+}
+.ingredients__tabs{
+    display: flex;
+}
+.ingredients__list{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 24px;
+    padding-left: 0;
+    margin: 0;
+}
+.ingredients__list li{
+    list-style-type: none;
+}
+.ingredients__cont{
+    max-height: calc(100vh - 284px);
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8585AD;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2F2F37;
+}
+
+
+

@@ -1,0 +1,22 @@
+.header{
+    display: flex;
+    justify-content: center;
+    background-color: #1C1C21;
+}
+
+.header__cont{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 1240px;
+}
+.header__cell{
+    display: flex;
+    width: 33%;
+}
+.header__cell:nth-child(2){
+    justify-content: center;
+}
+.header__cell:last-child{
+    justify-content: flex-end;
+}

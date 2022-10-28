@@ -1,0 +1,17 @@
+.headerItem{
+    display: flex;
+    align-items: center;
+    color: #8585AD;
+    border-radius: 40px;
+    cursor: pointer;
+}
+.headerItem:hover{
+    color:#fff;
+}
+.headerItemActive{
+    composes: headerItem;
+    color:#fff;
+}
+.headerItemActive svg, .headerItem:hover svg{
+    fill: #fff;
+}
