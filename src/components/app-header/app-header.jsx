@@ -3,7 +3,7 @@ import { Logo, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-dev
 import HeaderItem from "./header-item/header-item";
 import headerStyles from './app-header.module.css'
 
-function AppHeader (props){
+function AppHeader (){
     return(
         <header className={headerStyles.header}>
             <div className={`${headerStyles.header__cont} pt-4 pb-4`}>

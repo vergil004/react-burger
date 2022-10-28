@@ -2,27 +2,13 @@ import React from "react";
 import PropTypes from 'prop-types';
 import { ConstructorElement, DragIcon, CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components'
 import constructorStyles from './burger-constructor.module.css'
+import {ingredientPropTypes} from '../../utils/types'
 
-const ingredientsPropTypes = PropTypes.shape({
-        _id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        proteins: PropTypes.number.isRequired,
-        fat: PropTypes.number.isRequired,
-        carbohydrates: PropTypes.number.isRequired,
-        calories: PropTypes.number.isRequired,
-        price: PropTypes.number.isRequired,
-        image: PropTypes.string.isRequired,
-        image_mobile: PropTypes.string.isRequired,
-        image_large: PropTypes.string.isRequired,
-        __v: PropTypes.number.isRequired,
-    })
-
-function BurgerConstructor (props) {
+function BurgerConstructor ({ingredients}) {
     // Пока выводится одна булка из списка ингредиентов и остальные ингредиенты в отдельном списке
-    const bun = props.ingredients.find(item => item.type === 'bun')
-    const goods = props.ingredients.filter(item => item.type !== 'bun')
-    const total = props.ingredients.reduce((sum, item) => sum += item.price, 0)
+    const bun = ingredients.find(item => item.type === 'bun')
+    const goods = ingredients.filter(item => item.type !== 'bun')
+    const total = ingredients.reduce((sum, item) => sum += item.price, 0)
 
 
     return(
@@ -59,7 +45,7 @@ function BurgerConstructor (props) {
 }
 
 BurgerConstructor.propTypes = {
-    ingredients: PropTypes.arrayOf(ingredientsPropTypes).isRequired
+    ingredients: PropTypes.arrayOf(ingredientPropTypes).isRequired
 }
 
 export default BurgerConstructor

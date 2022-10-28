@@ -3,27 +3,13 @@ import PropTypes from "prop-types";
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import Ingredient from "./ingredient/ingredient";
 import ingredientsStyle from './burger-ingredients.module.css'
+import {ingredientPropTypes} from '../../utils/types'
 
-const ingredientsPropTypes = PropTypes.shape({
-        _id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        proteins: PropTypes.number.isRequired,
-        fat: PropTypes.number.isRequired,
-        carbohydrates: PropTypes.number.isRequired,
-        calories: PropTypes.number.isRequired,
-        price: PropTypes.number.isRequired,
-        image: PropTypes.string.isRequired,
-        image_mobile: PropTypes.string.isRequired,
-        image_large: PropTypes.string.isRequired,
-        __v: PropTypes.number.isRequired,
-    })
-
-function BurgerIngredients (props){
+function BurgerIngredients ({ingredients}){
     const [current, setCurrent] = React.useState('bun')
-    const bunList = props.ingredients.filter(item => item.type === 'bun')
-    const sauceList = props.ingredients.filter(item => item.type === 'sauce')
-    const mainList = props.ingredients.filter(item => item.type === 'main')
+    const bunList = ingredients.filter(item => item.type === 'bun')
+    const sauceList = ingredients.filter(item => item.type === 'sauce')
+    const mainList = ingredients.filter(item => item.type === 'main')
     const scrollToBun = useRef();
     const scrollToSauce = useRef();
     const scrollToMain = useRef();
@@ -93,7 +79,7 @@ function BurgerIngredients (props){
 }
 
 BurgerIngredients.propTypes = {
-    ingredients: PropTypes.arrayOf(ingredientsPropTypes).isRequired
+    ingredients: PropTypes.arrayOf(ingredientPropTypes).isRequired
 }
 
 export default BurgerIngredients

@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components'
 import ingredientStyle from './ingredient.module.css'
+import {ingredientPropTypes} from '../../../utils/types'
 
-function Ingredient(props){
+function Ingredient({ingredient}){
     const [count, setCount] = useState(0)
 
     return (
@@ -12,18 +13,21 @@ function Ingredient(props){
                     <Counter count={count}/>
                 </div>
             }
-            <img className={ingredientStyle.ingredient__image} src={props.ingredient.image_large} alt={props} />
+            <img className={ingredientStyle.ingredient__image} src={ingredient.image_large} alt={ingredient.name} />
             <div className={`${ingredientStyle.ingredient__price} pt-1 pb-1`}>
-                <span className="text text_type_digits-default pr-2">{props.ingredient.price}</span>
+                <span className="text text_type_digits-default pr-2">{ingredient.price}</span>
                 <CurrencyIcon type={"primary"}/>
             </div>
-            <div className={`${ingredientStyle.ingredient__name} text text_type_main-default`}>{props.ingredient.name}</div>
+            <div className={`${ingredientStyle.ingredient__name} text text_type_main-default`}>{ingredient.name}</div>
         </div>
     )
 }
 
 Ingredient.defaultProps = {
     ingredient: {},
+}
+Ingredient.propTypes = {
+    ingredient: ingredientPropTypes
 }
 
 export default Ingredient
