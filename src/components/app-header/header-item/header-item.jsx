@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import headerItemStyles from './header-item.module.css'
 
-function HeaderItem({active, children}){
+export function HeaderItem({active, children}){
     const itemClass = active ? headerItemStyles.headerItemActive : headerItemStyles.headerItem;
 
     return(
@@ -18,4 +18,3 @@ HeaderItem.defaultProps = {
 HeaderItem.propTypes = {
     active : PropTypes.bool
 }
-export default HeaderItem

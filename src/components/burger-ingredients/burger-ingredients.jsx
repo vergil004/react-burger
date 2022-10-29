@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
 import PropTypes from "prop-types";
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
-import Ingredient from "./ingredient/ingredient";
+import {Ingredient} from "./ingredient/ingredient";
 import ingredientsStyle from './burger-ingredients.module.css'
 import {ingredientPropTypes} from '../../utils/types'
 
-function BurgerIngredients ({ingredients}){
+export function BurgerIngredients ({ingredients}){
     const [current, setCurrent] = React.useState('bun')
     const bunList = ingredients.filter(item => item.type === 'bun')
     const sauceList = ingredients.filter(item => item.type === 'sauce')
@@ -82,4 +82,3 @@ BurgerIngredients.propTypes = {
     ingredients: PropTypes.arrayOf(ingredientPropTypes).isRequired
 }
 
-export default BurgerIngredients

@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import AppHeader from "./components/app-header/app-header";
-import BurgerIngredients from "./components/burger-ingredients/burger-ingredients";
-import BurgerConstructor from "./components/burger-constructor/burger-constructor";
+import {AppHeader} from "./components/app-header/app-header";
+import {BurgerIngredients} from "./components/burger-ingredients/burger-ingredients";
+import {BurgerConstructor} from "./components/burger-constructor/burger-constructor";
 import './App.css';
 import ingredientsList from './utils/data.json'
 
-function App (){
+export function App (){
 
     const [ingredients, setIngredients] =useState(ingredientsList)
 
@@ -20,4 +20,3 @@ function App (){
       )
 }
 
-export default App;

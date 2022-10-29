@@ -1,9 +1,9 @@
 import React from "react";
 import { Logo, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import HeaderItem from "./header-item/header-item";
+import {HeaderItem} from "./header-item/header-item";
 import headerStyles from './app-header.module.css'
 
-function AppHeader (){
+export function AppHeader (){
     return(
         <header className={headerStyles.header}>
             <div className={`${headerStyles.header__cont} pt-4 pb-4`}>
@@ -30,5 +30,3 @@ function AppHeader (){
         </header>
     )
 }
-
-export default AppHeader

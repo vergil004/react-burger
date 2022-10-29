@@ -3,7 +3,7 @@ import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-c
 import ingredientStyle from './ingredient.module.css'
 import {ingredientPropTypes} from '../../../utils/types'
 
-function Ingredient({ingredient}){
+export function Ingredient({ingredient}){
     const [count, setCount] = useState(0)
 
     return (
@@ -30,4 +30,3 @@ Ingredient.propTypes = {
     ingredient: ingredientPropTypes
 }
 
-export default Ingredient

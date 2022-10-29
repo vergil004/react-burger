@@ -4,7 +4,7 @@ import { ConstructorElement, DragIcon, CurrencyIcon, Button } from '@ya.praktiku
 import constructorStyles from './burger-constructor.module.css'
 import {ingredientPropTypes} from '../../utils/types'
 
-function BurgerConstructor ({ingredients}) {
+export function BurgerConstructor ({ingredients}) {
     // Пока выводится одна булка из списка ингредиентов и остальные ингредиенты в отдельном списке
     const bun = ingredients.find(item => item.type === 'bun')
     const goods = ingredients.filter(item => item.type !== 'bun')
@@ -47,5 +47,3 @@ function BurgerConstructor ({ingredients}) {
 BurgerConstructor.propTypes = {
     ingredients: PropTypes.arrayOf(ingredientPropTypes).isRequired
 }
-
-export default BurgerConstructor
