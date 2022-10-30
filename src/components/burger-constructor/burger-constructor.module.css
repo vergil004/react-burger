@@ -1,0 +1,29 @@
+.burgerConstructor{
+    width: 584px;
+}
+.burgerConstructor__list{
+    display: grid;
+    gap: 16px;
+    padding-left: 0;
+    margin: 0;
+    max-height: calc(100vh - 514px);
+    overflow-y: scroll;
+}
+.burgerConstructor__list li{
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+}
+.burgerConstructor__total{
+    display: flex;
+    justify-content: flex-end;
+}
+.burgerConstructor__total svg{
+    width: 33px;
+    height: 33px;
+}
+.burgerConstructor__sum{
+    display: flex;
+    align-items: center;
+}
+
