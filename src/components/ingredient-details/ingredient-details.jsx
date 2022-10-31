@@ -1,5 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import detailsStyles from './ingredient-details.module.css'
+import {ingredientPropTypes} from '../../utils/types'
+
 
 export function IngredientDetails ({ingredient}){
     return(
@@ -26,4 +29,8 @@ export function IngredientDetails ({ingredient}){
             </ul>
         </div>
     )
+}
+
+IngredientDetails.propTypes = {
+    ingredient: ingredientPropTypes.isRequired
 }

@@ -8,26 +8,25 @@ export function Ingredient({ingredient}){
     const [count, setCount] = useState(1)
     const [showModal, setShowModal] = useState(false)
 
-    const showModalHandler = () => setShowModal(showModal => !showModal)
-
-
     return (
-        <div className={`${ingredientStyle.ingredient} pr-4 pl-4`} onClick={showModalHandler}>
-            {count > 0 &&
-                <div className={ingredientStyle.ingredient__count} >
-                    <Counter count={count}/>
-                </div>
-            }
+        <>
             {showModal &&
-                <Modal ingredient={ingredient} title='Детали ингредиента' closeModal={() => showModalHandler}/>
-            }
-            <img className={ingredientStyle.ingredient__image} src={ingredient.image_large} alt={ingredient.name} />
-            <div className={`${ingredientStyle.ingredient__price} pt-1 pb-1`}>
-                <span className="text text_type_digits-default pr-2">{ingredient.price}</span>
-                <CurrencyIcon type={"primary"}/>
+                    <Modal ingredient={ingredient} title='Детали ингредиента' closeModal={() => setShowModal(false)}/>
+                }
+            <div className={`${ingredientStyle.ingredient} pr-4 pl-4`} onClick={() => setShowModal(true)}>
+                {count > 0 &&
+                    <div className={ingredientStyle.ingredient__count} >
+                        <Counter count={count}/>
+                    </div>
+                }
+                <img className={ingredientStyle.ingredient__image} src={ingredient.image_large} alt={ingredient.name} />
+                <div className={`${ingredientStyle.ingredient__price} pt-1 pb-1`}>
+                    <span className="text text_type_digits-default pr-2">{ingredient.price}</span>
+                    <CurrencyIcon type={"primary"}/>
+                </div>
+                <div className={`${ingredientStyle.ingredient__name} text text_type_main-default`}>{ingredient.name}</div>
             </div>
-            <div className={`${ingredientStyle.ingredient__name} text text_type_main-default`}>{ingredient.name}</div>
-        </div>
+        </>
     )
 }
 
