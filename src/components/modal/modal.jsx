@@ -9,6 +9,20 @@ const modalRoot = document.getElementById("modal");
 
 export function  Modal({closeModal, title, children}){
 
+    const keyPressHandler = ({key}) =>{
+        switch (key){
+            case 'Escape':
+                closeModal()
+                break;
+            default:
+        }
+    }
+
+    React.useEffect(() => {
+        window.addEventListener('keydown', keyPressHandler);
+        return () => window.removeEventListener('keydown', keyPressHandler)
+    },[])
+
     return ReactDOM.createPortal(
         <ModalOverlay closeModal={() => closeModal()}>
             <div className={`${modalStyles.modal} pt-10 pr-10 pb-15 pl-10`} onClick={e => e.stopPropagation()}>
