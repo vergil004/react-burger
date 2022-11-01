@@ -1,0 +1,13 @@
+.order{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.order__item{
+    composes: order;
+    width: 100%;
+}
+.order__bottom{
+    composes: order__item;
+    color: #8585AD;
+}

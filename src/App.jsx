@@ -4,6 +4,8 @@ import {BurgerIngredients} from "./components/burger-ingredients/burger-ingredie
 import {BurgerConstructor} from "./components/burger-constructor/burger-constructor";
 import './App.css';
 
+const ingredientsDataUrl = 'https://norma.nomoreparties.space/api/ingredients';
+
 export function App (){
 
     const [state, setState] =useState({
@@ -11,7 +13,6 @@ export function App (){
         isLoading: false,
         hasError: false
     })
-    const ingredientsDataUrl = 'https://norma.nomoreparties.space/api/ingredients';
 
     const fetchData = async () => {
         await fetch(ingredientsDataUrl)

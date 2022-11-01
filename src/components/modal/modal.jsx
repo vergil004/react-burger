@@ -1,30 +1,16 @@
 import React from "react";
 import ReactDOM from 'react-dom';
+import PropTypes from "prop-types";
 import { CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components'
-import {IngredientDetails} from "../ingredient-details/ingredient-details";
+import {ModalOverlay} from "../modal-overlay/modal-overlay";
 import modalStyles from './modal.module.css'
-
 
 const modalRoot = document.getElementById("modal");
 
-export function  Modal({closeModal, title, ingredient}){
-    const keyPressHandler = ({key}) =>{
-        console.log(closeModal)
-        switch (key){
-            case 'Escape':
-                closeModal()
-                break;
-            default:
-        }
-    }
-
-    React.useEffect(() => {
-        window.addEventListener('keydown', keyPressHandler);
-        return () => window.removeEventListener('keydown', keyPressHandler)
-    },[])
+export function  Modal({closeModal, title, children}){
 
     return ReactDOM.createPortal(
-        <div className={modalStyles.modal__overlay} onClick={() => closeModal()}>
+        <ModalOverlay closeModal={() => closeModal()}>
             <div className={`${modalStyles.modal} pt-10 pr-10 pb-15 pl-10`} onClick={e => e.stopPropagation()}>
                 <div className={modalStyles.modal__header}>
                     <div className="text text_type_main-large">{title}</div>
@@ -33,9 +19,19 @@ export function  Modal({closeModal, title, ingredient}){
                     </button>
                 </div>
                 <div className={modalStyles.modal__content}>
-                    <IngredientDetails ingredient={ingredient}/>
+                    {children}
                 </div>
             </div>
-        </div>, modalRoot
+        </ModalOverlay>, modalRoot
     )
+}
+
+Modal.defaultProps = {
+    title: ''
+}
+
+Modal.propTypes = {
+    closeModal: PropTypes.func.isRequired,
+    title: PropTypes.string,
+    children: PropTypes.node.isRequired
 }
