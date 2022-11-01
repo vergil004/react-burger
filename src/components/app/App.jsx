@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {AppHeader} from "./components/app-header/app-header";
-import {BurgerIngredients} from "./components/burger-ingredients/burger-ingredients";
-import {BurgerConstructor} from "./components/burger-constructor/burger-constructor";
-import './App.css';
+import {AppHeader} from "../app-header/app-header";
+import {BurgerIngredients} from "../burger-ingredients/burger-ingredients";
+import {BurgerConstructor} from "../burger-constructor/burger-constructor";
+import appStyles from'./app.module.css';
 
 const ingredientsDataUrl = 'https://norma.nomoreparties.space/api/ingredients';
 
@@ -29,7 +29,7 @@ export function App (){
      return (
         <div className="App">
           <AppHeader/>
-          <main className='pt-10 main'>
+          <main className={`pt-10 ${appStyles.main}`}>
               {state.ingredients.length > 0 &&<BurgerIngredients ingredients={state.ingredients}/>}
               {state.ingredients.length > 0 &&<BurgerConstructor ingredients={state.ingredients}/>}
           </main>
