@@ -24,7 +24,8 @@ export function  Modal({closeModal, title, children}){
     },[])
 
     return ReactDOM.createPortal(
-        <ModalOverlay closeModal={() => closeModal()}>
+        <div class={modalStyles.modal__box}>
+            <ModalOverlay closeModal={() => closeModal()}/>
             <div className={`${modalStyles.modal} pt-10 pr-10 pb-15 pl-10`} onClick={e => e.stopPropagation()}>
                 <div className={modalStyles.modal__header}>
                     <div className="text text_type_main-large">{title}</div>
@@ -36,7 +37,7 @@ export function  Modal({closeModal, title, children}){
                     {children}
                 </div>
             </div>
-        </ModalOverlay>, modalRoot
+        </div>, modalRoot
     )
 }
 
