@@ -3,6 +3,7 @@ import {AppHeader} from "../app-header/app-header";
 import {BurgerIngredients} from "../burger-ingredients/burger-ingredients";
 import {BurgerConstructor} from "../burger-constructor/burger-constructor";
 import appStyles from'./app.module.css';
+import {getIngredientsData} from "../../utils/burger-api";
 
 const ingredientsDataUrl = 'https://norma.nomoreparties.space/api/ingredients';
 
@@ -14,14 +15,8 @@ export function App (){
         hasError: false
     })
 
-        const checkResponse = (res) => {
-            console.log(res.json())
-          return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
-    };
-
     const fetchData = async () => {
-        await fetch(ingredientsDataUrl)
-        .then(response => checkResponse(response))
+        await getIngredientsData()
         .then(data => setState({...state, ingredients: data.data, isLoading: false}))
         .catch(setState({...state, isLoading: false, hasError: true}))
     }
