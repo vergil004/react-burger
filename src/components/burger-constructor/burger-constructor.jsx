@@ -18,6 +18,11 @@ export function BurgerConstructor({ ingredients }) {
   const total = ingredients.reduce((sum, item) => (sum += item.price), 0);
   const [showModal, setShowModal] = useState(false);
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setShowModal(true);
+  };
+
   return (
     <>
       {showModal && (
@@ -25,7 +30,10 @@ export function BurgerConstructor({ ingredients }) {
           <OrderDetails />
         </Modal>
       )}
-      <form className={`${constructorStyles.burgerConstructor} pt-15 pl-4`}>
+      <form
+        onSubmit={submitHandler}
+        className={`${constructorStyles.burgerConstructor} pt-15 pl-4`}
+      >
         <div className="pl-8">
           <ConstructorElement
             type="top"
@@ -68,12 +76,7 @@ export function BurgerConstructor({ ingredients }) {
             <div className="pr-2 text text_type_digits-medium">{total}</div>
             <CurrencyIcon type="primary" />
           </div>
-          <Button
-            htmlType="button"
-            type="primary"
-            size="medium"
-            onClick={() => setShowModal(true)}
-          >
+          <Button htmlType="submit" type="primary" size="medium">
             Оформить заказ
           </Button>
         </div>
