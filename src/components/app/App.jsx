@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AppHeader } from "@/components/app-header/app-header";
 import { BurgerIngredients } from "@/components/burger-ingredients/burger-ingredients";
 import { BurgerConstructor } from "@/components/burger-constructor/burger-constructor";
@@ -20,7 +20,7 @@ export function App() {
       .catch(setState({ ...state, isLoading: false, hasError: true }));
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     setState({ ...state, isLoading: true });
     fetchData();
   }, []);
@@ -30,10 +30,10 @@ export function App() {
       <AppHeader />
       <main className={`pt-10 ${appStyles.main}`}>
         {state.ingredients.length > 0 && (
-          <BurgerIngredients ingredients={state.ingredients} />
-        )}
-        {state.ingredients.length > 0 && (
-          <BurgerConstructor ingredients={state.ingredients} />
+          <>
+            <BurgerIngredients ingredients={state.ingredients} />
+            <BurgerConstructor ingredients={state.ingredients} />
+          </>
         )}
       </main>
     </div>

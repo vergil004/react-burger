@@ -1,5 +1,5 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React, { useEffect } from "react";
+import ReactDOM, { createPortal } from "react-dom";
 import PropTypes from "prop-types";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ModalOverlay } from "@/components/modal-overlay/modal-overlay";
@@ -17,12 +17,12 @@ export function Modal({ closeModal, title, children }) {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.addEventListener("keydown", keyPressHandler);
     return () => window.removeEventListener("keydown", keyPressHandler);
   }, []);
 
-  return ReactDOM.createPortal(
+  return createPortal(
     <div className={modalStyles.modal__box}>
       <ModalOverlay closeModal={() => closeModal()} />
       <div
