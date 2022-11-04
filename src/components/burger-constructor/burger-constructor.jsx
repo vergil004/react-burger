@@ -16,12 +16,7 @@ export function BurgerConstructor({ ingredients }) {
   const bun = ingredients.find((item) => item.type === "bun");
   const goods = ingredients.filter((item) => item.type !== "bun");
   const total = ingredients.reduce((sum, item) => (sum += item.price), 0);
-
   const [showModal, setShowModal] = useState(false);
-
-  const handleSubmit = () => {
-    setShowModal(true);
-  };
 
   return (
     <>
@@ -77,7 +72,7 @@ export function BurgerConstructor({ ingredients }) {
             htmlType="button"
             type="primary"
             size="medium"
-            onClick={handleSubmit}
+            onClick={() => setShowModal(true)}
           >
             Оформить заказ
           </Button>
