@@ -3,10 +3,10 @@ import {
   CurrencyIcon,
   Counter,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { Modal } from "../../modal/modal";
-import { IngredientDetails } from "../../ingredient-details/ingredient-details";
+import { Modal } from "@/components/modal/modal";
+import { IngredientDetails } from "@/components/ingredient-details/ingredient-details";
 import ingredientStyle from "./ingredient.module.css";
-import { ingredientPropTypes } from "../../../utils/types";
+import { ingredientPropTypes } from "@/utils/types";
 
 export function Ingredient({ ingredient }) {
   const count = 1;

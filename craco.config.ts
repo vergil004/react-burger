@@ -1,13 +1,11 @@
 // @ts-ignore
-const path = require('path');
-
-const resolvePath = p => path.resolve(__dirname, p)
+const path = require(`path`);
 
 module.exports = {
-    webpack: {
-      alias: {
-        '@': resolvePath('./src'),
-        '@components': resolvePath('./src/components'),
-      }
+  webpack: {
+    alias: {
+      "@": path.resolve(__dirname, "src/"),
+      "@components": path.resolve(__dirname, "src/components"),
     },
-}
+  },
+};

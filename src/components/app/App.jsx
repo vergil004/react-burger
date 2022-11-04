@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { AppHeader } from "../app-header/app-header";
-import { BurgerIngredients } from "../burger-ingredients/burger-ingredients";
-import { BurgerConstructor } from "../burger-constructor/burger-constructor";
+import { AppHeader } from "@/components/app-header/app-header";
+import { BurgerIngredients } from "@/components/burger-ingredients/burger-ingredients";
+import { BurgerConstructor } from "@/components/burger-constructor/burger-constructor";
 import appStyles from "./app.module.css";
-import { getIngredientsData } from "../../utils/burger-api";
+import { getIngredientsData } from "@/utils/burger-api";
 
 export function App() {
   const [state, setState] = useState({
