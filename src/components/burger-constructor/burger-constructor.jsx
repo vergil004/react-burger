@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import PropTypes from "prop-types";
 import {
   ConstructorElement,
   DragIcon,
@@ -16,12 +15,12 @@ export function BurgerConstructor() {
   const { ingredients } = useContext(ChosenIngredientDataContext);
   // Пока выводится одна булка из списка ингредиентов и остальные ингредиенты в отдельном списке
   const bun = ingredients.find((item) => item.type === "bun");
-  const goods = ingredients.filter((item) => item.type !== "bun");
-  const total = ingredients.reduce((sum, item) => (sum += item.price), 0);
+  const goods = ingredients.filter((item) => item.type !== "bun").slice(0, 5);
+  const total =
+    goods.reduce((sum, item) => (sum += item.price), 0) + bun.price * 2;
   const [showModal, setShowModal] = useState(false);
   const [order, setOrder] = useState({});
   const [isDisable, setDisable] = useState(false);
-  // const [totalSumState, totalSumDispatcher] =
 
   const fetchOrder = async () => {
     await sendOrderData(goods.map((item) => item._id)).then((data) => {
@@ -53,7 +52,7 @@ export function BurgerConstructor() {
             type="top"
             isLocked={true}
             price={bun.price}
-            text={bun.name}
+            text={`${bun.name} (верх)`}
             thumbnail={bun.image}
           />
         </div>
@@ -79,7 +78,7 @@ export function BurgerConstructor() {
             type="bottom"
             isLocked={true}
             price={bun.price}
-            text={bun.name}
+            text={`${bun.name} (низ)`}
             thumbnail={bun.image}
           />
         </div>
