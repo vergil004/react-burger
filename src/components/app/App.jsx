@@ -4,24 +4,24 @@ import { BurgerIngredients } from "@/components/burger-ingredients/burger-ingred
 import { BurgerConstructor } from "@/components/burger-constructor/burger-constructor";
 import appStyles from "./app.module.css";
 import { getIngredientsData } from "@/utils/burger-api";
+import { ChosenIngredientDataContext } from "@/utils/context";
 
 export function App() {
-  const [state, setState] = useState({
-    ingredients: [],
-    isLoading: false,
-    hasError: false,
-  });
+  const [ingredients, setIngredients] = useState([]);
+  const [isLoading, setLoading] = useState(false);
+  const [hasError, setError] = useState(false);
 
   const fetchData = async () => {
     await getIngredientsData()
-      .then((data) =>
-        setState({ ...state, ingredients: data.data, isLoading: false })
-      )
-      .catch(setState({ ...state, isLoading: false, hasError: true }));
+      .then((data) => {
+        setIngredients(data.data);
+        setLoading(false);
+      })
+      .catch(setError(true));
   };
 
   useEffect(() => {
-    setState({ ...state, isLoading: true });
+    setLoading(true);
     fetchData();
   }, []);
 
@@ -29,10 +29,12 @@ export function App() {
     <div className="App">
       <AppHeader />
       <main className={`pt-10 ${appStyles.main}`}>
-        {state.ingredients.length > 0 && (
+        {ingredients.length > 0 && (
           <>
-            <BurgerIngredients ingredients={state.ingredients} />
-            <BurgerConstructor ingredients={state.ingredients} />
+            <BurgerIngredients ingredients={ingredients} />
+            <ChosenIngredientDataContext.Provider value={{ ingredients }}>
+              <BurgerConstructor />
+            </ChosenIngredientDataContext.Provider>
           </>
         )}
       </main>
