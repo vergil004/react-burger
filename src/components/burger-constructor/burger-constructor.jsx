@@ -23,7 +23,11 @@ export function BurgerConstructor() {
   const [isDisable, setDisable] = useState(false);
 
   const fetchOrder = async () => {
-    await sendOrderData(goods.map((item) => item._id)).then((data) => {
+    await sendOrderData([
+      bun._id,
+      ...goods.map((item) => item._id),
+      bun._id,
+    ]).then((data) => {
       setOrder(data);
       setShowModal(true);
       setDisable(false);
