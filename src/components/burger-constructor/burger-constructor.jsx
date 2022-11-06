@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useMemo } from "react";
 import {
   ConstructorElement,
   DragIcon,
@@ -15,19 +15,22 @@ export function BurgerConstructor() {
   const { ingredients } = useContext(ChosenIngredientDataContext);
   // Пока выводится одна булка из списка ингредиентов и остальные ингредиенты в отдельном списке
   const bun = ingredients.find((item) => item.type === "bun");
-  const goods = ingredients.filter((item) => item.type !== "bun").slice(0, 5);
-  const total =
-    goods.reduce((sum, item) => (sum += item.price), 0) + bun.price * 2;
+  const goods = useMemo(() => {
+    return ingredients.filter((item) => item.type !== "bun").slice(0, 5);
+  }, [ingredients]);
+  const total = useMemo(() => {
+    return goods.reduce((sum, item) => (sum += item.price), 0) + bun.price * 2;
+  }, [ingredients]);
+
   const [showModal, setShowModal] = useState(false);
   const [order, setOrder] = useState({});
   const [isDisable, setDisable] = useState(false);
+  const idsList = useMemo(() => {
+    return [bun._id, ...goods.map((item) => item._id), bun._id];
+  }, [ingredients]);
 
   const fetchOrder = async () => {
-    await sendOrderData([
-      bun._id,
-      ...goods.map((item) => item._id),
-      bun._id,
-    ]).then((data) => {
+    await sendOrderData(idsList).then((data) => {
       setOrder(data);
       setShowModal(true);
       setDisable(false);
