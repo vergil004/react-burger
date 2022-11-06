@@ -1,11 +1,11 @@
-import React, { useRef } from "react";
-import PropTypes from "prop-types";
+import React, { useContext, useRef } from "react";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Ingredient } from "./ingredient/ingredient";
 import ingredientsStyle from "./burger-ingredients.module.css";
-import { ingredientPropTypes } from "@/utils/types";
+import { ChosenIngredientDataContext } from "@/utils/context";
 
-export function BurgerIngredients({ ingredients }) {
+export function BurgerIngredients() {
+  const { ingredients } = useContext(ChosenIngredientDataContext);
   const [current, setCurrent] = React.useState("bun");
   const bunList = ingredients.filter((item) => item.type === "bun");
   const sauceList = ingredients.filter((item) => item.type === "sauce");
@@ -47,7 +47,7 @@ export function BurgerIngredients({ ingredients }) {
           <h2 className="text text_type_main-medium pb-6">Булки</h2>
           <ul className={`${ingredientsStyle.ingredients__list} pl-4 pt-6`}>
             {bunList.map((item) => (
-              <li key={item._id}>
+              <li className={ingredientsStyle.ingredients__item} key={item._id}>
                 <Ingredient ingredient={item} />
               </li>
             ))}
@@ -57,7 +57,7 @@ export function BurgerIngredients({ ingredients }) {
           <h2 className="text text_type_main-medium pb-6">Соусы</h2>
           <ul className={ingredientsStyle.ingredients__list}>
             {sauceList.map((item) => (
-              <li key={item._id}>
+              <li className={ingredientsStyle.ingredients__item} key={item._id}>
                 <Ingredient ingredient={item} />
               </li>
             ))}
@@ -67,7 +67,7 @@ export function BurgerIngredients({ ingredients }) {
           <h2 className="text text_type_main-medium pb-6">Начинки</h2>
           <ul className={ingredientsStyle.ingredients__list}>
             {mainList.map((item) => (
-              <li key={item._id}>
+              <li className={ingredientsStyle.ingredients__item} key={item._id}>
                 <Ingredient ingredient={item} />
               </li>
             ))}
@@ -77,7 +77,3 @@ export function BurgerIngredients({ ingredients }) {
     </div>
   );
 }
-
-BurgerIngredients.propTypes = {
-  ingredients: PropTypes.arrayOf(ingredientPropTypes).isRequired,
-};

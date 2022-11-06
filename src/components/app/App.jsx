@@ -31,8 +31,8 @@ export function App() {
       <main className={`pt-10 ${appStyles.main}`}>
         {ingredients.length > 0 && (
           <>
-            <BurgerIngredients ingredients={ingredients} />
             <ChosenIngredientDataContext.Provider value={{ ingredients }}>
+              <BurgerIngredients />
               <BurgerConstructor />
             </ChosenIngredientDataContext.Provider>
           </>

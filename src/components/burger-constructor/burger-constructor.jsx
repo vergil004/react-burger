@@ -64,7 +64,10 @@ export function BurgerConstructor() {
           className={`${constructorStyles.burgerConstructor__list} pt-4 pb-4`}
         >
           {goods.map((item, index) => (
-            <li key={index}>
+            <li
+              className={constructorStyles.burgerConstructor__item}
+              key={index}
+            >
               <div className="pr-2">
                 <DragIcon type="primary" />
               </div>
