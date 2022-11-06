@@ -12,7 +12,7 @@ export function AppHeader() {
   return (
     <header className={headerStyles.header}>
       <div className={`${headerStyles.header__cont} pt-4 pb-4`}>
-        <div className={headerStyles.header__cell}>
+        <nav className={headerStyles.header__cell}>
           <HeaderItem active={true}>
             <BurgerIcon type={"secondary"} />
             <div className="pl-2">Конструктор</div>
@@ -21,7 +21,7 @@ export function AppHeader() {
             <ListIcon type={"secondary"} />
             <div className="pl-2">Лента заказов</div>
           </HeaderItem>
-        </div>
+        </nav>
         <div className={headerStyles.header__cell}>
           <Logo />
         </div>
