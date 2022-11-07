@@ -30,12 +30,10 @@ export function App() {
       <AppHeader />
       <main className={`pt-10 ${appStyles.main}`}>
         {ingredients.length > 0 && (
-          <>
-            <ChosenIngredientDataContext.Provider value={{ ingredients }}>
-              <BurgerIngredients />
-              <BurgerConstructor />
-            </ChosenIngredientDataContext.Provider>
-          </>
+          <ChosenIngredientDataContext.Provider value={{ ingredients }}>
+            <BurgerIngredients />
+            <BurgerConstructor />
+          </ChosenIngredientDataContext.Provider>
         )}
       </main>
     </div>
