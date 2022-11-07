@@ -7,9 +7,9 @@
     padding-left: 0;
     margin: 0;
     max-height: calc(100vh - 474px);
-    overflow-y: scroll;
+    overflow-y: auto;
 }
-.burgerConstructor__list li{
+.burgerConstructor__item{
     display: flex;
     align-items: center;
     list-style-type: none;

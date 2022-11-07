@@ -1,14 +1,15 @@
 import React from "react";
 import orderStyles from "./order-details.module.css";
+import { orderTypes } from "@/utils/types";
 import doneImage from "@/images/done.png";
 
-export const OrderDetails = () => {
+export const OrderDetails = ({ order }) => {
   return (
     <div className={orderStyles.order}>
       <div
         className={`${orderStyles.order__item} text text_type_digits-large pb-8`}
       >
-        034536
+        {order.order.number}
       </div>
       <div
         className={`${orderStyles.order__item} text text_type_main-medium pb-15`}
@@ -30,4 +31,8 @@ export const OrderDetails = () => {
       </div>
     </div>
   );
+};
+
+OrderDetails.propTypes = {
+  order: orderTypes,
 };

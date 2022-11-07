@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React, { useState, useContext, useMemo } from "react";
 import {
   ConstructorElement,
   DragIcon,
@@ -9,25 +8,46 @@ import {
 import { Modal } from "@/components/modal/modal";
 import { OrderDetails } from "@/components/order-details/order-details";
 import constructorStyles from "./burger-constructor.module.css";
-import { ingredientPropTypes } from "@/utils/types";
+import { ChosenIngredientDataContext } from "@/utils/context";
+import { sendOrderData } from "@/utils/burger-api";
 
-export function BurgerConstructor({ ingredients }) {
+export function BurgerConstructor() {
+  const { ingredients } = useContext(ChosenIngredientDataContext);
   // Пока выводится одна булка из списка ингредиентов и остальные ингредиенты в отдельном списке
   const bun = ingredients.find((item) => item.type === "bun");
-  const goods = ingredients.filter((item) => item.type !== "bun");
-  const total = ingredients.reduce((sum, item) => (sum += item.price), 0);
+  const goods = useMemo(() => {
+    return ingredients.filter((item) => item.type !== "bun").slice(0, 5);
+  }, [ingredients]);
+  const total = useMemo(() => {
+    return goods.reduce((sum, item) => (sum += item.price), 0) + bun.price * 2;
+  }, [ingredients]);
+
   const [showModal, setShowModal] = useState(false);
+  const [order, setOrder] = useState({});
+  const [isDisable, setDisable] = useState(false);
+  const idsList = useMemo(() => {
+    return [bun._id, ...goods.map((item) => item._id), bun._id];
+  }, [ingredients]);
+
+  const fetchOrder = async () => {
+    await sendOrderData(idsList).then((data) => {
+      setOrder(data);
+      setShowModal(true);
+      setDisable(false);
+    });
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
-    setShowModal(true);
+    setDisable(true);
+    fetchOrder();
   };
 
   return (
     <>
       {showModal && (
         <Modal closeModal={() => setShowModal(false)}>
-          <OrderDetails />
+          <OrderDetails order={order} />
         </Modal>
       )}
       <form
@@ -39,7 +59,7 @@ export function BurgerConstructor({ ingredients }) {
             type="top"
             isLocked={true}
             price={bun.price}
-            text={bun.name}
+            text={`${bun.name} (верх)`}
             thumbnail={bun.image}
           />
         </div>
@@ -47,7 +67,10 @@ export function BurgerConstructor({ ingredients }) {
           className={`${constructorStyles.burgerConstructor__list} pt-4 pb-4`}
         >
           {goods.map((item, index) => (
-            <li key={index}>
+            <li
+              className={constructorStyles.burgerConstructor__item}
+              key={index}
+            >
               <div className="pr-2">
                 <DragIcon type="primary" />
               </div>
@@ -65,7 +88,7 @@ export function BurgerConstructor({ ingredients }) {
             type="bottom"
             isLocked={true}
             price={bun.price}
-            text={bun.name}
+            text={`${bun.name} (низ)`}
             thumbnail={bun.image}
           />
         </div>
@@ -76,7 +99,12 @@ export function BurgerConstructor({ ingredients }) {
             <div className="pr-2 text text_type_digits-medium">{total}</div>
             <CurrencyIcon type="primary" />
           </div>
-          <Button htmlType="submit" type="primary" size="medium">
+          <Button
+            htmlType="submit"
+            disabled={isDisable}
+            type="primary"
+            size="medium"
+          >
             Оформить заказ
           </Button>
         </div>
@@ -84,7 +112,3 @@ export function BurgerConstructor({ ingredients }) {
     </>
   );
 }
-
-BurgerConstructor.propTypes = {
-  ingredients: PropTypes.arrayOf(ingredientPropTypes).isRequired,
-};
