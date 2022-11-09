@@ -11,7 +11,7 @@ import constructorStyles from "./burger-constructor.module.css";
 import { ChosenIngredientDataContext } from "@/utils/context";
 import { sendOrderData } from "@/utils/burger-api";
 
-export function BurgerConstructor() {
+export const BurgerConstructor = React.memo(function BurgerConstructor() {
   const { ingredients } = useContext(ChosenIngredientDataContext);
   // Пока выводится одна булка из списка ингредиентов и остальные ингредиенты в отдельном списке
   const bun = ingredients.find((item) => item.type === "bun");
@@ -20,14 +20,14 @@ export function BurgerConstructor() {
   }, [ingredients]);
   const total = useMemo(() => {
     return goods.reduce((sum, item) => (sum += item.price), 0) + bun.price * 2;
-  }, [ingredients]);
+  }, [goods, bun.price]);
 
   const [showModal, setShowModal] = useState(false);
   const [order, setOrder] = useState({});
   const [isDisable, setDisable] = useState(false);
   const idsList = useMemo(() => {
     return [bun._id, ...goods.map((item) => item._id), bun._id];
-  }, [ingredients]);
+  }, [goods, bun._id]);
 
   const fetchOrder = async () => {
     await sendOrderData(idsList).then((data) => {
@@ -111,4 +111,4 @@ export function BurgerConstructor() {
       </form>
     </>
   );
-}
+});

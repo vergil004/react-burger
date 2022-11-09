@@ -8,8 +8,8 @@ export function request(url, options) {
   return fetch(url, options).then((response) => checkResponse(response));
 }
 
-export async function getIngredientsData() {
-  return await request(`${BASE_URL}/ingredients`);
+export function getIngredientsData() {
+  return request(`${BASE_URL}/ingredients`);
 }
 
 export async function sendOrderData(idList) {

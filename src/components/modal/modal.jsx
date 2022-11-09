@@ -8,19 +8,18 @@ import modalStyles from "./modal.module.css";
 const modalRoot = document.getElementById("modal");
 
 export function Modal({ closeModal, title, children }) {
-  const keyPressHandler = ({ key }) => {
-    switch (key) {
-      case "Escape":
-        closeModal();
-        break;
-      default:
-    }
-  };
-
   useEffect(() => {
+    const keyPressHandler = ({ key }) => {
+      switch (key) {
+        case "Escape":
+          closeModal();
+          break;
+        default:
+      }
+    };
     window.addEventListener("keydown", keyPressHandler);
     return () => window.removeEventListener("keydown", keyPressHandler);
-  }, []);
+  }, [closeModal]);
 
   return createPortal(
     <div className={modalStyles.modal__box}>
