@@ -1,15 +1,18 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import orderStyles from "./order-details.module.css";
-import { orderTypes } from "@/utils/types";
 import doneImage from "@/images/done.png";
 
-export const OrderDetails = ({ order }) => {
+export const OrderDetails = () => {
+  const { number, name } = useSelector((store) => {
+    return store.order;
+  });
   return (
     <div className={orderStyles.order}>
       <div
         className={`${orderStyles.order__item} text text_type_digits-large pb-8`}
       >
-        {order.order.number}
+        {number}
       </div>
       <div
         className={`${orderStyles.order__item} text text_type_main-medium pb-15`}
@@ -31,8 +34,4 @@ export const OrderDetails = ({ order }) => {
       </div>
     </div>
   );
-};
-
-OrderDetails.propTypes = {
-  order: orderTypes,
 };
