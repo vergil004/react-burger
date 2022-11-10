@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDrag } from "react-dnd";
 import {
   CurrencyIcon,
   Counter,
@@ -11,6 +12,13 @@ import { ingredientPropTypes } from "@/utils/types";
 export function Ingredient({ ingredient }) {
   const count = 1;
   const [showModal, setShowModal] = useState(false);
+  const [{ opacity }, dragRef] = useDrag(() => ({
+    type: "ingredient",
+    item: ingredient,
+    collect: (monitor) => ({
+      opacity: monitor.isDragging() ? 0.5 : 1,
+    }),
+  }));
 
   return (
     <>
@@ -23,6 +31,7 @@ export function Ingredient({ ingredient }) {
         </Modal>
       )}
       <div
+        ref={dragRef}
         className={`${ingredientStyle.ingredient} pr-4 pl-4`}
         onClick={() => setShowModal(true)}
       >

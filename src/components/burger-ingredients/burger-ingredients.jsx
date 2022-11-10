@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
-import { Ingredient } from "./ingredient/ingredient";
 import { IngredientsSection } from "./ingredients-section/ingredients-section";
 import ingredientsStyle from "./burger-ingredients.module.css";
 import { useSelector } from "react-redux";
