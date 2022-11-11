@@ -24,7 +24,6 @@ export function Ingredient({ ingredient }) {
   }));
 
   const count = useMemo(() => {
-    console.log([bun._id, ingredients.map((item) => item._id), bun._id]);
     return bun !== null
       ? [bun._id, ...ingredients.map((item) => item._id), bun._id].filter(
           (id) => id === ingredient._id

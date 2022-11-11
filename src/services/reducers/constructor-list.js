@@ -1,6 +1,7 @@
 import {
   ADD_CONSTRUCTOR__BUN,
   ADD_TO_CONSTRUCTOR_INGREDIENTS_LIST,
+  DELETE_FROM_CONSTRUCTOR_INGREDIENTS_LIST,
 } from "@/services/actions/constructor-list";
 
 const initialConstructorListState = {
@@ -23,6 +24,14 @@ export function constructorListReducer(
       return {
         ...state,
         ingredients: [...state.ingredients, { ...action.ingredient }],
+      };
+    }
+    case DELETE_FROM_CONSTRUCTOR_INGREDIENTS_LIST: {
+      return {
+        ...state,
+        ingredients: state.ingredients.filter(
+          (item) => item.key !== action.key
+        ),
       };
     }
     default: {

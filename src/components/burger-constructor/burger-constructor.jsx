@@ -1,5 +1,6 @@
-import React, { useState, useContext, useMemo } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import { useDrop } from "react-dnd";
+import { v4 as uuidv4 } from "uuid";
 import { useSelector, useDispatch } from "react-redux";
 import {
   ConstructorElement,
@@ -13,6 +14,7 @@ import constructorStyles from "./burger-constructor.module.css";
 import {
   addBunToConstructor,
   addIngredientToConstructor,
+  deleteIngredientFromConstrutor,
 } from "@/services/actions-creators/constructor-list";
 import { setOrderData } from "@/services/actions/order";
 import { setOrderFailed } from "@/services/actions-creators/order";
@@ -61,8 +63,12 @@ export const BurgerConstructor = React.memo(function BurgerConstructor() {
     if (item.type === "bun") {
       dispatch(addBunToConstructor(item));
     } else {
-      dispatch(addIngredientToConstructor(item));
+      dispatch(addIngredientToConstructor(item, uuidv4()));
     }
+  };
+
+  const test = () => {
+    console.log(test);
   };
 
   const [{ isHover }, drop] = useDrop(() => ({
@@ -140,6 +146,9 @@ export const BurgerConstructor = React.memo(function BurgerConstructor() {
                   price={item.price}
                   text={item.name}
                   thumbnail={item.image}
+                  handleClose={() =>
+                    dispatch(deleteIngredientFromConstrutor(item.key))
+                  }
                 />
               </li>
             ))}
