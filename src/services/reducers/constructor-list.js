@@ -2,6 +2,7 @@ import {
   ADD_CONSTRUCTOR__BUN,
   ADD_TO_CONSTRUCTOR_INGREDIENTS_LIST,
   DELETE_FROM_CONSTRUCTOR_INGREDIENTS_LIST,
+  SET_ORDER_OF_INGREDIENTS,
 } from "@/services/actions/constructor-list";
 
 const initialConstructorListState = {
@@ -32,6 +33,14 @@ export function constructorListReducer(
         ingredients: state.ingredients.filter(
           (item) => item.key !== action.key
         ),
+      };
+    }
+    case SET_ORDER_OF_INGREDIENTS: {
+      const items = [...state.ingredients];
+      items.splice(action.dropIndex, 0, items.splice(action.dragIndex, 1)[0]);
+      return {
+        ...state,
+        ingredients: items,
       };
     }
     default: {

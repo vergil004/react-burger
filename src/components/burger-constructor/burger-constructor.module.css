@@ -17,11 +17,6 @@
     max-height: calc(100vh - 474px);
     overflow-y: auto;
 }
-.burgerConstructor__item{
-    display: flex;
-    align-items: center;
-    list-style-type: none;
-}
 .burgerConstructor__total{
     display: flex;
     justify-content: flex-end;

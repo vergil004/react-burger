@@ -4,20 +4,20 @@ import { v4 as uuidv4 } from "uuid";
 import { useSelector, useDispatch } from "react-redux";
 import {
   ConstructorElement,
-  DragIcon,
   CurrencyIcon,
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Modal } from "@/components/modal/modal";
 import { OrderDetails } from "@/components/order-details/order-details";
-import constructorStyles from "./burger-constructor.module.css";
+import { ConstructorItem } from "@/components/burger-constructor/constructor-item/constructor-item";
 import {
   addBunToConstructor,
   addIngredientToConstructor,
-  deleteIngredientFromConstrutor,
+  setOrderIngredients,
 } from "@/services/actions-creators/constructor-list";
 import { setOrderData } from "@/services/actions/order";
 import { setOrderFailed } from "@/services/actions-creators/order";
+import constructorStyles from "./burger-constructor.module.css";
 import forgottenImage from "@/images/forgotten.jpeg";
 
 export const BurgerConstructor = React.memo(function BurgerConstructor() {
@@ -67,10 +67,6 @@ export const BurgerConstructor = React.memo(function BurgerConstructor() {
     }
   };
 
-  const test = () => {
-    console.log(test);
-  };
-
   const [{ isHover }, drop] = useDrop(() => ({
     accept: "ingredient",
     drop(item) {
@@ -80,6 +76,10 @@ export const BurgerConstructor = React.memo(function BurgerConstructor() {
       isHover: monitor.isOver(),
     }),
   }));
+
+  const moveHandler = useCallback((dropIndex, dragIndex) => {
+    dispatch(setOrderIngredients(dragIndex, dropIndex));
+  }, []);
 
   const formStyles = isHover
     ? constructorStyles.burgerConstructor__hover
@@ -134,23 +134,12 @@ export const BurgerConstructor = React.memo(function BurgerConstructor() {
             className={`${constructorStyles.burgerConstructor__list} pt-4 pb-4`}
           >
             {ingredients.map((item, index) => (
-              <li
-                className={constructorStyles.burgerConstructor__item}
-                key={index}
-              >
-                <div className="pr-2">
-                  <DragIcon type="primary" />
-                </div>
-                <ConstructorElement
-                  isLocked={false}
-                  price={item.price}
-                  text={item.name}
-                  thumbnail={item.image}
-                  handleClose={() =>
-                    dispatch(deleteIngredientFromConstrutor(item.key))
-                  }
-                />
-              </li>
+              <ConstructorItem
+                key={item.key}
+                index={index}
+                ingredient={item}
+                moveIngredient={moveHandler}
+              />
             ))}
           </ul>
         )}
