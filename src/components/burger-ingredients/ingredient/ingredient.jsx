@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useDrag } from "react-dnd";
 import {
   CurrencyIcon,
@@ -8,9 +8,12 @@ import { Modal } from "@/components/modal/modal";
 import { IngredientDetails } from "@/components/ingredient-details/ingredient-details";
 import ingredientStyle from "./ingredient.module.css";
 import { ingredientPropTypes } from "@/utils/types";
+import { useSelector } from "react-redux";
 
 export function Ingredient({ ingredient }) {
-  const count = 1;
+  const { bun, ingredients } = useSelector((state) => {
+    return state.constructorIngredients;
+  });
   const [showModal, setShowModal] = useState(false);
   const [{ opacity }, dragRef] = useDrag(() => ({
     type: "ingredient",
@@ -19,6 +22,17 @@ export function Ingredient({ ingredient }) {
       opacity: monitor.isDragging() ? 0.5 : 1,
     }),
   }));
+
+  const count = useMemo(() => {
+    console.log([bun._id, ingredients.map((item) => item._id), bun._id]);
+    return bun !== null
+      ? [bun._id, ...ingredients.map((item) => item._id), bun._id].filter(
+          (id) => id === ingredient._id
+        ).length
+      : ingredients
+          .map((item) => item._id)
+          .filter((id) => id === ingredient._id).length;
+  }, [ingredients, bun]);
 
   return (
     <>
