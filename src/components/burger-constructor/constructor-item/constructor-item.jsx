@@ -31,14 +31,21 @@ export function ConstructorItem({ ingredient, moveIngredient, index }) {
     },
   });
 
-  const [, drag] = useDrag({
+  const [{ isDragging }, drag] = useDrag({
     type: "draggableItem",
     item: () => {
       return { key, index };
     },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
   });
 
   drag(drop(ref));
+
+  const draggedClasses = isDragging
+    ? itemStyles.item__drag
+    : itemStyles.item__shadow;
 
   return (
     <li ref={ref} className={itemStyles.item}>
@@ -53,6 +60,7 @@ export function ConstructorItem({ ingredient, moveIngredient, index }) {
         handleClose={() =>
           dispatch(deleteIngredientFromConstructor(ingredient.key))
         }
+        extraClass={draggedClasses}
       />
     </li>
   );

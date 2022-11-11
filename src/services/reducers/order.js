@@ -31,7 +31,6 @@ export const orderReducer = (state = initialOrderState, action) => {
       };
     }
     case SET_ORDER_FAILED: {
-      console.log("9090");
       return {
         ...state,
         orderRequest: false,

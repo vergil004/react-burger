@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useDrag } from "react-dnd";
 import {
   CurrencyIcon,
@@ -8,12 +9,13 @@ import { Modal } from "@/components/modal/modal";
 import { IngredientDetails } from "@/components/ingredient-details/ingredient-details";
 import ingredientStyle from "./ingredient.module.css";
 import { ingredientPropTypes } from "@/utils/types";
-import { useSelector } from "react-redux";
+import { setCurrentIngredient } from "@/services/actions-creators/current-ingredient";
 
 export function Ingredient({ ingredient }) {
   const { bun, ingredients } = useSelector((state) => {
     return state.constructorIngredients;
   });
+  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [{ opacity }, dragRef] = useDrag(() => ({
     type: "ingredient",
@@ -33,6 +35,11 @@ export function Ingredient({ ingredient }) {
           .filter((id) => id === ingredient._id).length;
   }, [ingredients, bun]);
 
+  const showModalHundler = () => {
+    dispatch(setCurrentIngredient(ingredient));
+    setShowModal(true);
+  };
+
   return (
     <>
       {showModal && (
@@ -46,7 +53,7 @@ export function Ingredient({ ingredient }) {
       <div
         ref={dragRef}
         className={`${ingredientStyle.ingredient} pr-4 pl-4`}
-        onClick={() => setShowModal(true)}
+        onClick={showModalHundler}
       >
         {count > 0 && (
           <div className={ingredientStyle.ingredient__count}>
