@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { useDrag, useDrop } from "react-dnd";
 import {
@@ -7,6 +8,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import itemStyles from "./constructor-item.module.css";
 import { deleteIngredientFromConstructor } from "@/services/actions-creators/constructor-list";
+import { ingredientPropTypes } from "@/utils/types";
 
 export function ConstructorItem({ ingredient, moveIngredient, index }) {
   const dispatch = useDispatch();
@@ -55,3 +57,9 @@ export function ConstructorItem({ ingredient, moveIngredient, index }) {
     </li>
   );
 }
+
+ConstructorItem.propTypes = {
+  moveIngredient: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
+  items: ingredientPropTypes.isRequired,
+};

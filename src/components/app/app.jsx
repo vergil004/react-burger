@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { AppHeader } from "@/components/app-header/app-header";
@@ -10,11 +10,6 @@ import { getIngredientsList } from "@/services/actions/ingredients-list";
 
 export function App() {
   const dispatch = useDispatch();
-  const { ingredientsRequestFailed, ingredientsRequest, error } = useSelector(
-    (state) => {
-      return state.ingredients;
-    }
-  );
 
   useEffect(() => {
     dispatch(getIngredientsList());

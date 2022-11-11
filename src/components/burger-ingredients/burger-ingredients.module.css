@@ -18,6 +18,12 @@
     max-height: calc(100vh - 284px);
     overflow-y: scroll;
 }
+.ingredients__loader{
+    height: calc(100% - 90px)
+}
+.ingredients__error{
+    composes: ingredients__loader;
+}
 
 
 

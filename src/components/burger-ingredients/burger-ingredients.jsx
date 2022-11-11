@@ -1,11 +1,19 @@
 import React, { useRef } from "react";
+import { useSelector } from "react-redux";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import { IngredientsSection } from "./ingredients-section/ingredients-section";
+import { Loader } from "@/components/loader/loader";
+import { AppError } from "@/components/app-error/app-error";
 import ingredientsStyle from "./burger-ingredients.module.css";
-import { useSelector } from "react-redux";
 
 export const BurgerIngredients = React.memo(function BurgerIngredients() {
-  const { ingredients, buns } = useSelector((state) => {
+  const {
+    ingredients,
+    buns,
+    ingredientsRequestFailed,
+    ingredientsRequest,
+    error,
+  } = useSelector((state) => {
     return state.ingredients;
   });
   const [current, setCurrent] = React.useState("bun");
@@ -44,19 +52,31 @@ export const BurgerIngredients = React.memo(function BurgerIngredients() {
           Начинки
         </Tab>
       </div>
-      <div className={ingredientsStyle.ingredients__cont}>
-        <IngredientsSection title="Булки" items={bunList} ref={scrollToBun} />
-        <IngredientsSection
-          title="Соусы"
-          items={sauceList}
-          ref={scrollToSauce}
-        />
-        <IngredientsSection
-          title="Начинки"
-          items={mainList}
-          ref={scrollToMain}
-        />
-      </div>
+      {ingredientsRequestFailed && (
+        <div className={ingredientsStyle.ingredients__error}>
+          <AppError error={error} />
+        </div>
+      )}
+      {ingredientsRequest && (
+        <div className={ingredientsStyle.ingredients__loader}>
+          <Loader />
+        </div>
+      )}
+      {!ingredientsRequestFailed && !ingredientsRequest && (
+        <div className={ingredientsStyle.ingredients__cont}>
+          <IngredientsSection title="Булки" items={bunList} ref={scrollToBun} />
+          <IngredientsSection
+            title="Соусы"
+            items={sauceList}
+            ref={scrollToSauce}
+          />
+          <IngredientsSection
+            title="Начинки"
+            items={mainList}
+            ref={scrollToMain}
+          />
+        </div>
+      )}
     </div>
   );
 });
