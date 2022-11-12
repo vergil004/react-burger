@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import { IngredientsSection } from "./ingredients-section/ingredients-section";
@@ -23,6 +23,7 @@ export const BurgerIngredients = React.memo(function BurgerIngredients() {
   const scrollToBun = useRef();
   const scrollToSauce = useRef();
   const scrollToMain = useRef();
+  const scrollCont = useRef();
 
   const scrollToGroup = (value) => {
     setCurrent(value);
@@ -37,6 +38,21 @@ export const BurgerIngredients = React.memo(function BurgerIngredients() {
         scrollToMain?.current.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  const scrollHandler = useCallback(() => {
+    const topHeight = scrollCont?.current.getBoundingClientRect().top;
+    const bun = Math.abs(
+      topHeight - scrollToBun.current.getBoundingClientRect().top
+    );
+    const sauce = Math.abs(
+      topHeight - scrollToSauce.current.getBoundingClientRect().top
+    );
+    const main = Math.abs(
+      topHeight - scrollToMain.current.getBoundingClientRect().top
+    );
+    const nearestBlock = bun < sauce ? "bun" : sauce < main ? "sauce" : "main";
+    setCurrent(nearestBlock);
+  }, []);
 
   return (
     <div className={ingredientsStyle.ingredients}>
@@ -64,7 +80,11 @@ export const BurgerIngredients = React.memo(function BurgerIngredients() {
           </div>
         ))}
       {!ingredientsRequestFailed && !ingredientsRequest && (
-        <div className={ingredientsStyle.ingredients__cont}>
+        <div
+          className={ingredientsStyle.ingredients__cont}
+          onScroll={scrollHandler}
+          ref={scrollCont}
+        >
           <IngredientsSection title="Булки" items={bunList} ref={scrollToBun} />
           <IngredientsSection
             title="Соусы"
