@@ -5,6 +5,7 @@ import {
 } from "@/services/actions-creators/order";
 
 import { sendOrderData } from "@/utils/burger-api";
+import { clearConstructor } from "@/services/actions-creators/constructor-list";
 
 export const SET_ORDER_REQUEST = "SET_ORDER_REQUEST";
 export const SET_ORDER_SUCCESS = "SET_ORDER_SUCCESS";
@@ -16,6 +17,7 @@ export const setOrderData = (ingredientsIds) => (dispatch) => {
     .then((response) => {
       dispatch(setOrderSuccess(response.order.number, response.name));
     })
+    .then(dispatch(clearConstructor()))
     .catch((error) => {
       dispatch(setOrderFailed(error));
     });

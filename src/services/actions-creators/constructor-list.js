@@ -3,6 +3,7 @@ import {
   ADD_TO_CONSTRUCTOR_INGREDIENTS_LIST,
   DELETE_FROM_CONSTRUCTOR_INGREDIENTS_LIST,
   SET_ORDER_OF_INGREDIENTS,
+  CLEAR_CONSTRUCTOR,
 } from "@/services/actions/constructor-list";
 
 export const addBunToConstructor = (bun) => {
@@ -31,5 +32,11 @@ export const setOrderIngredients = (dragIndex, dropIndex) => {
     type: SET_ORDER_OF_INGREDIENTS,
     dropIndex: dropIndex,
     dragIndex: dragIndex,
+  };
+};
+
+export const clearConstructor = () => {
+  return {
+    type: CLEAR_CONSTRUCTOR,
   };
 };

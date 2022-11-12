@@ -1,6 +1,7 @@
 import {
   ADD_CONSTRUCTOR__BUN,
   ADD_TO_CONSTRUCTOR_INGREDIENTS_LIST,
+  CLEAR_CONSTRUCTOR,
   DELETE_FROM_CONSTRUCTOR_INGREDIENTS_LIST,
   SET_ORDER_OF_INGREDIENTS,
 } from "@/services/actions/constructor-list";
@@ -41,6 +42,13 @@ export function constructorListReducer(
       return {
         ...state,
         ingredients: items,
+      };
+    }
+    case CLEAR_CONSTRUCTOR: {
+      return {
+        ...state,
+        bun: null,
+        ingredients: [],
       };
     }
     default: {
