@@ -10,6 +10,8 @@ export const BurgerIngredients = React.memo(function BurgerIngredients() {
   const {
     ingredients,
     buns,
+    sauceList,
+    mainList,
     ingredientsRequestFailed,
     ingredientsRequest,
     error,
@@ -18,8 +20,6 @@ export const BurgerIngredients = React.memo(function BurgerIngredients() {
   });
   const [current, setCurrent] = React.useState("bun");
   const bunList = buns;
-  const sauceList = ingredients.filter((item) => item.type === "sauce");
-  const mainList = ingredients.filter((item) => item.type === "main");
   const scrollToBun = useRef();
   const scrollToSauce = useRef();
   const scrollToMain = useRef();

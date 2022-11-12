@@ -7,6 +7,8 @@ import {
 const initialIngredientsListState = {
   buns: [],
   ingredients: [],
+  sauceList: [],
+  mainList: [],
   ingredientsListRequest: false,
   ingredientsListRequestFailed: false,
   error: "",
@@ -32,6 +34,12 @@ export function ingredientsListReducer(
         ),
         ingredients: action.ingredients.filter(
           (ingredient) => ingredient.type !== "bun"
+        ),
+        sauceList: action.ingredients.filter(
+          (ingredient) => ingredient.type === "sauce"
+        ),
+        mainList: action.ingredients.filter(
+          (ingredient) => ingredient.type === "main"
         ),
         ingredientsListRequest: false,
         ingredientsListRequestFailed: false,
