@@ -1,6 +1,6 @@
 import { SET_CURRENT_INGREDIENT } from "@/services/actions/current-ingredient";
 
-const initialStateCurrentIngredient = {};
+const initialStateCurrentIngredient = null;
 
 export function currentIngredientReducer(
   state = initialStateCurrentIngredient,
@@ -8,9 +8,12 @@ export function currentIngredientReducer(
 ) {
   switch (action.type) {
     case SET_CURRENT_INGREDIENT: {
-      return {
-        ...action.ingredient,
-      };
+      if (action.ingredient) {
+        return {
+          ...action.ingredient,
+        };
+      }
+      return null;
     }
     default: {
       return state;

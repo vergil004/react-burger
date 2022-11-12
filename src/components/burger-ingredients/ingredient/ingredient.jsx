@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useDrag } from "react-dnd";
 import {
@@ -35,25 +35,27 @@ export function Ingredient({ ingredient }) {
           .filter((id) => id === ingredient._id).length;
   }, [ingredients, bun]);
 
-  const showModalHundler = () => {
+  const showModalHandler = useCallback(() => {
     dispatch(setCurrentIngredient(ingredient));
     setShowModal(true);
-  };
+  }, [dispatch]);
+
+  const closeModalHandler = useCallback(() => {
+    dispatch(setCurrentIngredient());
+    setShowModal(false);
+  }, [dispatch]);
 
   return (
     <>
       {showModal && (
-        <Modal
-          title="Детали ингредиента"
-          closeModal={() => setShowModal(false)}
-        >
+        <Modal title="Детали ингредиента" closeModal={closeModalHandler}>
           <IngredientDetails ingredient={ingredient} />
         </Modal>
       )}
       <div
         ref={dragRef}
         className={`${ingredientStyle.ingredient} pr-4 pl-4`}
-        onClick={showModalHundler}
+        onClick={showModalHandler}
       >
         {count > 0 && (
           <div className={ingredientStyle.ingredient__count}>
