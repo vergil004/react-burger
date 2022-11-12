@@ -1,6 +1,14 @@
 .burgerConstructor{
     width: 600px;
 }
+.burgerConstructor__hover{
+    composes: burgerConstructor;
+}
+.burgerConstructor__hover .burgerConstructor__top,
+.burgerConstructor__hover .burgerConstructor__middle,
+.burgerConstructor__hover .burgerConstructor__bottom{
+    box-shadow: 0px 5px 21px 2px rgba(37, 221, 5, 0.2);
+}
 .burgerConstructor__list{
     display: grid;
     gap: 16px;
@@ -8,11 +16,6 @@
     margin: 0;
     max-height: calc(100vh - 474px);
     overflow-y: auto;
-}
-.burgerConstructor__item{
-    display: flex;
-    align-items: center;
-    list-style-type: none;
 }
 .burgerConstructor__total{
     display: flex;
@@ -25,5 +28,29 @@
 .burgerConstructor__sum{
     display: flex;
     align-items: center;
+}
+.burgerConstructor__top{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 536px;
+    height: 80px;
+    background-color: #8585AD;
+    border-radius: 88px 88px 40px 40px;
+    margin-left: 32px;
+}
+.burgerConstructor__middle{
+    composes: burgerConstructor__top;
+    height: calc(100vh - 506px);
+    border-radius: 40px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+.burgerConstructor__bottom{
+    composes: burgerConstructor__top;
+    border-radius: 44px 44px 88px 88px;
+}
+.error{
+    display: none;
 }
 

@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useDrag } from "react-dnd";
 import {
   CurrencyIcon,
   Counter,
@@ -7,24 +9,53 @@ import { Modal } from "@/components/modal/modal";
 import { IngredientDetails } from "@/components/ingredient-details/ingredient-details";
 import ingredientStyle from "./ingredient.module.css";
 import { ingredientPropTypes } from "@/utils/types";
+import { setCurrentIngredient } from "@/services/actions-creators/current-ingredient";
 
 export function Ingredient({ ingredient }) {
-  const count = 1;
+  const { bun, ingredients } = useSelector((state) => {
+    return state.constructorIngredients;
+  });
+  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
+  const [{ opacity }, dragRef] = useDrag(() => ({
+    type: "ingredient",
+    item: ingredient,
+    collect: (monitor) => ({
+      opacity: monitor.isDragging() ? 0.5 : 1,
+    }),
+  }));
+
+  const count = useMemo(() => {
+    return bun !== null
+      ? [bun._id, ...ingredients.map((item) => item._id), bun._id].filter(
+          (id) => id === ingredient._id
+        ).length
+      : ingredients
+          .map((item) => item._id)
+          .filter((id) => id === ingredient._id).length;
+  }, [ingredients, bun]);
+
+  const showModalHandler = useCallback(() => {
+    dispatch(setCurrentIngredient(ingredient));
+    setShowModal(true);
+  }, [dispatch]);
+
+  const closeModalHandler = useCallback(() => {
+    dispatch(setCurrentIngredient());
+    setShowModal(false);
+  }, [dispatch]);
 
   return (
     <>
       {showModal && (
-        <Modal
-          title="Детали ингредиента"
-          closeModal={() => setShowModal(false)}
-        >
+        <Modal title="Детали ингредиента" closeModal={closeModalHandler}>
           <IngredientDetails ingredient={ingredient} />
         </Modal>
       )}
       <div
+        ref={dragRef}
         className={`${ingredientStyle.ingredient} pr-4 pl-4`}
-        onClick={() => setShowModal(true)}
+        onClick={showModalHandler}
       >
         {count > 0 && (
           <div className={ingredientStyle.ingredient__count}>
