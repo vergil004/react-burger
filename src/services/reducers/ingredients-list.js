@@ -1,5 +1,5 @@
 import {
-  GET_INGREDIENTS_FAILED,
+  GET_INGREDIENTS_ERROR,
   GET_INGREDIENTS_REQUEST,
   GET_INGREDIENTS_SUCCESS,
 } from "../actions/ingredients-list";
@@ -45,7 +45,7 @@ export function ingredientsListReducer(
         ingredientsListRequestFailed: false,
       };
     }
-    case GET_INGREDIENTS_FAILED: {
+    case GET_INGREDIENTS_ERROR: {
       return {
         ...state,
         ingredientsListRequestFailed: true,

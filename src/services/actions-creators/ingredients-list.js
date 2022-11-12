@@ -1,6 +1,6 @@
 import {
   GET_INGREDIENTS_REQUEST,
-  GET_INGREDIENTS_FAILED,
+  GET_INGREDIENTS_ERROR,
   GET_INGREDIENTS_SUCCESS,
 } from "@/services/actions/ingredients-list";
 
@@ -19,6 +19,6 @@ export const getIngredientsSuccess = (items) => {
 
 export const getIngredientsFailed = () => {
   return {
-    type: GET_INGREDIENTS_FAILED,
+    type: GET_INGREDIENTS_ERROR,
   };
 };

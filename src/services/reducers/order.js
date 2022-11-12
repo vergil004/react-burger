@@ -1,5 +1,5 @@
 import {
-  SET_ORDER_FAILED,
+  SET_ORDER_ERROR,
   SET_ORDER_REQUEST,
   SET_ORDER_SUCCESS,
 } from "@/services/actions/order";
@@ -30,7 +30,7 @@ export const orderReducer = (state = initialOrderState, action) => {
         orderRequestFailed: false,
       };
     }
-    case SET_ORDER_FAILED: {
+    case SET_ORDER_ERROR: {
       return {
         ...state,
         orderRequest: false,

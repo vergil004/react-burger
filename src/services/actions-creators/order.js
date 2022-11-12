@@ -1,5 +1,5 @@
 import {
-  SET_ORDER_FAILED,
+  SET_ORDER_ERROR,
   SET_ORDER_REQUEST,
   SET_ORDER_SUCCESS,
 } from "@/services/actions/order";
@@ -20,7 +20,7 @@ export const setOrderSuccess = (number, name) => {
 
 export const setOrderFailed = (error) => {
   return {
-    type: SET_ORDER_FAILED,
+    type: SET_ORDER_ERROR,
     errorText: error,
   };
 };

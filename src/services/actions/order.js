@@ -8,7 +8,7 @@ import { sendOrderData } from "@/utils/burger-api";
 
 export const SET_ORDER_REQUEST = "SET_ORDER_REQUEST";
 export const SET_ORDER_SUCCESS = "SET_ORDER_SUCCESS";
-export const SET_ORDER_FAILED = "SET_ORDER_FAILED";
+export const SET_ORDER_ERROR = "SET_ORDER_FAILED";
 
 export const setOrderData = (ingredientsIds) => (dispatch) => {
   dispatch(setOrderRequest());
