@@ -69,5 +69,5 @@ export function ConstructorItem({ ingredient, moveIngredient, index }) {
 ConstructorItem.propTypes = {
   moveIngredient: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
-  items: ingredientPropTypes.isRequired,
+  ingredient: ingredientPropTypes.isRequired,
 };

@@ -11,3 +11,10 @@
     composes: order__item;
     color: #8585AD;
 }
+.order__loader{
+    display: flex;
+    height: 478px;
+}
+.order__error{
+    composes: order__loader;
+}
