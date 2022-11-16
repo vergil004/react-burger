@@ -9,7 +9,10 @@ import { Modal } from "@/components/modal/modal";
 import { IngredientDetails } from "@/components/ingredient-details/ingredient-details";
 import ingredientStyle from "./ingredient.module.css";
 import { ingredientPropTypes } from "@/utils/types";
-import { setCurrentIngredient } from "@/services/actions-creators/current-ingredient";
+import {
+  setCurrentIngredient,
+  removeCurrentIngredient,
+} from "@/services/actions-creators/current-ingredient";
 
 export function Ingredient({ ingredient }) {
   const { bun, ingredients } = useSelector((state) => {
@@ -41,7 +44,7 @@ export function Ingredient({ ingredient }) {
   }, [dispatch]);
 
   const closeModalHandler = useCallback(() => {
-    dispatch(setCurrentIngredient());
+    dispatch(removeCurrentIngredient());
     setShowModal(false);
   }, [dispatch]);
 
@@ -87,5 +90,5 @@ Ingredient.defaultProps = {
   ingredient: {},
 };
 Ingredient.propTypes = {
-  ingredient: ingredientPropTypes,
+  ingredient: ingredientPropTypes.isRequired,
 };

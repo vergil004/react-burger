@@ -1,4 +1,7 @@
-import { SET_CURRENT_INGREDIENT } from "@/services/actions/current-ingredient";
+import {
+  SET_CURRENT_INGREDIENT,
+  REMOVE_CURRENT_INGREDIENT,
+} from "@/services/actions/current-ingredient";
 
 const initialStateCurrentIngredient = null;
 
@@ -8,11 +11,11 @@ export function currentIngredientReducer(
 ) {
   switch (action.type) {
     case SET_CURRENT_INGREDIENT: {
-      if (action.ingredient) {
-        return {
-          ...action.ingredient,
-        };
-      }
+      return {
+        ...action.ingredient,
+      };
+    }
+    case REMOVE_CURRENT_INGREDIENT: {
       return null;
     }
     default: {
