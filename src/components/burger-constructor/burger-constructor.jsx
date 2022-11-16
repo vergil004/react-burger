@@ -77,9 +77,12 @@ export const BurgerConstructor = React.memo(function BurgerConstructor() {
     }),
   }));
 
-  const moveHandler = useCallback((dropIndex, dragIndex) => {
-    dispatch(setOrderIngredients(dragIndex, dropIndex));
-  }, []);
+  const moveHandler = useCallback(
+    (dropIndex, dragIndex) => {
+      dispatch(setOrderIngredients(dragIndex, dropIndex));
+    },
+    [dispatch]
+  );
 
   const formStyles = isHover
     ? constructorStyles.burgerConstructor__hover
@@ -91,7 +94,7 @@ export const BurgerConstructor = React.memo(function BurgerConstructor() {
         <Modal closeModal={() => setShowModal(false)}>
           {orderRequestFailed ? (
             <div>
-              <img src={forgottenImage} />
+              <img src={forgottenImage} alt="motivator" />
               <div className={`text text_type_main-default pt-4`}>
                 {errorText}
               </div>

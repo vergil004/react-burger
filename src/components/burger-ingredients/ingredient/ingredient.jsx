@@ -20,7 +20,7 @@ export function Ingredient({ ingredient }) {
   });
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
-  const [{ opacity }, dragRef] = useDrag(() => ({
+  const [, dragRef] = useDrag(() => ({
     type: "ingredient",
     item: ingredient,
     collect: (monitor) => ({
@@ -36,12 +36,12 @@ export function Ingredient({ ingredient }) {
       : ingredients
           .map((item) => item._id)
           .filter((id) => id === ingredient._id).length;
-  }, [ingredients, bun]);
+  }, [ingredients, bun, ingredient._id]);
 
   const showModalHandler = useCallback(() => {
     dispatch(setCurrentIngredient(ingredient));
     setShowModal(true);
-  }, [dispatch]);
+  }, [ingredient, dispatch]);
 
   const closeModalHandler = useCallback(() => {
     dispatch(removeCurrentIngredient());
