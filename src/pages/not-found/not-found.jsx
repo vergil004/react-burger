@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import notFoundStyles from "./not-found.module.css";
 

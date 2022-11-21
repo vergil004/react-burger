@@ -1,0 +1,9 @@
+.login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 112px);
+}
+.login__cont{
+    width: 480px;
+}
