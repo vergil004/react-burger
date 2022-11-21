@@ -26,7 +26,7 @@ export function AppHeader() {
           <Logo />
         </div>
         <div className={headerStyles.header__cell}>
-          <HeaderItem>
+          <HeaderItem link="/profile">
             <ProfileIcon type={"secondary"} />
             <div className="pl-2">Личный кабинет</div>
           </HeaderItem>

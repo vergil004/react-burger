@@ -1,0 +1,17 @@
+.notFound{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 112px);
+    text-align: center;
+}
+.notFound__message{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.notFound__about{
+    display: block;
+    width: 100%;
+}
