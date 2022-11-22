@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   EmailInput,
   PasswordInput,
@@ -10,6 +10,7 @@ import AuthStyles from "@/components/authorization/authorization.module.css";
 import { registration } from "@/utils/auth-api";
 
 export const Registration = () => {
+  const history = useHistory();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,7 +28,7 @@ export const Registration = () => {
     async (e) => {
       e.preventDefault();
       await registration({ email, password, name }).then((response) => {
-        console.log(response);
+        history.replace("/login");
       });
     },
     [email, name, password]

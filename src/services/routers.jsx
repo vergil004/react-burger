@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { MainPage, NotFoundPage, Profile, LoginPage } from "@/pages";
 import { AppHeader } from "@/components/app-header/app-header";
+import { ProtectedRoute } from "@/components/protected-route/protected-route";
 
 export const Routers = () => {
   return (
@@ -11,9 +12,9 @@ export const Routers = () => {
         <Route exact={true} path="/">
           <MainPage />
         </Route>
-        <Route exact={true} path="/profile">
+        <ProtectedRoute path="/profile">
           <Profile />
-        </Route>
+        </ProtectedRoute>
         <Route exact={true} path="/login">
           <LoginPage />
         </Route>

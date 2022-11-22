@@ -1,14 +1,17 @@
 import React, { useState, useCallback } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import {
   EmailInput,
   PasswordInput,
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import AuthStyles from "../authorization.module.css";
-import { loginUser } from "@/utils/auth-api";
+import { loginRequest } from "@/services/actions/user";
+// import { loginUser } from "@/utils/auth-api";
 
 export const Login = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,8 +26,7 @@ export const Login = () => {
   const onSubmitLogin = useCallback(
     async (e) => {
       e.preventDefault();
-      await loginUser({ password, email }).then((response) => {
-        console.log(response);
+      await dispatch(loginRequest({ password, email })).then((response) => {
         history.replace("/");
       });
     },

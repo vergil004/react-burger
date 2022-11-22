@@ -27,11 +27,18 @@ export const BurgerConstructor = React.memo(function BurgerConstructor() {
   const { orderRequestFailed, errorText } = useSelector((store) => {
     return store.order;
   });
+  const user = useSelector((store) => {
+    return store.user;
+  });
 
   const [showModal, setShowModal] = useState(false);
   const [isDisable, setDisable] = useState(false);
 
   const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(getUser());
+  // }, [user]);
 
   const total = useMemo(() => {
     const bunSum = bun === null ? 0 : bun.price * 2;

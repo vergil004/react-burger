@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   Logo,
   BurgerIcon,
@@ -22,9 +23,9 @@ export function AppHeader() {
             <div className="pl-2">Лента заказов</div>
           </HeaderItem>
         </nav>
-        <div className={headerStyles.header__cell}>
+        <Link className={headerStyles.header__cell} to="/">
           <Logo />
-        </div>
+        </Link>
         <div className={headerStyles.header__cell}>
           <HeaderItem link="/profile">
             <ProfileIcon type={"secondary"} />

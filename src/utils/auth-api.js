@@ -1,4 +1,5 @@
 import { request } from "@/utils/burger-api";
+import { setCookie } from "@/utils/cookie";
 
 const forgotPasswordBase =
   "https://norma.nomoreparties.space/api/password-reset";
@@ -42,5 +43,9 @@ export async function loginUser({ password, email }) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ password: password, email: email }),
+  }).then((res) => {
+    setCookie("accessToken", res.accessToken);
+    setCookie("refreshToken", res.refreshToken);
+    return res;
   });
 }
