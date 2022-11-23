@@ -1,4 +1,4 @@
-import { request } from "@/utils/burger-api";
+import { requestAPI } from "@/utils/helpers";
 import { setCookie } from "@/utils/cookie";
 
 const forgotPasswordBase =
@@ -7,7 +7,7 @@ const registerBase = "https://norma.nomoreparties.space/api/auth/register";
 const loginBase = "https://norma.nomoreparties.space/api/auth/login";
 
 export async function forgotPassword(email) {
-  return await request(forgotPasswordBase, {
+  return await requestAPI(forgotPasswordBase, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -17,7 +17,7 @@ export async function forgotPassword(email) {
 }
 
 export async function registration({ email, password, name }) {
-  return await request(registerBase, {
+  return await requestAPI(registerBase, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -27,7 +27,7 @@ export async function registration({ email, password, name }) {
 }
 
 export async function resetPassword({ password, token }) {
-  return await request(`${forgotPasswordBase}/reset`, {
+  return await requestAPI(`${forgotPasswordBase}/reset`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -37,7 +37,7 @@ export async function resetPassword({ password, token }) {
 }
 
 export async function loginUser({ password, email }) {
-  return await request(loginBase, {
+  return await requestAPI(loginBase, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -45,7 +45,7 @@ export async function loginUser({ password, email }) {
     body: JSON.stringify({ password: password, email: email }),
   }).then((res) => {
     setCookie("accessToken", res.accessToken);
-    setCookie("refreshToken", res.refreshToken);
+    localStorage.setItem("refreshToken", res.refreshToken);
     return res;
   });
 }

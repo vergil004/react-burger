@@ -9,7 +9,9 @@ export const ProtectedRoute = ({ children, ...rest }) => {
     return store.user;
   });
   useEffect(() => {
-    dispatch(getUserData());
+    if (!user.data) {
+      dispatch(getUserData());
+    }
   }, [dispatch]);
 
   if (user.isLoaded === false) {
@@ -18,7 +20,13 @@ export const ProtectedRoute = ({ children, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={() => (user.data ? children : <Redirect to="login" />)}
+      render={({ location }) =>
+        user.data ? (
+          children
+        ) : (
+          <Redirect to={{ pathname: "/login", state: { from: location } }} />
+        )
+      }
     />
   );
 };

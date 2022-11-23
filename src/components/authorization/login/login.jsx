@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Link, useHistory, Redirect } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   EmailInput,
   PasswordInput,
@@ -8,13 +8,16 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import AuthStyles from "../authorization.module.css";
 import { loginRequest } from "@/services/actions/user";
-// import { loginUser } from "@/utils/auth-api";
 
 export const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const { state } = history.location;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const user = useSelector((store) => {
+    return store.user;
+  });
 
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -26,12 +29,14 @@ export const Login = () => {
   const onSubmitLogin = useCallback(
     async (e) => {
       e.preventDefault();
-      await dispatch(loginRequest({ password, email })).then((response) => {
-        history.replace("/");
-      });
+      await dispatch(loginRequest({ password, email }));
     },
     [email, password]
   );
+
+  if (user.data) {
+    return <Redirect to={state?.from || "/"} />;
+  }
 
   return (
     <div className={AuthStyles.login}>

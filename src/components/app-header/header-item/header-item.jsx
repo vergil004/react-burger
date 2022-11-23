@@ -3,11 +3,7 @@ import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import headerItemStyles from "./header-item.module.css";
 
-export function HeaderItem({ active, link, children }) {
-  const itemClass = active
-    ? headerItemStyles.headerItemActive
-    : headerItemStyles.headerItem;
-
+export function HeaderItem({ link, children }) {
   return (
     <NavLink
       to={link}
