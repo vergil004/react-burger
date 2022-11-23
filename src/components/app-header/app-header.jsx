@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import {
   Logo,
   BurgerIcon,
@@ -10,15 +11,19 @@ import { HeaderItem } from "./header-item/header-item";
 import headerStyles from "./app-header.module.css";
 
 export function AppHeader() {
+  const user = useSelector((store) => {
+    return store.user;
+  });
+  const personal = user.data ? user.data.name : "Личный кабинет";
   return (
     <header className={headerStyles.header}>
       <div className={`${headerStyles.header__cont} pt-4 pb-4`}>
         <nav className={headerStyles.header__cell}>
-          <HeaderItem active={true}>
+          <HeaderItem link="/">
             <BurgerIcon type={"secondary"} />
             <div className="pl-2">Конструктор</div>
           </HeaderItem>
-          <HeaderItem>
+          <HeaderItem link="/orders">
             <ListIcon type={"secondary"} />
             <div className="pl-2">Лента заказов</div>
           </HeaderItem>
@@ -29,7 +34,7 @@ export function AppHeader() {
         <div className={headerStyles.header__cell}>
           <HeaderItem link="/profile">
             <ProfileIcon type={"secondary"} />
-            <div className="pl-2">Личный кабинет</div>
+            <div className="pl-2">{personal}</div>
           </HeaderItem>
         </div>
       </div>

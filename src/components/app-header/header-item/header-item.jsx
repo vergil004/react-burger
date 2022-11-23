@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import headerItemStyles from "./header-item.module.css";
 
@@ -9,20 +9,18 @@ export function HeaderItem({ active, link, children }) {
     : headerItemStyles.headerItem;
 
   return (
-    <Link
+    <NavLink
       to={link}
-      className={`${itemClass} text text_type_main-default pt-4 pr-5 pb-4 pl-5`}
+      className={`${headerItemStyles.headerItem} text text_type_main-default pt-4 pr-5 pb-4 pl-5`}
+      activeClassName={headerItemStyles.headerItemActive}
+      exact={true}
     >
       {children}
-    </Link>
+    </NavLink>
   );
 }
 
-HeaderItem.defaultProps = {
-  active: false,
-  link: "",
-};
 HeaderItem.propTypes = {
-  active: PropTypes.bool,
   children: PropTypes.node.isRequired,
+  link: PropTypes.string.isRequired,
 };
