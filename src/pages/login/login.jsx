@@ -7,6 +7,7 @@ import loginPageStyles from "./login.module.css";
 
 export const LoginPage = () => {
   const history = useHistory();
+
   return (
     <div className={loginPageStyles.login}>
       <div className={loginPageStyles.login__cont}>

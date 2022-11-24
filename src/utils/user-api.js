@@ -14,17 +14,17 @@ const optionGet = {
   redirect: "follow",
   referrerPolicy: "no-referrer",
 };
-const optionPost = {
-  method: "POST",
-  mode: "cors",
-  cache: "no-cache",
-  credentials: "same-origin",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({ token: localStorage.getItem("refreshToken") }),
-  redirect: "follow",
-  referrerPolicy: "no-referrer",
+const optionPost = (method, headers, data) => {
+  return {
+    method: method,
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "same-origin",
+    headers: headers,
+    body: JSON.stringify(data),
+    redirect: "follow",
+    referrerPolicy: "no-referrer",
+  };
 };
 
 export async function getUserInfo() {
@@ -44,10 +44,34 @@ export async function getUserInfo() {
 }
 
 export async function updateAccessToken() {
-  return await requestAPI(`${USER_BASE}token`, optionPost).then((response) => {
-    console.log(response);
+  return await requestAPI(
+    `${USER_BASE}token`,
+    optionPost(
+      "POST",
+      {
+        "Content-Type": "application/json",
+      },
+      { token: localStorage.getItem("refreshToken") }
+    )
+  ).then((response) => {
     localStorage.setItem("refreshToken", response.refreshToken);
     setCookie("accessToken", response.accessToken);
+    return response;
+  });
+}
+
+export async function updateUserInfo(data) {
+  return await requestAPI(
+    `${USER_BASE}user`,
+    optionPost(
+      "PATCH",
+      {
+        "Content-Type": "application/json",
+        Authorization: getCookie("accessToken"),
+      },
+      data
+    )
+  ).then((response) => {
     return response;
   });
 }

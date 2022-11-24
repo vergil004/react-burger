@@ -1,0 +1,7 @@
+.profile__bottom{
+    display: flex;
+    justify-content: flex-end;
+}
+.profile__form{
+    width: 480px;
+}

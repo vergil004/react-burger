@@ -43,8 +43,7 @@ export const ForgotPassword = () => {
   const onSubmitResetPassword = useCallback(async (e) => {
     e.preventDefault();
     await resetPassword({ password, token })
-      .then((response) => {
-        console.log(response);
+      .then(() => {
         history.replace("/login");
       })
       .catch((error) => {

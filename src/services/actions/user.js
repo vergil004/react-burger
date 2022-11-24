@@ -1,4 +1,4 @@
-import { getUserInfo } from "@/utils/user-api";
+import { getUserInfo, updateUserInfo } from "@/utils/user-api";
 import { loginUser } from "@/utils/auth-api";
 import {
   setUserSuccess,
@@ -13,6 +13,16 @@ export const SET_USER_FAILED = "SET_USER_FAILED";
 export const getUserData = () => async (dispatch) => {
   dispatch(getUserRequest());
   const result = await getUserInfo();
+  if (result.success) {
+    dispatch(setUserSuccess(result.user));
+  } else {
+    dispatch(setUserFailed(result.message));
+  }
+};
+
+export const updateUser = (data) => async (dispatch) => {
+  dispatch(getUserRequest());
+  const result = await updateUserInfo(data);
   if (result.success) {
     dispatch(setUserSuccess(result.user));
   } else {
