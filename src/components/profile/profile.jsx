@@ -58,10 +58,6 @@ export const Profile = () => {
     [data, dispatch]
   );
 
-  const nameIcon = disabled.name ? "EditIcon" : "CloseIcon";
-  const emailIcon = disabled.email ? "EditIcon" : "CloseIcon";
-  const passwordIcon = disabled.password ? "EditIcon" : "CloseIcon";
-
   return (
     <form
       onReset={onResetHandler}
@@ -71,7 +67,7 @@ export const Profile = () => {
       <Input
         value={data.name}
         placeholder="Имя"
-        icon={nameIcon}
+        icon={disabled.name ? "EditIcon" : "CloseIcon"}
         onChange={onChangeValue}
         extraClass="pb-6"
         type="text"
@@ -81,7 +77,7 @@ export const Profile = () => {
       />
       <Input
         value={data.email}
-        icon={emailIcon}
+        icon={disabled.email ? "EditIcon" : "CloseIcon"}
         onChange={onChangeValue}
         extraClass="pb-6"
         placeholder="Логин"
@@ -96,7 +92,7 @@ export const Profile = () => {
         onChange={onChangeValue}
         type="password"
         name="password"
-        icon={passwordIcon}
+        icon={disabled.password ? "EditIcon" : "CloseIcon"}
         disabled={disabled.password}
         onIconClick={() => onClickIcon("password")}
       />

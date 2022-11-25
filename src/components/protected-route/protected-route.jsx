@@ -14,9 +14,6 @@ export const ProtectedRoute = ({ children, ...rest }) => {
     }
   }, [dispatch]);
 
-  if (user.isLoaded === false) {
-    return null;
-  }
   return (
     <Route
       {...rest}

@@ -1,5 +1,5 @@
 import { requestAPI } from "@/utils/helpers";
-import { getCookie, setCookie } from "@/utils/cookie";
+import { getCookie, setCookie, deleteCookie } from "@/utils/cookie";
 
 const USER_BASE = "https://norma.nomoreparties.space/api/auth/";
 const optionGet = {
@@ -47,17 +47,21 @@ export async function updateAccessToken() {
   return await requestAPI(
     `${USER_BASE}token`,
     optionPost(
-      "POST",
+      "PATCH",
       {
         "Content-Type": "application/json",
       },
       { token: localStorage.getItem("refreshToken") }
     )
-  ).then((response) => {
-    localStorage.setItem("refreshToken", response.refreshToken);
-    setCookie("accessToken", response.accessToken);
-    return response;
-  });
+  )
+    .then((response) => {
+      localStorage.setItem("refreshToken", response.refreshToken);
+      setCookie("accessToken", response.accessToken);
+      return response;
+    })
+    .catch((error) => {
+      return error;
+    });
 }
 
 export async function updateUserInfo(data) {
@@ -71,7 +75,39 @@ export async function updateUserInfo(data) {
       },
       data
     )
-  ).then((response) => {
-    return response;
-  });
+  )
+    .then((response) => {
+      return response;
+    })
+    .catch(async (error) => {
+      if (error.message === "jwt expired") {
+        await updateAccessToken();
+        requestAPI(`${USER_BASE}user`, optionGet).then((result) => {
+          return result;
+        });
+      }
+      return error;
+    });
+}
+
+export async function logout() {
+  return await requestAPI(
+    `${USER_BASE}logout`,
+    optionPost(
+      "POST",
+      { "Content-Type": "application/json" },
+      {
+        token: localStorage.getItem("refreshToken"),
+      }
+    )
+  )
+    .then((result) => {
+      deleteCookie("refreshToken");
+      deleteCookie("accessToken");
+      return result;
+    })
+    .catch((error) => {
+      console.log(error);
+      return error;
+    });
 }

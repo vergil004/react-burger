@@ -15,9 +15,6 @@ export const Routers = () => {
         <ProtectedRoute exact={true} path="/profile">
           <ProfilePage />
         </ProtectedRoute>
-        <ProtectedRoute exact={true} path="/logout">
-          <ProfilePage />
-        </ProtectedRoute>
         <Route exact={true} path="/login">
           <LoginPage />
         </Route>
