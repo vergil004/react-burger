@@ -1,6 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { MainPage, NotFoundPage, ProfilePage, LoginPage } from "@/pages";
+import {
+  MainPage,
+  NotFoundPage,
+  ProfilePage,
+  LoginPage,
+  IngredientPage,
+} from "@/pages";
 import { AppHeader } from "@/components/app-header/app-header";
 import { ProtectedRoute } from "@/components/protected-route/protected-route";
 
@@ -11,6 +17,9 @@ export const Routers = () => {
       <Switch>
         <Route exact={true} path="/">
           <MainPage />
+        </Route>
+        <Route exact={true} path="/ingredients/:ingredientId">
+          <IngredientPage />
         </Route>
         <ProtectedRoute exact={true} path="/profile">
           <ProfilePage />
