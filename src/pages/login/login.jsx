@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory, Redirect, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Login } from "@/components/authorization/login/login";
 import { Registration } from "@/components/authorization/registration/registration";
@@ -10,6 +10,7 @@ import { getUserData } from "@/services/actions/user";
 
 export const LoginPage = () => {
   const history = useHistory();
+  const location = useLocation();
   const dispatch = useDispatch();
   const user = useSelector((store) => {
     return store.user;
@@ -31,7 +32,7 @@ export const LoginPage = () => {
         )}
       </div>
     ) : (
-      <Redirect to="/" />
+      <Redirect to={location?.state?.from || "/"} />
     );
   };
   return (

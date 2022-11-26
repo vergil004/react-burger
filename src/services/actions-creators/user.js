@@ -7,20 +7,20 @@ import {
 
 export const getUserRequest = () => {
   return {
-    type: "GET_USER_REQUEST",
+    type: GET_USER_REQUEST,
   };
 };
 
 export const setUserSuccess = (data) => {
   return {
-    type: "SET_USER_SUCCESS",
+    type: SET_USER_SUCCESS,
     data: data,
   };
 };
 
 export const setUserFailed = (error) => {
   return {
-    type: "SET_USER_FAILED",
+    type: SET_USER_FAILED,
     error: error,
   };
 };

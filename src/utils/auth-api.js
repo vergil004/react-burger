@@ -1,4 +1,4 @@
-import { requestAPI } from "@/utils/helpers";
+import { requestAPI, BASE_URL } from "@/utils/helpers";
 import { setCookie } from "@/utils/cookie";
 
 const forgotPasswordBase =
@@ -7,7 +7,7 @@ const registerBase = "https://norma.nomoreparties.space/api/auth/register";
 const loginBase = "https://norma.nomoreparties.space/api/auth/login";
 
 export async function forgotPassword(email) {
-  return await requestAPI(forgotPasswordBase, {
+  return await requestAPI(`${BASE_URL}/password-reset`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -17,7 +17,7 @@ export async function forgotPassword(email) {
 }
 
 export async function registration({ email, password, name }) {
-  return await requestAPI(registerBase, {
+  return await requestAPI(`${BASE_URL}/auth/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -36,7 +36,7 @@ export async function registration({ email, password, name }) {
 }
 
 export async function resetPassword({ password, token }) {
-  return await requestAPI(`${forgotPasswordBase}/reset`, {
+  return await requestAPI(`${BASE_URL}/password-reset/reset`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export async function resetPassword({ password, token }) {
 }
 
 export async function loginUser({ password, email }) {
-  return await requestAPI(loginBase, {
+  return await requestAPI(`${BASE_URL}/auth/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
