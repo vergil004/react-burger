@@ -15,10 +15,10 @@ export const LoginPage = () => {
     return store.user;
   });
   useEffect(() => {
-    if (!user.data) {
+    if (!user.isLoaded) {
       dispatch(getUserData());
     }
-  }, [dispatch]);
+  }, [dispatch, user.isLoaded]);
   const LoginContent = () => {
     return !user.data ? (
       <div className={loginPageStyles.login__cont}>

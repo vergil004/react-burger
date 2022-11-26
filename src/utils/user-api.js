@@ -1,7 +1,6 @@
-import { requestAPI } from "@/utils/helpers";
+import { requestAPI, BASE_URL, checkResponse } from "@/utils/helpers";
 import { getCookie, setCookie, deleteCookie } from "@/utils/cookie";
 
-const USER_BASE = "https://norma.nomoreparties.space/api/auth/";
 const optionGet = {
   method: "GET",
   mode: "cors",
@@ -27,15 +26,27 @@ const optionPost = (method, headers, data) => {
   };
 };
 
+export const refreshTokenRequest = () => {
+  return fetch(`${BASE_URL}/auth/token`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+    },
+    body: JSON.stringify({
+      token: localStorage.getItem("refreshToken"),
+    }),
+  }).then(checkResponse);
+};
+
 export async function getUserInfo() {
-  return await requestAPI(`${USER_BASE}user`, optionGet)
+  return await requestAPI(`${BASE_URL}/auth/user`, optionGet)
     .then((response) => {
       return response;
     })
     .catch(async (error) => {
       if (error.message === "jwt expired") {
         await updateAccessToken();
-        requestAPI(`${USER_BASE}user`, optionGet).then((result) => {
+        requestAPI(`${BASE_URL}/auth/user`, optionGet).then((result) => {
           return result;
         });
       }
@@ -45,11 +56,11 @@ export async function getUserInfo() {
 
 export async function updateAccessToken() {
   return await requestAPI(
-    `${USER_BASE}token`,
+    `${BASE_URL}/auth/token`,
     optionPost(
-      "PATCH",
+      "POST",
       {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json;charset=utf-8",
       },
       { token: localStorage.getItem("refreshToken") }
     )
@@ -57,6 +68,7 @@ export async function updateAccessToken() {
     .then((response) => {
       localStorage.setItem("refreshToken", response.refreshToken);
       setCookie("accessToken", response.accessToken);
+      getUserInfo();
       return response;
     })
     .catch((error) => {
@@ -66,9 +78,9 @@ export async function updateAccessToken() {
 
 export async function updateUserInfo(data) {
   return await requestAPI(
-    `${USER_BASE}user`,
+    `${BASE_URL}/auth/user`,
     optionPost(
-      "PATCH",
+      "POST",
       {
         "Content-Type": "application/json",
         Authorization: getCookie("accessToken"),
@@ -82,7 +94,7 @@ export async function updateUserInfo(data) {
     .catch(async (error) => {
       if (error.message === "jwt expired") {
         await updateAccessToken();
-        requestAPI(`${USER_BASE}user`, optionGet).then((result) => {
+        requestAPI(`${BASE_URL}/auth/user`, optionGet).then((result) => {
           return result;
         });
       }
@@ -92,7 +104,7 @@ export async function updateUserInfo(data) {
 
 export async function logout() {
   return await requestAPI(
-    `${USER_BASE}logout`,
+    `${BASE_URL}/auth/logout`,
     optionPost(
       "POST",
       { "Content-Type": "application/json" },
@@ -102,7 +114,7 @@ export async function logout() {
     )
   )
     .then((result) => {
-      deleteCookie("refreshToken");
+      localStorage.clear();
       deleteCookie("accessToken");
       return result;
     })

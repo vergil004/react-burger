@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { userLogout } from "@/services/actions/user";
 import logoutStyles from "./logout.module.css";
@@ -13,10 +14,13 @@ export const Logout = ({ resetLogout }) => {
     },
     [dispatch]
   );
-  const onCancelHandler = useCallback((e) => {
-    e.preventDefault();
-    resetLogout();
-  });
+  const onCancelHandler = useCallback(
+    (e) => {
+      e.preventDefault();
+      resetLogout();
+    },
+    [resetLogout]
+  );
   return (
     <form
       className={logoutStyles.logout}
@@ -31,4 +35,8 @@ export const Logout = ({ resetLogout }) => {
       </div>
     </form>
   );
+};
+
+Logout.propTypes = {
+  resetLogout: PropTypes.func.isRequired,
 };

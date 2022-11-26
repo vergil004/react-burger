@@ -1,6 +1,5 @@
 import { requestAPI } from "@/utils/helpers";
-
-const BASE_URL = "https://norma.nomoreparties.space/api";
+import { BASE_URL } from "@/utils/helpers";
 
 export function getIngredientsData() {
   return requestAPI(`${BASE_URL}/ingredients`);

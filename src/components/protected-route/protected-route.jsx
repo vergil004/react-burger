@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 import { getUserData } from "@/services/actions/user";
 
 export const ProtectedRoute = ({ children, ...rest }) => {
@@ -9,10 +10,10 @@ export const ProtectedRoute = ({ children, ...rest }) => {
     return store.user;
   });
   useEffect(() => {
-    if (!user.data) {
+    if (!user.isLoaded) {
       dispatch(getUserData());
     }
-  }, [dispatch]);
+  }, [dispatch, user.isLoaded]);
 
   return (
     <Route
@@ -26,4 +27,9 @@ export const ProtectedRoute = ({ children, ...rest }) => {
       }
     />
   );
+};
+
+ProtectedRoute.propTypes = {
+  children: PropTypes.node.isRequired,
+  ...{ path: PropTypes.string.isRequired, exact: PropTypes.bool },
 };
