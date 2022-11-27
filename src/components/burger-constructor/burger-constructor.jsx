@@ -119,7 +119,7 @@ export const BurgerConstructor = React.memo(function BurgerConstructor() {
         </div>
         <div className="text text_type_main-default">
           <Link to="/login">Войдите</Link> или{" "}
-          <Link to="/registration">заркгистрируйтесь</Link>
+          <Link to="/registration">зарегистрируйтесь</Link>
         </div>
       </div>
     );

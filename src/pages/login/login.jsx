@@ -37,7 +37,7 @@ export const LoginPage = () => {
   };
   return (
     <div className={loginPageStyles.login}>
-      {user.isLoading ? <Loader /> : <LoginContent />}
+      {!user.isLoaded ? <Loader /> : <LoginContent />}
     </div>
   );
 };

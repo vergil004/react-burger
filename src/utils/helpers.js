@@ -5,6 +5,5 @@ export const checkResponse = (res) => {
 };
 
 export function requestAPI(url, options) {
-  console.log(url);
   return fetch(url, options).then((response) => checkResponse(response));
 }

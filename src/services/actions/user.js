@@ -14,31 +14,52 @@ export const USER_LOGOUT = "USER_LOGOUT";
 
 export const getUserData = () => async (dispatch) => {
   dispatch(getUserRequest());
-  const result = await getUserInfo();
-  if (result.success) {
-    dispatch(setUserSuccess(result.user));
-  } else {
-    dispatch(setUserFailed(result.message));
-  }
+  await getUserInfo()
+    .then((result) => {
+      if (result.success) {
+        dispatch(setUserSuccess(result.user));
+      } else {
+        dispatch(setUserFailed(result.message));
+      }
+      return result;
+    })
+    .catch((error) => {
+      dispatch(setUserFailed(error.message));
+      return error;
+    });
 };
 
 export const updateUser = (data) => async (dispatch) => {
   dispatch(getUserRequest());
-  const result = await updateUserInfo(data);
-  if (result.success) {
-    dispatch(setUserSuccess(result.user));
-  } else {
-    dispatch(setUserFailed(result.message));
-  }
+  await updateUserInfo(data)
+    .then((result) => {
+      if (result.success) {
+        dispatch(setUserSuccess(result.user));
+      } else {
+        dispatch(setUserFailed(result.message));
+      }
+      return result;
+    })
+    .catch((error) => {
+      dispatch(setUserFailed(error.message));
+      return error;
+    });
 };
 
 export const userLogout = () => async (dispatch) => {
-  const result = await logout();
-  if (result.success) {
-    dispatch(setUserLogut());
-  } else {
-    dispatch(setUserFailed(result.message));
-  }
+  await logout()
+    .then((result) => {
+      if (result.success) {
+        dispatch(setUserLogut());
+      } else {
+        dispatch(setUserFailed(result.message));
+      }
+      return result;
+    })
+    .catch((error) => {
+      dispatch(setUserFailed(error.message));
+      return error;
+    });
 };
 
 export const loginRequest =

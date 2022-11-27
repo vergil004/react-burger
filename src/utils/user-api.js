@@ -80,7 +80,7 @@ export async function updateUserInfo(data) {
   return await requestAPI(
     `${BASE_URL}/auth/user`,
     optionPost(
-      "POST",
+      "PATCH",
       {
         "Content-Type": "application/json",
         Authorization: getCookie("accessToken"),
