@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 import {
   MainPage,
   NotFoundPage,
@@ -9,12 +9,20 @@ import {
 } from "@/pages";
 import { AppHeader } from "@/components/app-header/app-header";
 import { ProtectedRoute } from "@/components/protected-route/protected-route";
+import { Modal } from "@/components/modal/modal";
+import { IngredientDetails } from "@/components/ingredient-details/ingredient-details";
 
 export const Routers = () => {
+  const location = useLocation();
+  const history = useHistory();
+  const background = location.state && location.state.background;
+  const handleModalClose = () => {
+    history.goBack();
+  };
   return (
-    <Router>
+    <>
       <AppHeader />
-      <Switch>
+      <Switch location={background || location}>
         <Route exact={true} path="/">
           <MainPage />
         </Route>
@@ -40,6 +48,17 @@ export const Routers = () => {
           <NotFoundPage />
         </Route>
       </Switch>
-    </Router>
+
+      {background && (
+        <Route
+          path="/ingredients/:ingredientId"
+          children={
+            <Modal closeModal={handleModalClose} title="Детали ингредиента">
+              <IngredientDetails />
+            </Modal>
+          }
+        />
+      )}
+    </>
   );
 };

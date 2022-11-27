@@ -1,15 +1,18 @@
-import React, { useMemo } from "react";
-import { useSelector } from "react-redux";
+import React, { useMemo, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useDrag } from "react-dnd";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   CurrencyIcon,
   Counter,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import ingredientStyle from "./ingredient.module.css";
+import { setCurrentIngredient } from "@/services/actions-creators/current-ingredient";
 import { ingredientPropTypes } from "@/utils/types";
 
 export function Ingredient({ ingredient }) {
+  const location = useLocation();
+  const dispatch = useDispatch();
   const { bun, ingredients } = useSelector((state) => {
     return state.constructorIngredients;
   });
@@ -37,8 +40,8 @@ export function Ingredient({ ingredient }) {
       ref={dragRef}
       className={`${ingredientStyle.ingredient} pr-4 pl-4`}
       to={{
-        state: { modalOn: true },
         pathname: `/ingredients/${ingredientId}`,
+        state: { background: location },
       }}
     >
       {count > 0 && (
