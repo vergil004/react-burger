@@ -1,0 +1,14 @@
+.logout{
+    display: flex;
+    flex-wrap: wrap;
+    width: 320px;
+}
+.logout__title{
+    width: 100%;
+    text-align: center;
+}
+.logout__bottom{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}

@@ -1,0 +1,18 @@
+.profileNav{
+    display: flex;
+    flex-wrap: wrap;
+    width: 320px;
+    color: #8585AD;
+}
+.profileNav__item{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 64px;
+    text-decoration: none;
+    cursor: pointer;
+    color: #8585AD;
+}
+.profileNav__itemActive, .profileNav__item:hover{
+    color: #ffffff;
+}

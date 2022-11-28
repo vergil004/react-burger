@@ -4,6 +4,8 @@
     flex-wrap: wrap;
     width: 240px;
     cursor: pointer;
+    color: #ffffff;
+    text-decoration: none;
 }
 .ingredient__image{
     width: 100%;

@@ -4,6 +4,7 @@
     color: #8585AD;
     border-radius: 40px;
     cursor: pointer;
+    text-decoration: none;
 }
 .headerItem:hover{
     color:#fff;

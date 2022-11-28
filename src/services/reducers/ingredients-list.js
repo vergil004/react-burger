@@ -29,6 +29,7 @@ export function ingredientsListReducer(
     case GET_INGREDIENTS_SUCCESS: {
       return {
         ...state,
+        allItems: action.ingredients,
         buns: action.ingredients.filter(
           (ingredient) => ingredient.type === "bun"
         ),

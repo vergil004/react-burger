@@ -1,11 +1,22 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useRouteMatch } from "react-router-dom";
+import { Loader } from "@/components/loader/loader";
 import detailsStyles from "./ingredient-details.module.css";
 
 export function IngredientDetails() {
-  const ingredient = useSelector((state) => {
-    return state.currentIngredient;
+  const { allItems } = useSelector((state) => {
+    return state.ingredients;
   });
+  const { params } = useRouteMatch();
+  const ingredient = allItems?.find((item) => item._id === params.ingredientId);
+  if (!ingredient) {
+    return (
+      <div className={detailsStyles.loader}>
+        <Loader />
+      </div>
+    );
+  }
   return (
     <div className={detailsStyles.details}>
       <img src={ingredient.image_large} alt={ingredient.name} />

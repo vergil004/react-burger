@@ -1,0 +1,11 @@
+.ingredient{
+    width: 720px;
+    margin: 0 auto;
+    text-align: center;
+}
+.ingredient__loader{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 112px);
+}

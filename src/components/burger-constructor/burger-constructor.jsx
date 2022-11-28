@@ -1,7 +1,8 @@
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useState, useMemo, useCallback, useEffect } from "react";
 import { useDrop } from "react-dnd";
 import { v4 as uuidv4 } from "uuid";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   ConstructorElement,
   CurrencyIcon,
@@ -17,6 +18,7 @@ import {
 } from "@/services/actions-creators/constructor-list";
 import { setOrderData } from "@/services/actions/order";
 import { setOrderFailed } from "@/services/actions-creators/order";
+import { getUserData } from "@/services/actions/user";
 import constructorStyles from "./burger-constructor.module.css";
 import forgottenImage from "@/images/forgotten.jpeg";
 
@@ -27,11 +29,20 @@ export const BurgerConstructor = React.memo(function BurgerConstructor() {
   const { orderRequestFailed, errorText } = useSelector((store) => {
     return store.order;
   });
+  const user = useSelector((store) => {
+    return store.user;
+  });
 
   const [showModal, setShowModal] = useState(false);
   const [isDisable, setDisable] = useState(false);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!user.isLoaded) {
+      dispatch(getUserData());
+    }
+  }, [dispatch]);
 
   const total = useMemo(() => {
     const bunSum = bun === null ? 0 : bun.price * 2;
@@ -56,7 +67,12 @@ export const BurgerConstructor = React.memo(function BurgerConstructor() {
   const submitHandler = (e) => {
     e.preventDefault();
     setDisable(true);
-    fetchOrder();
+    if (user.data) {
+      fetchOrder();
+    } else {
+      setShowModal(true);
+      setDisable(false);
+    }
   };
 
   const addIngredient = (item) => {
@@ -84,6 +100,31 @@ export const BurgerConstructor = React.memo(function BurgerConstructor() {
     [dispatch]
   );
 
+  const ModalContent = () => {
+    return orderRequestFailed ? (
+      <div>
+        <img src={forgottenImage} alt="motivator" />
+        <div className={`text text_type_main-default pt-4`}>{errorText}</div>
+      </div>
+    ) : (
+      <OrderDetails />
+    );
+  };
+
+  const UserInfoContent = () => {
+    return (
+      <div>
+        <div className="text text_type_main-default">
+          Для оформления заказа необходима учетная запись
+        </div>
+        <div className="text text_type_main-default">
+          <Link to="/login">Войдите</Link> или{" "}
+          <Link to="/registration">зарегистрируйтесь</Link>
+        </div>
+      </div>
+    );
+  };
+
   const formStyles = isHover
     ? constructorStyles.burgerConstructor__hover
     : constructorStyles.burgerConstructor;
@@ -92,16 +133,7 @@ export const BurgerConstructor = React.memo(function BurgerConstructor() {
     <>
       {showModal && (
         <Modal closeModal={() => setShowModal(false)}>
-          {orderRequestFailed ? (
-            <div>
-              <img src={forgottenImage} alt="motivator" />
-              <div className={`text text_type_main-default pt-4`}>
-                {errorText}
-              </div>
-            </div>
-          ) : (
-            <OrderDetails />
-          )}
+          {user.data ? <ModalContent /> : <UserInfoContent />}
         </Modal>
       )}
       <form

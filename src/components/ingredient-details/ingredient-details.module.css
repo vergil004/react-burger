@@ -24,3 +24,9 @@
     display: flex;
     justify-content: center;
 }
+.loader{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 366px;
+}
