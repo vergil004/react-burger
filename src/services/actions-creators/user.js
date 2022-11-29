@@ -27,6 +27,6 @@ export const setUserFailed = (error) => {
 
 export const setUserLogut = () => {
   return {
-    type: "USER_LOGOUT",
+    type: USER_LOGOUT,
   };
 };

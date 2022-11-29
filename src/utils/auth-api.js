@@ -1,11 +1,6 @@
 import { requestAPI, BASE_URL } from "@/utils/helpers";
 import { setCookie } from "@/utils/cookie";
 
-const forgotPasswordBase =
-  "https://norma.nomoreparties.space/api/password-reset";
-const registerBase = "https://norma.nomoreparties.space/api/auth/register";
-const loginBase = "https://norma.nomoreparties.space/api/auth/login";
-
 export async function forgotPassword(email) {
   return await requestAPI(`${BASE_URL}/password-reset`, {
     method: "POST",
