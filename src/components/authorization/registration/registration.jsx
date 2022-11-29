@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
@@ -7,30 +7,24 @@ import {
   Input,
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import { useForm } from "@/utils/custom-hooks";
 import AuthStyles from "@/components/authorization/authorization.module.css";
 import { registrationRequest } from "@/services/actions/user";
 
 export const Registration = () => {
   const dispatch = useDispatch();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const onChangeName = (e) => {
-    setName(e.target.value);
-  };
-  const onChangeEmail = (e) => {
-    setEmail(e.target.value);
-  };
-  const onChangePassword = (e) => {
-    setPassword(e.target.value);
-  };
+  const { values, handleChange } = useForm({
+    email: "",
+    password: "",
+    name: "",
+  });
   const onSubmitRegistration = useCallback(
     async (e) => {
       e.preventDefault();
-      await dispatch(registrationRequest({ email, name, password }));
+      await dispatch(registrationRequest(values));
     },
-    [email, name, password]
+    [values, dispatch]
   );
 
   return (
@@ -46,22 +40,24 @@ export const Registration = () => {
       >
         <Input
           extraClass="pb-6"
-          onChange={onChangeName}
+          onChange={handleChange}
           placeholder="Имя"
-          value={name}
+          value={values.name}
+          name={"name"}
         />
         <EmailInput
-          onChange={onChangeEmail}
-          value={email}
+          onChange={handleChange}
+          value={values.email}
           extraClass="pb-6"
           placeholder="E-mail"
           name={"email"}
         />
         <PasswordInput
-          onChange={onChangePassword}
+          onChange={handleChange}
           extraClass="pb-6"
           placeholder="Пароль"
-          value={password}
+          value={values.password}
+          name={"password"}
         />
         <Button htmlType={"submit"}>Зарегистрироваться</Button>
       </form>

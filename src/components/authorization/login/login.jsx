@@ -6,6 +6,7 @@ import {
   PasswordInput,
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import { useForm } from "@/utils/custom-hooks";
 import AuthStyles from "../authorization.module.css";
 import { loginRequest } from "@/services/actions/user";
 
@@ -13,25 +14,20 @@ export const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { state } = history.location;
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const user = useSelector((store) => {
     return store.user;
   });
 
-  const onChangeEmail = (e) => {
-    setEmail(e.target.value);
-  };
-  const onChangePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
+  const { values, handleChange } = useForm({
+    email: "",
+    password: "",
+  });
   const onSubmitLogin = useCallback(
     async (e) => {
       e.preventDefault();
-      await dispatch(loginRequest({ password, email }));
+      await dispatch(loginRequest(values));
     },
-    [email, password]
+    [values]
   );
 
   if (user.data) {
@@ -50,17 +46,18 @@ export const Login = () => {
         onSubmit={onSubmitLogin}
       >
         <EmailInput
-          onChange={onChangeEmail}
-          value={email}
+          onChange={handleChange}
+          value={values.email}
           extraClass="pb-6"
           placeholder="E-mail"
           name={"email"}
         />
         <PasswordInput
-          onChange={onChangePassword}
+          onChange={handleChange}
           extraClass="pb-6"
           placeholder="Пароль"
-          value={password}
+          value={values.password}
+          name={"password"}
         />
         <Button htmlType={"submit"}>Войти</Button>
       </form>

@@ -7,21 +7,19 @@ import {
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import AuthStyles from "../authorization.module.css";
+import { useForm } from "@/utils/custom-hooks";
 import { forgotPassword, resetPassword } from "@/utils/auth-api";
 
 export const ForgotPassword = () => {
   const history = useHistory();
-  const [email, setEmail] = useState("");
+  const { values, handleChange } = useForm({
+    email: "",
+    password: "",
+  });
+
   const [error, setError] = useState(null);
-  const [password, setPassword] = useState("");
   const [token, setToken] = useState("");
 
-  const onChangeEmail = (e) => {
-    setEmail(e.target.value);
-  };
-  const onChangePassword = (e) => {
-    setPassword(e.target.value);
-  };
   const onChangeToken = (e) => {
     setToken(e.target.value);
   };
@@ -29,7 +27,7 @@ export const ForgotPassword = () => {
   const onSubmitForgotPassword = useCallback(
     async (e) => {
       e.preventDefault();
-      await forgotPassword(email)
+      await forgotPassword(values.email)
         .then(() => {
           history.replace("/reset-password");
         })
@@ -37,11 +35,12 @@ export const ForgotPassword = () => {
           setError(error);
         });
     },
-    [email]
+    [values.email]
   );
 
   const onSubmitResetPassword = useCallback(async (e) => {
     e.preventDefault();
+    const password = values.password;
     await resetPassword({ password, token })
       .then(() => {
         history.replace("/login");
@@ -64,8 +63,8 @@ export const ForgotPassword = () => {
           onSubmit={onSubmitForgotPassword}
         >
           <EmailInput
-            onChange={onChangeEmail}
-            value={email}
+            onChange={handleChange}
+            value={values.email}
             extraClass="pb-6"
             placeholder="Укажите e-mail"
             name={"email"}
@@ -79,10 +78,11 @@ export const ForgotPassword = () => {
           onSubmit={onSubmitResetPassword}
         >
           <PasswordInput
-            onChange={onChangePassword}
+            onChange={handleChange}
             extraClass="pb-6"
             placeholder="Введите новый пароль"
-            value={password}
+            value={values.password}
+            name={"password"}
           />
           <Input
             extraClass="pb-6"
