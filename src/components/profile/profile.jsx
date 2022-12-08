@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   Input,
@@ -14,6 +14,10 @@ export const Profile = () => {
     return store.user;
   });
 
+  const nameRef = useRef(null);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+
   const [data, setData] = useState({ name: "", email: "", password: "" });
   const [disabled, setDisabled] = useState({
     name: true,
@@ -25,6 +29,16 @@ export const Profile = () => {
   useEffect(() => {
     setData({ ...user.data, password: "" });
   }, [user.data]);
+
+  useEffect(() => {
+    if (!disabled.name) {
+      nameRef.current.focus();
+    } else if (!disabled.email) {
+      emailRef.current.focus();
+    } else if (!disabled.password) {
+      passwordRef.current.focus();
+    }
+  });
 
   const onChangeValue = (e) => {
     const { name, value } = e.target;
@@ -74,6 +88,7 @@ export const Profile = () => {
         name="name"
         disabled={disabled.name}
         onIconClick={() => onClickIcon("name")}
+        ref={nameRef}
       />
       <Input
         value={data.email}
@@ -85,6 +100,7 @@ export const Profile = () => {
         name="email"
         disabled={disabled.email}
         onIconClick={() => onClickIcon("email")}
+        ref={emailRef}
       />
       <Input
         placeholder="Пароль"
@@ -95,6 +111,7 @@ export const Profile = () => {
         icon={disabled.password ? "EditIcon" : "CloseIcon"}
         disabled={disabled.password}
         onIconClick={() => onClickIcon("password")}
+        ref={passwordRef}
       />
       {formChange && (
         <div className={`${profileStyles.profile__bottom} pt-6`}>
