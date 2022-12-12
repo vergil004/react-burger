@@ -31,7 +31,7 @@ export const Registration = () => {
   return (
     <div className={AuthStyles.login}>
       <div
-        className={`text text_xxtype_main-default pb-6 ${AuthStyles.login__title}`}
+        className={`text text_type_main-default pb-6 ${AuthStyles.login__title}`}
       >
         Регистрация
       </div>

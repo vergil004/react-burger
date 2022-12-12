@@ -19,34 +19,39 @@ import {
 import { setOrderData } from "@/services/actions/order";
 import { setOrderFailed } from "@/services/actions-creators/order";
 import { getUserData } from "@/services/actions/user";
+import { Iingredient, IKeyIngredient } from "@/utils/types";
 import constructorStyles from "./burger-constructor.module.css";
 import forgottenImage from "@/images/forgotten.jpeg";
 
 export const BurgerConstructor = React.memo(function BurgerConstructor() {
-  const { bun, ingredients } = useSelector((state) => {
+  const { bun, ingredients } = useSelector((state: any) => {
     return state.constructorIngredients;
   });
-  const { orderRequestFailed, errorText } = useSelector((store) => {
+  const { orderRequestFailed, errorText } = useSelector((store: any) => {
     return store.order;
   });
-  const user = useSelector((store) => {
+  const user = useSelector((store: any) => {
     return store.user;
   });
 
   const [showModal, setShowModal] = useState(false);
   const [isDisable, setDisable] = useState(false);
 
-  const dispatch = useDispatch();
+  const useAppDispatch: () => any = useDispatch;
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!user.isLoaded) {
       dispatch(getUserData());
     }
-  }, [dispatch]);
+  }, [dispatch, user.isLoaded]);
 
   const total = useMemo(() => {
     const bunSum = bun === null ? 0 : bun.price * 2;
-    return ingredients.reduce((sum, item) => (sum += item.price), 0) + bunSum;
+    return (
+      ingredients.reduce((sum: number, item: any) => (sum += item.price), 0) +
+      bunSum
+    );
   }, [ingredients, bun]);
 
   const fetchOrder = async () => {
@@ -55,7 +60,7 @@ export const BurgerConstructor = React.memo(function BurgerConstructor() {
     } else {
       const idsList = [
         bun._id,
-        ...ingredients.map((item) => item._id),
+        ...ingredients.map((item: Iingredient) => item._id),
         bun._id,
       ];
       dispatch(setOrderData(idsList));
@@ -64,7 +69,7 @@ export const BurgerConstructor = React.memo(function BurgerConstructor() {
     setDisable(false);
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setDisable(true);
     if (user.data) {
@@ -75,7 +80,7 @@ export const BurgerConstructor = React.memo(function BurgerConstructor() {
     }
   };
 
-  const addIngredient = (item) => {
+  const addIngredient = (item: Iingredient) => {
     if (item.type === "bun") {
       dispatch(addBunToConstructor(item));
     } else {
@@ -85,7 +90,7 @@ export const BurgerConstructor = React.memo(function BurgerConstructor() {
 
   const [{ isHover }, drop] = useDrop(() => ({
     accept: "ingredient",
-    drop(item) {
+    drop(item: Iingredient) {
       addIngredient(item);
     },
     collect: (monitor) => ({
@@ -94,7 +99,7 @@ export const BurgerConstructor = React.memo(function BurgerConstructor() {
   }));
 
   const moveHandler = useCallback(
-    (dropIndex, dragIndex) => {
+    (dropIndex: number, dragIndex: number) => {
       dispatch(setOrderIngredients(dragIndex, dropIndex));
     },
     [dispatch]
@@ -168,7 +173,7 @@ export const BurgerConstructor = React.memo(function BurgerConstructor() {
           <ul
             className={`${constructorStyles.burgerConstructor__list} pt-4 pb-4`}
           >
-            {ingredients.map((item, index) => (
+            {ingredients.map((item: IKeyIngredient, index: number) => (
               <ConstructorItem
                 key={item.key}
                 index={index}
