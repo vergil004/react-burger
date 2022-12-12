@@ -1,8 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { FC } from "react";
 import errorStyles from "./app-error.module.css";
 
-export function AppError({ error }) {
+export const AppError: FC<{ error: string }> = ({ error }) => {
   return (
     <div className={errorStyles.error}>
       <div className="text text_type_main-default">
@@ -11,8 +10,4 @@ export function AppError({ error }) {
       </div>
     </div>
   );
-}
-
-AppError.propTypes = {
-  error: PropTypes.string.isRequired,
 };
