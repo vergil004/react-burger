@@ -1,5 +1,5 @@
-import React, { useMemo, useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useMemo, FC } from "react";
+import { useSelector } from "react-redux";
 import { useDrag } from "react-dnd";
 import { Link, useLocation } from "react-router-dom";
 import {
@@ -7,13 +7,15 @@ import {
   Counter,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import ingredientStyle from "./ingredient.module.css";
-import { setCurrentIngredient } from "@/services/actions-creators/current-ingredient";
-import { ingredientPropTypes } from "@/utils/types";
+import { Iingredient } from "@/utils/types";
 
-export function Ingredient({ ingredient }) {
+type Tingredient = {
+  ingredient: Iingredient;
+};
+
+export const Ingredient: FC<Tingredient> = ({ ingredient }) => {
   const location = useLocation();
-  const dispatch = useDispatch();
-  const { bun, ingredients } = useSelector((state) => {
+  const { bun, ingredients } = useSelector((state: any) => {
     return state.constructorIngredients;
   });
   const ingredientId = ingredient["_id"];
@@ -27,12 +29,14 @@ export function Ingredient({ ingredient }) {
 
   const count = useMemo(() => {
     return bun !== null
-      ? [bun._id, ...ingredients.map((item) => item._id), bun._id].filter(
-          (id) => id === ingredient._id
-        ).length
+      ? [
+          bun._id,
+          ...ingredients.map((item: Iingredient) => item._id),
+          bun._id,
+        ].filter((id: string) => id === ingredient._id).length
       : ingredients
-          .map((item) => item._id)
-          .filter((id) => id === ingredient._id).length;
+          .map((item: Iingredient) => item._id)
+          .filter((id: string) => id === ingredient._id).length;
   }, [ingredients, bun, ingredient._id]);
 
   return (
@@ -67,11 +71,4 @@ export function Ingredient({ ingredient }) {
       </div>
     </Link>
   );
-}
-
-Ingredient.defaultProps = {
-  ingredient: {},
-};
-Ingredient.propTypes = {
-  ingredient: ingredientPropTypes.isRequired,
 };
