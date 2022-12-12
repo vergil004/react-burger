@@ -10,8 +10,8 @@ import {
 import { HeaderItem } from "./header-item/header-item";
 import headerStyles from "./app-header.module.css";
 
-export function AppHeader() {
-  const user = useSelector((store) => {
+export const AppHeader = () => {
+  const user = useSelector((store: any) => {
     return store.user;
   });
   const personal = user.data ? user.data.name : "Личный кабинет";
@@ -40,4 +40,4 @@ export function AppHeader() {
       </div>
     </header>
   );
-}
+};

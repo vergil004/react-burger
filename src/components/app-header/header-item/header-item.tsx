@@ -1,9 +1,13 @@
-import React from "react";
+import React, { FC } from "react";
 import { NavLink } from "react-router-dom";
-import PropTypes from "prop-types";
 import headerItemStyles from "./header-item.module.css";
 
-export function HeaderItem({ link, children }) {
+interface IHeaderItem {
+  link: string;
+  children: React.ReactNode;
+}
+
+export const HeaderItem: FC<IHeaderItem> = ({ link, children }) => {
   return (
     <NavLink
       to={link}
@@ -14,9 +18,4 @@ export function HeaderItem({ link, children }) {
       {children}
     </NavLink>
   );
-}
-
-HeaderItem.propTypes = {
-  children: PropTypes.node.isRequired,
-  link: PropTypes.string.isRequired,
 };
