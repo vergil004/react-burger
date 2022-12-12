@@ -5,7 +5,8 @@ import { Routers } from "@/services/routers";
 import { getIngredientsList } from "@/services/actions/ingredients-list";
 
 export function App() {
-  const dispatch = useDispatch();
+  const useAppDispatch: () => any = useDispatch;
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getIngredientsList());
