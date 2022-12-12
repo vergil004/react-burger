@@ -1,5 +1,5 @@
-import React, { useState, useCallback } from "react";
-import { Link, useHistory, Redirect } from "react-router-dom";
+import React, { useCallback } from "react";
+import { Link, Redirect, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   EmailInput,
@@ -9,12 +9,15 @@ import {
 import { useForm } from "@/utils/custom-hooks";
 import AuthStyles from "../authorization.module.css";
 import { loginRequest } from "@/services/actions/user";
+interface stateType {
+  from: { pathname: string };
+}
 
 export const Login = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const { state } = history.location;
-  const user = useSelector((store) => {
+  const useAppDispatch: () => any = useDispatch;
+  const dispatch = useAppDispatch();
+  const { state } = useLocation<stateType>();
+  const user = useSelector((store: any) => {
     return store.user;
   });
 
@@ -23,11 +26,11 @@ export const Login = () => {
     password: "",
   });
   const onSubmitLogin = useCallback(
-    async (e) => {
+    async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       await dispatch(loginRequest(values));
     },
-    [values]
+    [values, dispatch]
   );
 
   if (user.data) {

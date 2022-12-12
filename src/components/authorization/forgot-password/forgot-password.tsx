@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, SyntheticEvent } from "react";
 import { Link, useHistory } from "react-router-dom";
 import {
   EmailInput,
@@ -20,12 +20,12 @@ export const ForgotPassword = () => {
   const [error, setError] = useState(null);
   const [token, setToken] = useState("");
 
-  const onChangeToken = (e) => {
+  const onChangeToken = (e: React.ChangeEvent<HTMLInputElement>) => {
     setToken(e.target.value);
   };
 
   const onSubmitForgotPassword = useCallback(
-    async (e) => {
+    async (e: SyntheticEvent) => {
       e.preventDefault();
       await forgotPassword(values.email)
         .then(() => {
@@ -35,20 +35,23 @@ export const ForgotPassword = () => {
           setError(error);
         });
     },
-    [values.email]
+    [values.email, history]
   );
 
-  const onSubmitResetPassword = useCallback(async (e) => {
-    e.preventDefault();
-    const password = values.password;
-    await resetPassword({ password, token })
-      .then(() => {
-        history.replace("/login");
-      })
-      .catch((error) => {
-        setError(error);
-      });
-  });
+  const onSubmitResetPassword = useCallback(
+    async (e: SyntheticEvent) => {
+      e.preventDefault();
+      const password = values.password;
+      await resetPassword({ password, token })
+        .then(() => {
+          history.replace("/login");
+        })
+        .catch((error) => {
+          setError(error);
+        });
+    },
+    [history, token, values.password]
+  );
 
   return (
     <div className={AuthStyles.login}>

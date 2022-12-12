@@ -12,7 +12,8 @@ import AuthStyles from "@/components/authorization/authorization.module.css";
 import { registrationRequest } from "@/services/actions/user";
 
 export const Registration = () => {
-  const dispatch = useDispatch();
+  const useAppDispatch: () => any = useDispatch;
+  const dispatch = useAppDispatch();
 
   const { values, handleChange } = useForm({
     email: "",
@@ -20,7 +21,7 @@ export const Registration = () => {
     name: "",
   });
   const onSubmitRegistration = useCallback(
-    async (e) => {
+    async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       await dispatch(registrationRequest(values));
     },
