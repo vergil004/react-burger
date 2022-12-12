@@ -1,5 +1,4 @@
-import React, { useRef } from "react";
-import PropTypes from "prop-types";
+import React, { useRef, FC } from "react";
 import { useDispatch } from "react-redux";
 import { useDrag, useDrop } from "react-dnd";
 import {
@@ -8,16 +7,30 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import itemStyles from "./constructor-item.module.css";
 import { deleteIngredientFromConstructor } from "@/services/actions-creators/constructor-list";
-import { ingredientPropTypes } from "@/utils/types";
+import { IKeyIngredient } from "@/utils/types";
 
-export function ConstructorItem({ ingredient, moveIngredient, index }) {
+interface IConstructorItem {
+  ingredient: IKeyIngredient;
+  moveIngredient: (dragIndex: number, dropIndex: number) => void;
+  index: number;
+}
+
+type TDragItem = {
+  index: number;
+};
+
+export const ConstructorItem: FC<IConstructorItem> = ({
+  ingredient,
+  moveIngredient,
+  index,
+}) => {
   const dispatch = useDispatch();
   const key = ingredient.key;
   const ref = useRef(null);
 
   const [, drop] = useDrop({
     accept: "draggableItem",
-    hover(item, monitor) {
+    hover(item: TDragItem, monitor) {
       if (!ref.current) {
         return;
       }
@@ -64,10 +77,4 @@ export function ConstructorItem({ ingredient, moveIngredient, index }) {
       />
     </li>
   );
-}
-
-ConstructorItem.propTypes = {
-  moveIngredient: PropTypes.func.isRequired,
-  index: PropTypes.number.isRequired,
-  ingredient: ingredientPropTypes.isRequired,
 };
