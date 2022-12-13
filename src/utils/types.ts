@@ -47,3 +47,11 @@ export interface IReset {
   password: string;
   token: string;
 }
+
+export type TMethodRequest = "GET" | "POST" | "PATCH";
+
+export interface IOptionPost<T> {
+  method: TMethodRequest;
+  headers: Record<string, string>;
+  data: T;
+}
