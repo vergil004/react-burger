@@ -15,14 +15,15 @@ type TModal = {
 
 export const Modal: FC<TModal> = ({ closeModal, title, children }) => {
   useEffect(() => {
-    const keyPressHandler = (event: KeyboardEvent) => {
+    const keyPressHandler = (event: KeyboardEvent): any => {
       if (event.key === "Escape") {
         closeModal();
       }
     };
-    document.addEventListener("keydown", (e: Event) => keyPressHandler);
-    return () =>
-      window.removeEventListener("keydown", (e: Event) => keyPressHandler);
+    // @ts-ignore
+    document.addEventListener("keydown", keyPressHandler);
+    // @ts-ignore
+    return () => document.removeEventListener("keydown", keyPressHandler);
   }, [closeModal]);
 
   return createPortal(
