@@ -13,7 +13,7 @@ import { Modal } from "@/components/modal/modal";
 import { IngredientDetails } from "@/components/ingredient-details/ingredient-details";
 
 export const Routers = () => {
-  const location = useLocation();
+  const location = useLocation<any>();
   const history = useHistory();
   const background = location.state && location.state.background;
   const handleModalClose = () => {

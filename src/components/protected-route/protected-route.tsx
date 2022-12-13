@@ -1,11 +1,13 @@
 import React, { useEffect, FC } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import PropTypes from "prop-types";
+import PropTypes, { exact } from "prop-types";
 import { getUserData } from "@/services/actions/user";
 
 type TProtected = {
   children: React.ReactNode;
+  path: string;
+  exact: boolean;
 };
 
 export const ProtectedRoute: FC<TProtected> = ({ children, ...rest }) => {
@@ -32,9 +34,4 @@ export const ProtectedRoute: FC<TProtected> = ({ children, ...rest }) => {
       }
     />
   );
-};
-
-ProtectedRoute.propTypes = {
-  children: PropTypes.node.isRequired,
-  ...{ path: PropTypes.string.isRequired, exact: PropTypes.bool },
 };
