@@ -8,11 +8,16 @@ import { Loader } from "@/components/loader/loader";
 import loginPageStyles from "./login.module.css";
 import { getUserData } from "@/services/actions/user";
 
+type TLocation = {
+  from: string;
+};
+
 export const LoginPage = () => {
   const history = useHistory();
-  const location = useLocation();
-  const dispatch = useDispatch();
-  const user = useSelector((store) => {
+  const location = useLocation<TLocation>();
+  const useAppDispatch: () => any = useDispatch;
+  const dispatch = useAppDispatch();
+  const user = useSelector((store: any) => {
     return store.user;
   });
   useEffect(() => {

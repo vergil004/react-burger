@@ -5,7 +5,7 @@ import { IngredientDetails } from "@/components/ingredient-details/ingredient-de
 import ingredientStyles from "./ingredient.module.css";
 
 export const IngredientPage = () => {
-  const { allItems } = useSelector((state) => {
+  const { allItems } = useSelector((state: any) => {
     return state.ingredients;
   });
 
