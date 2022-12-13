@@ -1,25 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, FC, KeyboardEvent } from "react";
 import { createPortal } from "react-dom";
-import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ModalOverlay } from "@/components/modal-overlay/modal-overlay";
 import modalStyles from "./modal.module.css";
 
-const modalRoot = document.getElementById("modal");
+const modalRoot = document.getElementById("modal") as HTMLElement;
 
-export function Modal({ closeModal, title, children }) {
+type TModal = {
+  closeModal: () => void;
+  title?: string;
+  children: React.ReactNode;
+};
+
+export const Modal: FC<TModal> = ({ closeModal, title, children }) => {
   useEffect(() => {
-    const keyPressHandler = ({ key }) => {
-      switch (key) {
-        case "Escape":
-          closeModal();
-          break;
-        default:
+    const keyPressHandler = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeModal();
       }
     };
-    window.addEventListener("keydown", keyPressHandler);
-    return () => window.removeEventListener("keydown", keyPressHandler);
+    document.addEventListener("keydown", (e: Event) => keyPressHandler);
+    return () =>
+      window.removeEventListener("keydown", (e: Event) => keyPressHandler);
   }, [closeModal]);
 
   return createPortal(
@@ -45,14 +48,8 @@ export function Modal({ closeModal, title, children }) {
     </div>,
     modalRoot
   );
-}
+};
 
 Modal.defaultProps = {
   title: "",
-};
-
-Modal.propTypes = {
-  closeModal: PropTypes.func.isRequired,
-  title: PropTypes.string,
-  children: PropTypes.node.isRequired,
 };
