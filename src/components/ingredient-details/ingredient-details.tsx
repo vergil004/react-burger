@@ -3,13 +3,20 @@ import { useSelector } from "react-redux";
 import { useRouteMatch } from "react-router-dom";
 import { Loader } from "@/components/loader/loader";
 import detailsStyles from "./ingredient-details.module.css";
+import { Iingredient } from "@/utils/types";
+
+type Tparams = {
+  ingredientId: string;
+};
 
 export function IngredientDetails() {
-  const { allItems } = useSelector((state) => {
+  const { allItems } = useSelector((state: any) => {
     return state.ingredients;
   });
-  const { params } = useRouteMatch();
-  const ingredient = allItems?.find((item) => item._id === params.ingredientId);
+  const { params } = useRouteMatch<Tparams>();
+  const ingredient = allItems?.find(
+    (item: Iingredient) => item._id === params.ingredientId
+  );
   if (!ingredient) {
     return (
       <div className={detailsStyles.loader}>
