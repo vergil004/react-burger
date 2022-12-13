@@ -1,7 +1,7 @@
 export function setCookie(
   name: string,
   value: string | null,
-  props: { [name: string]: any } = {}
+  props: { [name: string]: any; expires?: string | number | Date } = {}
 ) {
   props = props || {};
   let exp = props.expires;
@@ -9,8 +9,9 @@ export function setCookie(
     const d = new Date();
     d.setTime(d.getTime() + exp * 1000);
     exp = props.expires = d;
+    console.log(exp.toUTCString);
   }
-  if (exp && exp.toUTCString) {
+  if (exp instanceof Date && exp.toUTCString) {
     props.expires = exp.toUTCString();
   }
   if (value) {
