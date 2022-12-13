@@ -15,40 +15,40 @@ export const BurgerIngredients = React.memo(function BurgerIngredients() {
     ingredientsRequestFailed,
     ingredientsRequest,
     error,
-  } = useSelector((state) => {
+  } = useSelector((state: any) => {
     return state.ingredients;
   });
   const [current, setCurrent] = React.useState("bun");
   const bunList = buns;
-  const scrollToBun = useRef();
-  const scrollToSauce = useRef();
-  const scrollToMain = useRef();
-  const scrollCont = useRef();
+  const scrollToBun = useRef<HTMLDivElement>(null);
+  const scrollToSauce = useRef<HTMLDivElement>(null);
+  const scrollToMain = useRef<HTMLDivElement>(null);
+  const scrollCont = useRef<HTMLDivElement>(null);
 
-  const scrollToGroup = (value) => {
+  const scrollToGroup = (value: string) => {
     setCurrent(value);
     switch (value) {
       case "bun":
-        scrollToBun?.current.scrollIntoView({ behavior: "smooth" });
+        scrollToBun.current!.scrollIntoView({ behavior: "smooth" });
         break;
       case "sauce":
-        scrollToSauce?.current.scrollIntoView({ behavior: "smooth" });
+        scrollToSauce?.current!.scrollIntoView({ behavior: "smooth" });
         break;
       default:
-        scrollToMain?.current.scrollIntoView({ behavior: "smooth" });
+        scrollToMain?.current!.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   const scrollHandler = useCallback(() => {
-    const topHeight = scrollCont?.current.getBoundingClientRect().top;
+    const topHeight = scrollCont.current!.getBoundingClientRect().top;
     const bun = Math.abs(
-      topHeight - scrollToBun.current.getBoundingClientRect().top
+      topHeight - scrollToBun?.current!.getBoundingClientRect().top
     );
     const sauce = Math.abs(
-      topHeight - scrollToSauce.current.getBoundingClientRect().top
+      topHeight - scrollToSauce?.current!.getBoundingClientRect().top
     );
     const main = Math.abs(
-      topHeight - scrollToMain.current.getBoundingClientRect().top
+      topHeight - scrollToMain?.current!.getBoundingClientRect().top
     );
     const nearestBlock = bun < sauce ? "bun" : sauce < main ? "sauce" : "main";
     setCurrent(nearestBlock);
@@ -85,17 +85,15 @@ export const BurgerIngredients = React.memo(function BurgerIngredients() {
           onScroll={scrollHandler}
           ref={scrollCont}
         >
-          <IngredientsSection title="Булки" items={bunList} ref={scrollToBun} />
-          <IngredientsSection
-            title="Соусы"
-            items={sauceList}
-            ref={scrollToSauce}
-          />
-          <IngredientsSection
-            title="Начинки"
-            items={mainList}
-            ref={scrollToMain}
-          />
+          <section ref={scrollToBun} className="pt-10 pb-10">
+            <IngredientsSection title="Булки" items={bunList} />
+          </section>
+          <section ref={scrollToSauce} className="pt-10 pb-10">
+            <IngredientsSection title="Соусы" items={sauceList} />
+          </section>
+          <section ref={scrollToMain} className="pt-10 pb-10">
+            <IngredientsSection title="Начинки" items={mainList} />
+          </section>
         </div>
       )}
     </div>
