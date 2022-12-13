@@ -1,4 +1,4 @@
-import React, { useEffect, FC, KeyboardEvent } from "react";
+import React, { useEffect, FC, KeyboardEvent, PropsWithChildren } from "react";
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -10,10 +10,13 @@ const modalRoot = document.getElementById("modal") as HTMLElement;
 type TModal = {
   closeModal: () => void;
   title?: string;
-  children: React.ReactNode;
 };
 
-export const Modal: FC<TModal> = ({ closeModal, title, children }) => {
+export const Modal: FC<PropsWithChildren<TModal>> = ({
+  closeModal,
+  title,
+  children,
+}) => {
   useEffect(() => {
     const keyPressHandler = (event: KeyboardEvent): any => {
       if (event.key === "Escape") {

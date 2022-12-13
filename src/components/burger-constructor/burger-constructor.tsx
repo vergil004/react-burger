@@ -19,7 +19,7 @@ import {
 import { setOrderData } from "@/services/actions/order";
 import { setOrderFailed } from "@/services/actions-creators/order";
 import { getUserData } from "@/services/actions/user";
-import { Iingredient, IKeyIngredient } from "@/utils/types";
+import { IIngredient, IKeyIngredient } from "@/utils/types";
 import constructorStyles from "./burger-constructor.module.css";
 import forgottenImage from "@/images/forgotten.jpeg";
 
@@ -60,7 +60,7 @@ export const BurgerConstructor = React.memo(function BurgerConstructor() {
     } else {
       const idsList = [
         bun._id,
-        ...ingredients.map((item: Iingredient) => item._id),
+        ...ingredients.map((item: IIngredient) => item._id),
         bun._id,
       ];
       dispatch(setOrderData(idsList));
@@ -80,7 +80,7 @@ export const BurgerConstructor = React.memo(function BurgerConstructor() {
     }
   };
 
-  const addIngredient = (item: Iingredient) => {
+  const addIngredient = (item: IIngredient) => {
     if (item.type === "bun") {
       dispatch(addBunToConstructor(item));
     } else {
@@ -90,7 +90,7 @@ export const BurgerConstructor = React.memo(function BurgerConstructor() {
 
   const [{ isHover }, drop] = useDrop(() => ({
     accept: "ingredient",
-    drop(item: Iingredient) {
+    drop(item: IIngredient) {
       addIngredient(item);
     },
     collect: (monitor) => ({

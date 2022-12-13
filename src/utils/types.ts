@@ -15,7 +15,7 @@ export const ingredientPropTypes = PropTypes.shape({
   __v: PropTypes.number.isRequired,
 });
 
-export interface Iingredient {
+export interface IIngredient {
   _id: string;
   name: string;
   type: string;
@@ -30,7 +30,7 @@ export interface Iingredient {
   __v: number;
 }
 
-export interface IKeyIngredient extends Iingredient {
+export interface IKeyIngredient extends IIngredient {
   key: string;
 }
 

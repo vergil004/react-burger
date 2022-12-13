@@ -7,10 +7,10 @@ import {
   Counter,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import ingredientStyle from "./ingredient.module.css";
-import { Iingredient } from "@/utils/types";
+import { IIngredient } from "@/utils/types";
 
 type Tingredient = {
-  ingredient: Iingredient;
+  ingredient: IIngredient;
 };
 
 export const Ingredient: FC<Tingredient> = ({ ingredient }) => {
@@ -31,11 +31,11 @@ export const Ingredient: FC<Tingredient> = ({ ingredient }) => {
     return bun !== null
       ? [
           bun._id,
-          ...ingredients.map((item: Iingredient) => item._id),
+          ...ingredients.map((item: IIngredient) => item._id),
           bun._id,
         ].filter((id: string) => id === ingredient._id).length
       : ingredients
-          .map((item: Iingredient) => item._id)
+          .map((item: IIngredient) => item._id)
           .filter((id: string) => id === ingredient._id).length;
   }, [ingredients, bun, ingredient._id]);
 

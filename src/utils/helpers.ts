@@ -6,6 +6,6 @@ export const checkResponse = (res: any) => {
     : res.json().then((err: any) => Promise.reject(err));
 };
 
-export function requestAPI(url: string, options: RequestInit) {
+export function requestAPI(url: string, options?: RequestInit) {
   return fetch(url, options).then((response) => checkResponse(response));
 }

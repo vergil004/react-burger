@@ -1,4 +1,4 @@
-import React, { useEffect, FC } from "react";
+import React, { useEffect, FC, PropsWithChildren } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import PropTypes, { exact } from "prop-types";
@@ -10,7 +10,10 @@ type TProtected = {
   exact: boolean;
 };
 
-export const ProtectedRoute: FC<TProtected> = ({ children, ...rest }) => {
+export const ProtectedRoute: FC<PropsWithChildren<TProtected>> = ({
+  children,
+  ...rest
+}) => {
   const useAppDispatch: () => any = useDispatch;
   const dispatch = useAppDispatch();
   const user = useSelector((store: any) => {

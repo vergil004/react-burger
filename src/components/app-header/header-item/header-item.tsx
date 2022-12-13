@@ -1,13 +1,15 @@
-import React, { FC } from "react";
+import React, { FC, PropsWithChildren } from "react";
 import { NavLink } from "react-router-dom";
 import headerItemStyles from "./header-item.module.css";
 
 interface IHeaderItem {
   link: string;
-  children: React.ReactNode;
 }
 
-export const HeaderItem: FC<IHeaderItem> = ({ link, children }) => {
+export const HeaderItem: FC<PropsWithChildren<IHeaderItem>> = ({
+  link,
+  children,
+}) => {
   return (
     <NavLink
       to={link}

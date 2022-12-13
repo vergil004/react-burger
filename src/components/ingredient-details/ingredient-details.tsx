@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useRouteMatch } from "react-router-dom";
 import { Loader } from "@/components/loader/loader";
 import detailsStyles from "./ingredient-details.module.css";
-import { Iingredient } from "@/utils/types";
+import { IIngredient } from "@/utils/types";
 
 type Tparams = {
   ingredientId: string;
@@ -15,7 +15,7 @@ export function IngredientDetails() {
   });
   const { params } = useRouteMatch<Tparams>();
   const ingredient = allItems?.find(
-    (item: Iingredient) => item._id === params.ingredientId
+    (item: IIngredient) => item._id === params.ingredientId
   );
   if (!ingredient) {
     return (

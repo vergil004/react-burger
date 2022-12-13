@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 import ingredientsStyle from "@/components/burger-ingredients/burger-ingredients.module.css";
 import { Ingredient } from "@/components/burger-ingredients/ingredient/ingredient";
-import { Iingredient } from "@/utils/types";
+import { IIngredient } from "@/utils/types";
 
 type TSection = {
   title: string;
-  items: Array<Iingredient>;
+  items: Array<IIngredient>;
 };
 
 export const IngredientsSection: FC<TSection> = ({ title, items }) => (
