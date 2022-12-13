@@ -1,7 +1,8 @@
 import { requestAPI, BASE_URL } from "@/utils/helpers";
 import { setCookie } from "@/utils/cookie";
+import { IRegistration, IReset, ILogin } from "@/utils/types";
 
-export async function forgotPassword(email) {
+export async function forgotPassword(email: string) {
   return await requestAPI(`${BASE_URL}/password-reset`, {
     method: "POST",
     headers: {
@@ -11,7 +12,7 @@ export async function forgotPassword(email) {
   });
 }
 
-export async function registration({ email, password, name }) {
+export async function registration({ email, password, name }: IRegistration) {
   return await requestAPI(`${BASE_URL}/auth/register`, {
     method: "POST",
     headers: {
@@ -30,7 +31,7 @@ export async function registration({ email, password, name }) {
     });
 }
 
-export async function resetPassword({ password, token }) {
+export async function resetPassword({ password, token }: IReset) {
   return await requestAPI(`${BASE_URL}/password-reset/reset`, {
     method: "POST",
     headers: {
@@ -40,7 +41,7 @@ export async function resetPassword({ password, token }) {
   });
 }
 
-export async function loginUser({ password, email }) {
+export async function loginUser({ password, email }: ILogin) {
   return await requestAPI(`${BASE_URL}/auth/login`, {
     method: "POST",
     headers: {

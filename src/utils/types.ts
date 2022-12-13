@@ -33,3 +33,17 @@ export interface Iingredient {
 export interface IKeyIngredient extends Iingredient {
   key: string;
 }
+
+export interface ILogin {
+  email: string;
+  password: string;
+}
+
+export interface IRegistration extends ILogin {
+  name: string;
+}
+
+export interface IReset {
+  password: string;
+  token: string;
+}
