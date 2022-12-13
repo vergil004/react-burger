@@ -1,12 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, FC } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { getUserData } from "@/services/actions/user";
 
-export const ProtectedRoute = ({ children, ...rest }) => {
-  const dispatch = useDispatch();
-  const user = useSelector((store) => {
+type TProtected = {
+  children: React.ReactNode;
+};
+
+export const ProtectedRoute: FC<TProtected> = ({ children, ...rest }) => {
+  const useAppDispatch: () => any = useDispatch;
+  const dispatch = useAppDispatch();
+  const user = useSelector((store: any) => {
     return store.user;
   });
   useEffect(() => {
