@@ -12,6 +12,10 @@ import { loginRequest } from "@/services/actions/user";
 interface stateType {
   from: { pathname: string };
 }
+type TForm = {
+  email: string;
+  password: string;
+};
 
 export const Login = () => {
   const useAppDispatch: () => any = useDispatch;
@@ -28,6 +32,8 @@ export const Login = () => {
   const onSubmitLogin = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
+      // @ts-ignore
+      // нужно разобраться с этим
       await dispatch(loginRequest(values));
     },
     [values, dispatch]

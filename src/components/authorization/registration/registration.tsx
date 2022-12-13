@@ -23,6 +23,8 @@ export const Registration = () => {
   const onSubmitRegistration = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
+      // @ts-ignore
+      // нужно разобраться с этим
       await dispatch(registrationRequest(values));
     },
     [values, dispatch]
