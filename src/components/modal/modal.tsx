@@ -20,6 +20,7 @@ export const Modal: FC<TModal> = ({ closeModal, title, children }) => {
         closeModal();
       }
     };
+    // Никак не могу разобраться с этим местом
     // @ts-ignore
     document.addEventListener("keydown", keyPressHandler);
     // @ts-ignore

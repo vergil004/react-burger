@@ -7,7 +7,7 @@ import doneImage from "@/images/done.png";
 
 export const OrderDetails = () => {
   const { number, orderRequest, orderRequestFailed, errorText } = useSelector(
-    (store) => {
+    (store: any) => {
       return store.order;
     }
   );

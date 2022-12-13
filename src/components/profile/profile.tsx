@@ -7,19 +7,36 @@ import {
 import profileStyles from "./profile.module.css";
 import { updateUser } from "@/services/actions/user";
 
-export const Profile = () => {
-  const dispatch = useDispatch();
+type TDisabled = {
+  name?: boolean;
+  email?: boolean;
+  password?: boolean;
+};
 
-  const user = useSelector((store) => {
+type TData = {
+  name: string;
+  email: string;
+  password: string;
+};
+
+export const Profile = () => {
+  const useAppDispatch: () => any = useDispatch;
+  const dispatch = useAppDispatch();
+
+  const user = useSelector((store: any) => {
     return store.user;
   });
 
-  const nameRef = useRef(null);
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
-  const [data, setData] = useState({ name: "", email: "", password: "" });
-  const [disabled, setDisabled] = useState({
+  const [data, setData] = useState<TData>({
+    name: "",
+    email: "",
+    password: "",
+  });
+  const [disabled, setDisabled] = useState<TDisabled>({
     name: true,
     email: true,
     password: true,
@@ -32,16 +49,16 @@ export const Profile = () => {
 
   useEffect(() => {
     if (!disabled.name) {
-      nameRef.current.focus();
+      nameRef.current?.focus();
     } else if (!disabled.email) {
-      emailRef.current.focus();
+      emailRef.current?.focus();
     } else if (!disabled.password) {
-      passwordRef.current.focus();
+      passwordRef.current?.focus();
     }
   });
 
-  const onChangeValue = (e) => {
-    const { name, value } = e.target;
+  const onChangeValue = (target: HTMLInputElement) => {
+    const { name, value } = target;
     setData({
       ...data,
       [name]: value,
@@ -49,7 +66,8 @@ export const Profile = () => {
     setFormChange(true);
   };
 
-  const onClickIcon = (name) => {
+  const onClickIcon = (name: keyof TDisabled) => {
+    console.log(name);
     setDisabled({
       ...disabled,
       [name]: !disabled[name],
@@ -63,7 +81,7 @@ export const Profile = () => {
   };
 
   const onSubmitHandler = useCallback(
-    async (e) => {
+    async (e: React.FormEvent) => {
       e.preventDefault();
       dispatch(updateUser(data));
       setDisabled({ name: true, password: true, email: true });
@@ -82,7 +100,7 @@ export const Profile = () => {
         value={data.name}
         placeholder="Имя"
         icon={disabled.name ? "EditIcon" : "CloseIcon"}
-        onChange={onChangeValue}
+        onChange={(e) => onChangeValue(e.target)}
         extraClass="pb-6"
         type="text"
         name="name"
@@ -93,7 +111,7 @@ export const Profile = () => {
       <Input
         value={data.email}
         icon={disabled.email ? "EditIcon" : "CloseIcon"}
-        onChange={onChangeValue}
+        onChange={(e) => onChangeValue(e.target)}
         extraClass="pb-6"
         placeholder="Логин"
         type="email"
@@ -105,7 +123,7 @@ export const Profile = () => {
       <Input
         placeholder="Пароль"
         value={data.password}
-        onChange={onChangeValue}
+        onChange={(e) => onChangeValue(e.target)}
         type="password"
         name="password"
         icon={disabled.password ? "EditIcon" : "CloseIcon"}

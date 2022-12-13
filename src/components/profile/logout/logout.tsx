@@ -1,21 +1,26 @@
-import React, { useCallback } from "react";
+import React, { useCallback, FC } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { userLogout } from "@/services/actions/user";
 import logoutStyles from "./logout.module.css";
 
-export const Logout = ({ resetLogout }) => {
-  const dispatch = useDispatch();
+type TLogout = {
+  resetLogout: () => void;
+};
+
+export const Logout: FC<TLogout> = ({ resetLogout }) => {
+  const useAppDispatch: () => any = useDispatch;
+  const dispatch = useAppDispatch();
   const onSubmitHandler = useCallback(
-    (e) => {
+    (e: React.FormEvent) => {
       e.preventDefault();
       dispatch(userLogout());
     },
     [dispatch]
   );
   const onCancelHandler = useCallback(
-    (e) => {
+    (e: React.FormEvent) => {
       e.preventDefault();
       resetLogout();
     },
