@@ -1,7 +1,12 @@
 import { requestAPI, BASE_URL, checkResponse } from "@/utils/helpers";
 import { getCookie, setCookie, deleteCookie } from "@/utils/cookie";
+import { TMethodRequest, IRequest } from "@/utils/types";
 
-const optionGet = {
+type TToken = {
+  token: string | null;
+};
+
+const optionGet: any = {
   method: "GET",
   mode: "cors",
   cache: "no-cache",
@@ -13,7 +18,24 @@ const optionGet = {
   redirect: "follow",
   referrerPolicy: "no-referrer",
 };
-const optionPost = (method, headers, data) => {
+const optionPost: (
+  method: TMethodRequest,
+  headers: Record<string, string>,
+  data: IRequest | TToken
+) => {
+  mode: string;
+  redirect: string;
+  headers: Record<string, string>;
+  cache: string;
+  method: "GET" | "POST" | "PATCH";
+  referrerPolicy: string;
+  credentials: string;
+  body: string;
+} = (
+  method: TMethodRequest,
+  headers: Record<string, string>,
+  data: IRequest | TToken
+) => {
   return {
     method: method,
     mode: "cors",
@@ -55,6 +77,8 @@ export async function getUserInfo() {
 }
 
 export async function updateAccessToken() {
+  // @ts-ignore
+  // @ts-ignore
   return await requestAPI(
     `${BASE_URL}/auth/token`,
     optionPost(
@@ -76,14 +100,14 @@ export async function updateAccessToken() {
     });
 }
 
-export async function updateUserInfo(data) {
+export async function updateUserInfo(data: IRequest) {
   return await requestAPI(
     `${BASE_URL}/auth/user`,
     optionPost(
       "PATCH",
       {
         "Content-Type": "application/json",
-        Authorization: getCookie("accessToken"),
+        Authorization: getCookie("accessToken") || "",
       },
       data
     )
@@ -119,7 +143,6 @@ export async function logout() {
       return result;
     })
     .catch((error) => {
-      console.log(error);
       return error;
     });
 }

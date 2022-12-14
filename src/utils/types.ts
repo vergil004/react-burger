@@ -43,6 +43,10 @@ export interface IRegistration extends ILogin {
   name: string;
 }
 
+export interface IRequest extends IRegistration {
+  token?: string;
+}
+
 export interface IReset {
   password: string;
   token: string;
@@ -55,3 +59,4 @@ export interface IOptionPost<T> {
   headers: Record<string, string>;
   data: T;
 }
+export type TOptionGet = {};

@@ -7,7 +7,6 @@ type TForm = {
 };
 
 export function useForm(inputValues: TForm) {
-  console.log(inputValues);
   const [values, setValues] = useState(inputValues);
 
   const handleChange: TEvent = (event) => {
