@@ -1,9 +1,9 @@
-import { requestAPI, BASE_URL } from "@/utils/helpers";
+import { requestPostAPI, BASE_URL } from "@/utils/helpers";
 import { setCookie } from "@/utils/cookie";
-import { IRegistration, IReset, ILogin } from "@/utils/types";
+import { IRegistration, IReset, ILogin, IRequest } from "@/utils/types";
 
 export async function forgotPassword(email: string) {
-  return await requestAPI(`${BASE_URL}/password-reset`, {
+  return await requestPostAPI(`${BASE_URL}/password-reset`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -13,7 +13,7 @@ export async function forgotPassword(email: string) {
 }
 
 export async function registration({ email, password, name }: IRegistration) {
-  return await requestAPI(`${BASE_URL}/auth/register`, {
+  return await requestPostAPI(`${BASE_URL}/auth/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export async function registration({ email, password, name }: IRegistration) {
 }
 
 export async function resetPassword({ password, token }: IReset) {
-  return await requestAPI(`${BASE_URL}/password-reset/reset`, {
+  return await requestPostAPI(`${BASE_URL}/password-reset/reset`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -42,13 +42,13 @@ export async function resetPassword({ password, token }: IReset) {
 }
 
 export async function loginUser({ password, email }: ILogin) {
-  return await requestAPI(`${BASE_URL}/auth/login`, {
+  return await requestPostAPI(`${BASE_URL}/auth/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ password: password, email: email }),
-  }).then((res) => {
+  }).then((res: { accessToken: string | null; refreshToken: string }) => {
     setCookie("accessToken", res.accessToken);
     localStorage.setItem("refreshToken", res.refreshToken);
     return res;

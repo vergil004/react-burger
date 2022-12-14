@@ -19,5 +19,17 @@ export function requestAPI(
     body: string;
   }
 ) {
+  // @ts-ignore
+  return fetch(url, options).then((response) => checkResponse(response));
+}
+
+export function requestPostAPI(
+  url: string,
+  options?: {
+    headers: { "Content-Type": string };
+    method: string;
+    body: string;
+  }
+) {
   return fetch(url, options).then((response) => checkResponse(response));
 }

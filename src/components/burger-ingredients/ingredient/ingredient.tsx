@@ -8,9 +8,14 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import ingredientStyle from "./ingredient.module.css";
 import { IIngredient } from "@/utils/types";
+import * as H from "history";
 
 type Tingredient = {
   ingredient: IIngredient;
+};
+
+type TModalState = {
+  background: H.Location;
 };
 
 export const Ingredient: FC<Tingredient> = ({ ingredient }) => {
@@ -40,7 +45,7 @@ export const Ingredient: FC<Tingredient> = ({ ingredient }) => {
   }, [ingredients, bun, ingredient._id]);
 
   return (
-    <Link
+    <Link<TModalState>
       ref={dragRef}
       className={`${ingredientStyle.ingredient} pr-4 pl-4`}
       to={{
