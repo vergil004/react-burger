@@ -77,8 +77,6 @@ export async function getUserInfo() {
 }
 
 export async function updateAccessToken() {
-  // @ts-ignore
-  // @ts-ignore
   return await requestAPI(
     `${BASE_URL}/auth/token`,
     optionPost(
