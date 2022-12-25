@@ -13,6 +13,5 @@ export function useForm(inputValues: TForm) {
     const { value, name } = event.target as HTMLInputElement;
     setValues({ ...values, [name]: value });
   };
-  console.log(values);
   return { values, handleChange, setValues };
 }

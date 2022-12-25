@@ -43,6 +43,11 @@ export interface IRegistration extends ILogin {
   name: string;
 }
 
+export interface IUser {
+  email: string;
+  name: string;
+}
+
 export interface IRequest extends IRegistration {
   token?: string;
 }

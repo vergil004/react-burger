@@ -1,6 +1,6 @@
 import { requestPostAPI, BASE_URL } from "@/utils/helpers";
 import { setCookie } from "@/utils/cookie";
-import { IRegistration, IReset, ILogin, IRequest } from "@/utils/types";
+import { IRegistration, IReset, ILogin, IUser } from "@/utils/types";
 
 export async function forgotPassword(email: string) {
   return await requestPostAPI(`${BASE_URL}/password-reset`, {
@@ -48,9 +48,15 @@ export async function loginUser({ password, email }: ILogin) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ password: password, email: email }),
-  }).then((res: { accessToken: string | null; refreshToken: string }) => {
-    setCookie("accessToken", res.accessToken);
-    localStorage.setItem("refreshToken", res.refreshToken);
-    return res;
-  });
+  }).then(
+    (res: {
+      user: IUser;
+      accessToken: string | null;
+      refreshToken: string;
+    }) => {
+      setCookie("accessToken", res.accessToken);
+      localStorage.setItem("refreshToken", res.refreshToken);
+      return res;
+    }
+  );
 }
