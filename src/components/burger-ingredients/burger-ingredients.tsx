@@ -73,12 +73,11 @@ export const BurgerIngredients = React.memo(function BurgerIngredients() {
           <AppError error={error} />
         </div>
       )}
-      {ingredientsListRequest ||
-        (ingredients.length === 0 && (
-          <div className={ingredientsStyle.ingredients__loader}>
-            <Loader />
-          </div>
-        ))}
+      {(ingredientsListRequest && ingredients.length) === 0 && (
+        <div className={ingredientsStyle.ingredients__loader}>
+          <Loader />
+        </div>
+      )}
       {!ingredientsListRequestFailed && !ingredientsListRequest && (
         <div
           className={ingredientsStyle.ingredients__cont}
