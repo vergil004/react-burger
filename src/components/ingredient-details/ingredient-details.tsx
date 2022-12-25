@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector } from "@/utils/custom-hooks";
 import { useRouteMatch } from "react-router-dom";
 import { Loader } from "@/components/loader/loader";
 import detailsStyles from "./ingredient-details.module.css";
@@ -10,7 +10,7 @@ type Tparams = {
 };
 
 export function IngredientDetails() {
-  const { allItems } = useSelector((state: any) => {
+  const { allItems } = useSelector((state) => {
     return state.ingredients;
   });
   const { params } = useRouteMatch<Tparams>();

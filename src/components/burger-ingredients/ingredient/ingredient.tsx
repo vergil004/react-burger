@@ -1,5 +1,5 @@
 import React, { useMemo, FC } from "react";
-import { useSelector } from "react-redux";
+import { useSelector } from "@/utils/custom-hooks";
 import { useDrag } from "react-dnd";
 import { Link, useLocation } from "react-router-dom";
 import {
@@ -20,7 +20,7 @@ type TModalState = {
 
 export const Ingredient: FC<Tingredient> = ({ ingredient }) => {
   const location = useLocation();
-  const { bun, ingredients } = useSelector((state: any) => {
+  const { bun, ingredients } = useSelector((state) => {
     return state.constructorIngredients;
   });
   const ingredientId = ingredient["_id"];

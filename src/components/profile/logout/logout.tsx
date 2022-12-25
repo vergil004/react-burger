@@ -1,5 +1,5 @@
 import React, { useCallback, FC } from "react";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "@/utils/custom-hooks";
 import PropTypes from "prop-types";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { userLogout } from "@/services/actions/user";
@@ -10,7 +10,6 @@ type TLogout = {
 };
 
 export const Logout: FC<TLogout> = ({ resetLogout }) => {
-  const useAppDispatch: () => any = useDispatch;
   const dispatch = useAppDispatch();
   const onSubmitHandler = useCallback(
     (e: React.FormEvent) => {

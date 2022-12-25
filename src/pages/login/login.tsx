@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useHistory, Redirect, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useSelector } from "@/utils/custom-hooks";
 import { Login } from "@/components/authorization/login/login";
 import { Registration } from "@/components/authorization/registration/registration";
 import { ForgotPassword } from "@/components/authorization/forgot-password/forgot-password";
@@ -15,9 +15,8 @@ type TLocation = {
 export const LoginPage = () => {
   const history = useHistory();
   const location = useLocation<TLocation>();
-  const useAppDispatch: () => any = useDispatch;
   const dispatch = useAppDispatch();
-  const user = useSelector((store: any) => {
+  const user = useSelector((store) => {
     return store.user;
   });
   useEffect(() => {

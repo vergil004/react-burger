@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { Link, Redirect, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useSelector } from "@/utils/custom-hooks";
 import {
   EmailInput,
   PasswordInput,
@@ -12,16 +12,11 @@ import { loginRequest } from "@/services/actions/user";
 interface stateType {
   from: { pathname: string };
 }
-type TForm = {
-  email: string;
-  password: string;
-};
 
 export const Login = () => {
-  const useAppDispatch: () => any = useDispatch;
   const dispatch = useAppDispatch();
   const { state } = useLocation<stateType>();
-  const user = useSelector((store: any) => {
+  const user = useSelector((store) => {
     return store.user;
   });
 
@@ -32,8 +27,6 @@ export const Login = () => {
   const onSubmitLogin = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      // @ts-ignore
-      // нужно разобраться с этим
       await dispatch(loginRequest(values));
     },
     [values, dispatch]

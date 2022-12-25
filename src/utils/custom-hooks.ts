@@ -1,4 +1,10 @@
 import { ChangeEvent, useState } from "react";
+import {
+  TypedUseSelectorHook,
+  useSelector as selectorHook,
+  useDispatch,
+} from "react-redux";
+import { RootState, TDispatch, AppThunk } from "@/services/types";
 
 type TEvent = (event: ChangeEvent<HTMLInputElement>) => void;
 
@@ -15,3 +21,7 @@ export function useForm(inputValues: TForm) {
   };
   return { values, handleChange, setValues };
 }
+
+export const useSelector: TypedUseSelectorHook<RootState> = selectorHook;
+
+export const useAppDispatch: () => TDispatch = useDispatch;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useSelector } from "@/utils/custom-hooks";
 import {
   Input,
   Button,
@@ -20,7 +20,6 @@ type TData = {
 };
 
 export const Profile = () => {
-  const useAppDispatch: () => any = useDispatch;
   const dispatch = useAppDispatch();
 
   const user = useSelector((store: any) => {

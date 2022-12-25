@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector } from "@/utils/custom-hooks";
 import {
   Logo,
   BurgerIcon,
@@ -11,7 +11,7 @@ import { HeaderItem } from "./header-item/header-item";
 import headerStyles from "./app-header.module.css";
 
 export const AppHeader = () => {
-  const user = useSelector((store: any) => {
+  const user = useSelector((store) => {
     return store.user;
   });
   const personal = user.data ? user.data.name : "Личный кабинет";

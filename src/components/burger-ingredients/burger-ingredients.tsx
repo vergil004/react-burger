@@ -1,5 +1,5 @@
 import React, { useRef, useCallback } from "react";
-import { useSelector } from "react-redux";
+import { useSelector } from "@/utils/custom-hooks";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import { IngredientsSection } from "./ingredients-section/ingredients-section";
 import { Loader } from "@/components/loader/loader";
@@ -12,10 +12,10 @@ export const BurgerIngredients = React.memo(function BurgerIngredients() {
     buns,
     sauceList,
     mainList,
-    ingredientsRequestFailed,
-    ingredientsRequest,
+    ingredientsListRequestFailed,
+    ingredientsListRequest,
     error,
-  } = useSelector((state: any) => {
+  } = useSelector((state) => {
     return state.ingredients;
   });
   const [current, setCurrent] = React.useState("bun");
@@ -68,18 +68,18 @@ export const BurgerIngredients = React.memo(function BurgerIngredients() {
           Начинки
         </Tab>
       </div>
-      {ingredientsRequestFailed && (
+      {ingredientsListRequestFailed && (
         <div className={ingredientsStyle.ingredients__error}>
           <AppError error={error} />
         </div>
       )}
-      {ingredientsRequest ||
+      {ingredientsListRequest ||
         (ingredients.length === 0 && (
           <div className={ingredientsStyle.ingredients__loader}>
             <Loader />
           </div>
         ))}
-      {!ingredientsRequestFailed && !ingredientsRequest && (
+      {!ingredientsListRequestFailed && !ingredientsListRequest && (
         <div
           className={ingredientsStyle.ingredients__cont}
           onScroll={scrollHandler}
