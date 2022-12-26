@@ -59,6 +59,23 @@ export interface IReset {
 
 export type TMethodRequest = "GET" | "POST" | "PATCH";
 
+export type TStatus = "created" | "pending" | "done";
+
+export interface IFeedData {
+  ingredients: ReadonlyArray<string>;
+  _id: string;
+  status: TStatus;
+  number: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface IFeedOrders {
+  orders: ReadonlyArray<IFeedData>;
+  total: number;
+  totalToday: number;
+}
+
 export interface IOptionPost<T> {
   method: TMethodRequest;
   headers: Record<string, string>;
