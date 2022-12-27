@@ -6,7 +6,7 @@ import { TConstructorAction } from "@/services/actions-creators/constructor-list
 import { TIngredientsListActions } from "@/services/actions-creators/ingredients-list";
 import { TOrderActions } from "@/services/actions-creators/order";
 
-export type TDispatch = typeof store.dispatch;
+export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
 export type TApplicationActions =
   | TConstructorAction

@@ -6,12 +6,15 @@ import { Orders } from "@/components/profile/orders/orders";
 import profileStyles from "./profile.module.css";
 import { profileFeedConnectionStart } from "@/services/actions-creators/profile-feed";
 import { useAppDispatch } from "@/utils/custom-hooks";
+import { getCookie } from "@/utils/cookie";
+import { BASE_WS_URL } from "@/utils/helpers";
 
 export const ProfilePage = () => {
   const history = useHistory();
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(profileFeedConnectionStart());
+    const accessToken = getCookie("accessToken")?.replace("Bearer ", "");
+    dispatch(profileFeedConnectionStart(`${BASE_WS_URL}?token=${accessToken}`));
   });
   return (
     <main className={`${profileStyles.profile} pt-10`}>

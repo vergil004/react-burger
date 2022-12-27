@@ -7,7 +7,7 @@ import {
   setUserLogut,
 } from "@/services/actions-creators/user";
 
-import { TDispatch } from "@/services/types";
+import { AppDispatch } from "@/services/types";
 import { IRegistration } from "@/utils/types";
 import { ILogin } from "@/utils/types";
 import { AppThunk } from "@/services/types";
@@ -17,7 +17,7 @@ export const SET_USER_SUCCESS: "SET_USER_SUCCESS" = "SET_USER_SUCCESS";
 export const SET_USER_FAILED: "SET_USER_FAILED" = "SET_USER_FAILED";
 export const USER_LOGOUT: "USER_LOGOUT" = "USER_LOGOUT";
 
-export const getUserData = () => async (dispatch: TDispatch) => {
+export const getUserData = () => async (dispatch: AppDispatch) => {
   dispatch(getUserRequest());
   await getUserInfo()
     .then((result) => {
@@ -35,7 +35,7 @@ export const getUserData = () => async (dispatch: TDispatch) => {
 };
 
 export const updateUser =
-  (data: IRegistration) => async (dispatch: TDispatch) => {
+  (data: IRegistration) => async (dispatch: AppDispatch) => {
     dispatch(getUserRequest());
     await updateUserInfo(data)
       .then((result) => {
@@ -52,7 +52,7 @@ export const updateUser =
       });
   };
 
-export const userLogout: AppThunk = () => async (dispatch: TDispatch) => {
+export const userLogout: AppThunk = () => async (dispatch: AppDispatch) => {
   await logout()
     .then((result) => {
       if (result.success) {
