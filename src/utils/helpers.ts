@@ -27,7 +27,7 @@ export function requestAPI(
 export function requestPostAPI(
   url: string,
   options?: {
-    headers: { "Content-Type": string };
+    headers: { Authorization?: string | undefined; "Content-Type": string };
     method: string;
     body: string;
   }

@@ -1,6 +1,5 @@
 import React, { useCallback, FC } from "react";
 import { useAppDispatch } from "@/utils/custom-hooks";
-import PropTypes from "prop-types";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { userLogout } from "@/services/actions/user";
 import logoutStyles from "./logout.module.css";
@@ -39,8 +38,4 @@ export const Logout: FC<TLogout> = ({ resetLogout }) => {
       </div>
     </form>
   );
-};
-
-Logout.propTypes = {
-  resetLogout: PropTypes.func.isRequired,
 };

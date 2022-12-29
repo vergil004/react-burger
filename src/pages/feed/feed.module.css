@@ -1,0 +1,21 @@
+.feed{
+    display: block;
+    width: 1240px;
+    margin: 0 auto;
+}
+.feed__cont{
+    display: flex;
+    justify-content: space-between;
+}
+.feed__left{
+    display: flex;
+    width: 584px;
+    max-height: calc(100vh - 188px);
+    overflow: auto;
+}
+.feed__right{
+    width: 580px;
+}
+.feed__title{
+    color: #ffffff;
+}

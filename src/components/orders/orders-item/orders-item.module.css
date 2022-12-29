@@ -1,5 +1,5 @@
 .ordersItem{
-    width: 844px;
+    width: 100%;
     background-color: #1C1C21;
     border-radius: 40px;
 }
@@ -23,9 +23,11 @@
     display: flex;
     padding: 0;
     margin: 0;
+    flex-direction: row-reverse;
 }
 .ordersItem__ingredient{
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: center;
     width: 64px;
@@ -35,10 +37,7 @@
     padding: 2px;
     background: linear-gradient(90deg, rgba(128,26,178,1) 35%, rgba(76,76,255,1) 100%);
     overflow: hidden;
-    margin-left: -10px;
-}
-.ordersItem__ingredient:first-child{
-    margin-left: 0;
+    margin-right: -20px;
 }
 .ordersItem__image{
     width: 100%;
@@ -48,6 +47,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+}
+.ordersItem__text{
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(28, 28, 33, 0.6);
 }
 .ordersItem__price{
     display: flex;

@@ -23,7 +23,7 @@ export const AppHeader = () => {
             <BurgerIcon type={"secondary"} />
             <div className="pl-2">Конструктор</div>
           </HeaderItem>
-          <HeaderItem link="/orders">
+          <HeaderItem link="/feed">
             <ListIcon type={"secondary"} />
             <div className="pl-2">Лента заказов</div>
           </HeaderItem>

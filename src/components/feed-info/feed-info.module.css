@@ -1,0 +1,26 @@
+.feedInfo{
+    display: block;
+}
+.feedInfo__statusCont{
+    display: flex;
+}
+.feedInfo__statusBlock{
+    display: block;
+}
+.feedInfo__status{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    height: 321px;
+    width: 272px;
+}
+.feedInfo__statusItem{
+    list-style-type: none;
+    color: #00CCCC;
+}
+.feedInfo__statusItemWhite{
+    composes: feedInfo__statusItem;
+    color: #ffffff;
+}
