@@ -7,6 +7,7 @@ import {
   LoginPage,
   IngredientPage,
   FeedPage,
+  FeedIdPage,
 } from "@/pages";
 import { AppHeader } from "@/components/app-header/app-header";
 import { ProtectedRoute } from "@/components/protected-route/protected-route";
@@ -48,7 +49,10 @@ export const Routers = () => {
         <Route exact={true} path="/reset-password">
           <LoginPage />
         </Route>
-        <Route exact={true} path="/feed">
+        <Route exact={true} path="/feed/:id">
+          <FeedIdPage />
+        </Route>
+        <Route exact={true} path="/feed/">
           <FeedPage />
         </Route>
         <Route>

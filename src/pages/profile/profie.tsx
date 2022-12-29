@@ -20,7 +20,7 @@ export const ProfilePage = () => {
     <main className={`${profileStyles.profile} pt-10`}>
       <ProfileNav />
       <div className="pl-10">
-        {history.location.pathname === "/profile" ? <Profile /> : <Orders />}
+        {history.location.pathname === "/profile" ? <Profile /> : "test"}
       </div>
     </main>
   );

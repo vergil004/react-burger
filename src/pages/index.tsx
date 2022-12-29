@@ -4,6 +4,7 @@ import { ProfilePage } from "@/pages/profile/profie";
 import { LoginPage } from "@/pages/login/login";
 import { IngredientPage } from "@/pages/ingredient/ingredient";
 import { FeedPage } from "@/pages/feed/feed";
+import { FeedIdPage } from "@/pages/feed-id/feed-id";
 
 export {
   MainPage,
@@ -12,4 +13,5 @@ export {
   LoginPage,
   IngredientPage,
   FeedPage,
+  FeedIdPage,
 };

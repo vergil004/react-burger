@@ -1,9 +1,9 @@
 import React, { FC } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "@/utils/custom-hooks";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import itemStyles from "./orders-item.module.css";
 import { IFeedData } from "@/utils/types";
-import { IIngredient } from "@/utils/types";
 
 interface IOrderItem {
   order: IFeedData;
@@ -18,6 +18,8 @@ export const OrdersItem: FC<IOrderItem> = ({ order, showStatus }) => {
   const { allItems } = useSelector((state) => {
     return state.ingredients;
   });
+  const feedId = order._id;
+  const location = useLocation();
   const totalItems = order.ingredients
     .map((id) => {
       return allItems.find((item) => item._id === id);
@@ -26,7 +28,12 @@ export const OrdersItem: FC<IOrderItem> = ({ order, showStatus }) => {
 
   const sumOrder = totalItems.reduce((sum, item) => sum + item.price, 0);
   return (
-    <div className={`${itemStyles.ordersItem} p-6`}>
+    <Link
+      to={{
+        pathname: `/feed/${order._id}`,
+      }}
+      className={`${itemStyles.ordersItem} p-6`}
+    >
       <div className={itemStyles.ordersItem__top}>
         <div
           className={`${itemStyles.ordersItem__number} text text_type_digits-default`}
@@ -70,6 +77,6 @@ export const OrdersItem: FC<IOrderItem> = ({ order, showStatus }) => {
           <CurrencyIcon type={"primary"} />
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
