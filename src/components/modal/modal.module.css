@@ -21,6 +21,8 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    position: relative;
+    z-index: 10;
 }
 .modal__close{
     display: flex;

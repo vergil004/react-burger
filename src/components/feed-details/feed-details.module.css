@@ -4,9 +4,11 @@
 }
 .feedDetails__statusDone{
     color: #00CCCC;
+    text-align: left;
 }
 .feedDetails__status{
     color: #ffffff;
+    text-align: left;
 }
 .feedDetails__item{
     display: flex;
@@ -65,6 +67,10 @@
     color: #8585AD;
 }
 .feedDetails__title{
-    margin-top:-24px;
+    margin-top:-27px;
+    text-align: left;
+    width: 80%;
+}
+.feedDetails__text{
     text-align: left;
 }

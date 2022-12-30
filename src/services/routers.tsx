@@ -75,7 +75,7 @@ export const Routers = () => {
             path="/feed/:id"
             children={
               <Modal closeModal={handleModalClose}>
-                <FeedDetails />
+                <FeedDetails isModal={true} />
               </Modal>
             }
           />

@@ -58,17 +58,27 @@ export const FeedDetails: FC<TDeatails> = ({ isModal }) => {
   function count(id: string) {
     return order?.ingredients.filter((item) => item === id).length;
   }
-  const titleClass = `text text_type_digits-default ${detailsStyles.feedDetails__title}`;
+  const titleClass = isModal
+    ? `text text_type_digits-default ${detailsStyles.feedDetails__title}`
+    : "text text_type_digits-default";
   return (
     <div className={detailsStyles.feedDetails}>
       {order !== undefined && (
         <div>
-          <div className={titleClass}>{order.number}</div>
-          <div className="text text_type_main-medium pt-5">{order.name}</div>
+          <div className={titleClass}>#{order.number}</div>
+          <div
+            className={`${detailsStyles.feedDetails__text} text text_type_main-medium pt-5`}
+          >
+            {order.name}
+          </div>
           <div className={`${statusClass} text text_type_main-default pt-2`}>
             {statusLabel(order.status)}
           </div>
-          <div className="text text_type_main-medium pt-15">Состав:</div>
+          <div
+            className={`text text_type_main-medium pt-15 pb-6 ${detailsStyles.feedDetails__text}`}
+          >
+            Состав:
+          </div>
           <ul className={detailsStyles.feedDetails__list}>
             {totalItems?.map((item, index) => (
               <li
