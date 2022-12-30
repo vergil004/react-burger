@@ -13,6 +13,7 @@ import { AppHeader } from "@/components/app-header/app-header";
 import { ProtectedRoute } from "@/components/protected-route/protected-route";
 import { Modal } from "@/components/modal/modal";
 import { IngredientDetails } from "@/components/ingredient-details/ingredient-details";
+import { FeedDetails } from "@/components/feed-details/feed-details";
 
 export const Routers = () => {
   const location = useLocation<any>();
@@ -61,14 +62,24 @@ export const Routers = () => {
       </Switch>
 
       {background && (
-        <Route
-          path="/ingredients/:ingredientId"
-          children={
-            <Modal closeModal={handleModalClose} title="Детали ингредиента">
-              <IngredientDetails />
-            </Modal>
-          }
-        />
+        <div>
+          <Route
+            path="/ingredients/:ingredientId"
+            children={
+              <Modal closeModal={handleModalClose} title="Детали ингредиента">
+                <IngredientDetails />
+              </Modal>
+            }
+          />
+          <Route
+            path="/feed/:id"
+            children={
+              <Modal closeModal={handleModalClose}>
+                <FeedDetails />
+              </Modal>
+            }
+          />
+        </div>
       )}
     </>
   );

@@ -18,7 +18,6 @@ export const OrdersItem: FC<IOrderItem> = ({ order, showStatus }) => {
   const { allItems } = useSelector((state) => {
     return state.ingredients;
   });
-  const feedId = order._id;
   const location = useLocation();
   const totalItems = order.ingredients
     .map((id) => {
@@ -31,6 +30,7 @@ export const OrdersItem: FC<IOrderItem> = ({ order, showStatus }) => {
     <Link
       to={{
         pathname: `/feed/${order._id}`,
+        state: { background: location },
       }}
       className={`${itemStyles.ordersItem} p-6`}
     >

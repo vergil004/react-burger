@@ -5,21 +5,6 @@ import feedInfoStyles from "./feed-info.module.css";
 function notUndefinedCheck<T>(item: T | undefined): item is T {
   return item !== undefined;
 }
-function statusLabel(status: string) {
-  switch (status) {
-    case "done": {
-      return "Готов";
-    }
-    case "created": {
-      return "Создан";
-    }
-    case "pending": {
-      return "В работе:";
-    }
-    default:
-      return status;
-  }
-}
 
 export const FeedInfo: FC<IFeedOrders> = ({ orders, total, totalToday }) => {
   const filteredStatusesDone = orders
