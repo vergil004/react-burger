@@ -13,7 +13,7 @@ export const ProfileNav = () => {
         <NavLink
           activeClassName={profileNavStyles.profileNav__itemActive}
           className={profileNavStyles.profileNav__item}
-          to="/profile"
+          to="/profile/"
         >
           Профиль
         </NavLink>

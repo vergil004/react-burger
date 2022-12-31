@@ -26,10 +26,13 @@ export const OrdersItem: FC<IOrderItem> = ({ order, showStatus }) => {
     .filter(notUndefinedCheck);
 
   const sumOrder = totalItems.reduce((sum, item) => sum + item.price, 0);
+  const currentPath = location.pathname.includes("/feed")
+    ? `/feed/${order._id}`
+    : `/profile/orders/${order._id}`;
   return (
     <Link
       to={{
-        pathname: `/feed/${order._id}`,
+        pathname: currentPath,
         state: { background: location },
       }}
       className={`${itemStyles.ordersItem} p-6`}

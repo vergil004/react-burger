@@ -38,6 +38,9 @@ export const Routers = () => {
         <ProtectedRoute exact={true} path="/profile/orders">
           <ProfilePage />
         </ProtectedRoute>
+        <ProtectedRoute exact={true} path="/profile/orders/:id">
+          <ProfilePage />
+        </ProtectedRoute>
         <Route exact={true} path="/login">
           <LoginPage />
         </Route>
@@ -73,6 +76,14 @@ export const Routers = () => {
           />
           <Route
             path="/feed/:id"
+            children={
+              <Modal closeModal={handleModalClose}>
+                <FeedDetails isModal={true} />
+              </Modal>
+            }
+          />
+          <Route
+            path="/profile/orders/:id"
             children={
               <Modal closeModal={handleModalClose}>
                 <FeedDetails isModal={true} />

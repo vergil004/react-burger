@@ -20,6 +20,14 @@ export const profileFeedReducer = (
   action: TProfileFeedActions
 ): IFeedOrders => {
   switch (action.type) {
+    case WS_PROFILE_FEED_GET_MESSAGE: {
+      return {
+        ...state,
+        orders: action.payload.orders,
+        total: action.payload.total,
+        totalToday: action.payload.totalToday,
+      };
+    }
     default:
       return state;
   }

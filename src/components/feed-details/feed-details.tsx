@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useSelector } from "@/utils/custom-hooks";
-import { useRouteMatch } from "react-router-dom";
+import { useRouteMatch, useLocation } from "react-router-dom";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import detailsStyles from "./feed-details.module.css";
 
@@ -36,9 +36,13 @@ export const FeedDetails: FC<TDeatails> = ({ isModal }) => {
     return state.ingredients;
   });
   const { params } = useRouteMatch<Tparams>();
+  const location = useLocation();
   const { orders } = useSelector((state) => {
-    return state.feed;
+    return location.pathname.includes("/profile")
+      ? state.profileFeed
+      : state.feed;
   });
+
   const order = orders.find((item) => item._id === params.id);
   const totalItems = allItems.filter((item) =>
     order?.ingredients.includes(item._id)
