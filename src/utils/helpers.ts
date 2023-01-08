@@ -34,3 +34,19 @@ export function requestPostAPI(
 ) {
   return fetch(url, options).then((response) => checkResponse(response));
 }
+
+export function statusLabel(status: string) {
+  switch (status) {
+    case "done": {
+      return "Готов";
+    }
+    case "created": {
+      return "Создан";
+    }
+    case "pending": {
+      return "В работе:";
+    }
+    default:
+      return status;
+  }
+}

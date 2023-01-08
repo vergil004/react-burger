@@ -3,26 +3,12 @@ import { useSelector } from "@/utils/custom-hooks";
 import { useRouteMatch, useLocation } from "react-router-dom";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import detailsStyles from "./feed-details.module.css";
+import { statusLabel } from "@/utils/helpers";
 
 type Tparams = {
   id: string;
 };
 
-function statusLabel(status: string) {
-  switch (status) {
-    case "done": {
-      return "Готов";
-    }
-    case "created": {
-      return "Создан";
-    }
-    case "pending": {
-      return "В работе:";
-    }
-    default:
-      return status;
-  }
-}
 function notUndefinedCheck<T>(item: T | undefined): item is T {
   return item !== undefined;
 }

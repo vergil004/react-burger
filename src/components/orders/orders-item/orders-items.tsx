@@ -4,6 +4,7 @@ import { useSelector } from "@/utils/custom-hooks";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import itemStyles from "./orders-item.module.css";
 import { IFeedData } from "@/utils/types";
+import { statusLabel } from "@/utils/helpers";
 
 interface IOrderItem {
   order: IFeedData;
@@ -29,6 +30,11 @@ export const OrdersItem: FC<IOrderItem> = ({ order, showStatus }) => {
   const currentPath = location.pathname.includes("/feed")
     ? `/feed/${order._id}`
     : `/profile/orders/${order._id}`;
+  const statusClass =
+    order?.status === "done"
+      ? itemStyles.ordersItem__statusDone
+      : itemStyles.ordersItem__status;
+
   return (
     <Link
       to={{
@@ -51,7 +57,9 @@ export const OrdersItem: FC<IOrderItem> = ({ order, showStatus }) => {
       </div>
       <div className="pt-6 text text_type_main-medium">{order.name}</div>
       {showStatus && (
-        <div className="pt-6 text text_type_main-default">{order.status}</div>
+        <div className={`pt-6 text text_type_main-default ${statusClass}`}>
+          {statusLabel(order.status)}
+        </div>
       )}
       <div className={`${itemStyles.ordersItem__bottom} pt-6`}>
         <ul className={itemStyles.ordersItem__ingredients}>
