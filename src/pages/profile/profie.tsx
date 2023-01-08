@@ -33,7 +33,9 @@ export const ProfilePage = () => {
         {history.location.pathname === "/profile" ? (
           <Profile />
         ) : (
-          <Orders orders={orders} showStatus={true} />
+          <div className={profileStyles.profile__orders}>
+            <Orders orders={orders} showStatus={true} />
+          </div>
         )}
       </div>
     </main>
