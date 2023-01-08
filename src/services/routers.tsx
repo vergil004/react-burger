@@ -39,7 +39,7 @@ export const Routers = () => {
           <ProfilePage />
         </ProtectedRoute>
         <ProtectedRoute exact={true} path="/profile/orders/:id">
-          <ProfilePage />
+          <FeedIdPage />
         </ProtectedRoute>
         <Route exact={true} path="/login">
           <LoginPage />

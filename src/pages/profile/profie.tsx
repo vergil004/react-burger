@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { Profile } from "@/components/profile/profile";
 import { ProfileNav } from "@/components/profile/profile-nav/profile-nav";
 import { Orders } from "@/components/orders/orders";
@@ -14,12 +14,20 @@ import { BASE_WS_URL } from "@/utils/helpers";
 
 export const ProfilePage = () => {
   const history = useHistory();
+  const location = useLocation();
+
   const dispatch = useAppDispatch();
   useEffect(() => {
     const accessToken = getCookie("accessToken")?.replace("Bearer ", "");
-    dispatch(profileFeedConnectionStart(`${BASE_WS_URL}?token=${accessToken}`));
+    if (location.pathname.includes("/profile/orders")) {
+      dispatch(
+        profileFeedConnectionStart(`${BASE_WS_URL}?token=${accessToken}`)
+      );
+    }
     return () => {
-      dispatch(profileConnectionClosed());
+      if (location.pathname.includes("/profile/orders")) {
+        dispatch(profileConnectionClosed());
+      }
     };
   });
   const { orders } = useSelector((state) => {
