@@ -29,7 +29,7 @@ export const ProfilePage = () => {
         dispatch(profileConnectionClosed());
       }
     };
-  });
+  }, [location]);
   const { orders } = useSelector((state) => {
     return state.profileFeed;
   });

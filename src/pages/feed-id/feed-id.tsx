@@ -27,13 +27,6 @@ export const FeedIdPage = () => {
     } else {
       dispatch(feedConnectionStart(`${BASE_WS_URL}/all`));
     }
-    return () => {
-      if (location.pathname.includes("/profile/orders")) {
-        dispatch(profileConnectionClosed());
-      } else {
-        dispatch(feedConnectionClosed());
-      }
-    };
   }, []);
   return (
     <div className={feedIdStyles.feedId}>
