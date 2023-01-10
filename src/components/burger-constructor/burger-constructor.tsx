@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useCallback, useEffect } from "react";
 import { useDrop } from "react-dnd";
 import { v4 as uuidv4 } from "uuid";
-import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   ConstructorElement,
@@ -11,6 +10,8 @@ import {
 import { Modal } from "@/components/modal/modal";
 import { OrderDetails } from "@/components/order-details/order-details";
 import { ConstructorItem } from "@/components/burger-constructor/constructor-item/constructor-item";
+import { useSelector } from "@/utils/custom-hooks";
+import { useAppDispatch } from "@/utils/custom-hooks";
 import {
   addBunToConstructor,
   addIngredientToConstructor,
@@ -24,20 +25,19 @@ import constructorStyles from "./burger-constructor.module.css";
 import forgottenImage from "@/images/forgotten.jpeg";
 
 export const BurgerConstructor = React.memo(function BurgerConstructor() {
-  const { bun, ingredients } = useSelector((state: any) => {
+  const { bun, ingredients } = useSelector((state) => {
     return state.constructorIngredients;
   });
-  const { orderRequestFailed, errorText } = useSelector((store: any) => {
+  const { orderRequestFailed, errorText } = useSelector((store) => {
     return store.order;
   });
-  const user = useSelector((store: any) => {
+  const user = useSelector((store) => {
     return store.user;
   });
 
   const [showModal, setShowModal] = useState(false);
   const [isDisable, setDisable] = useState(false);
 
-  const useAppDispatch: () => any = useDispatch;
   const dispatch = useAppDispatch();
 
   useEffect(() => {

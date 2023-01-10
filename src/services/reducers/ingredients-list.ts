@@ -4,8 +4,23 @@ import {
   GET_INGREDIENTS_SUCCESS,
 } from "../actions/ingredients-list";
 
+import { IIngredient } from "@/utils/types";
+import { TIngredientsListActions } from "@/services/actions-creators/ingredients-list";
+
+type TIngredientsState = {
+  buns: ReadonlyArray<IIngredient>;
+  allItems: ReadonlyArray<IIngredient>;
+  ingredients: ReadonlyArray<IIngredient>;
+  sauceList: ReadonlyArray<IIngredient>;
+  mainList: ReadonlyArray<IIngredient>;
+  ingredientsListRequest: boolean;
+  ingredientsListRequestFailed: boolean;
+  error: string;
+};
+
 const initialIngredientsListState = {
   buns: [],
+  allItems: [],
   ingredients: [],
   sauceList: [],
   mainList: [],
@@ -15,9 +30,9 @@ const initialIngredientsListState = {
 };
 
 export function ingredientsListReducer(
-  state = initialIngredientsListState,
-  action
-) {
+  state: TIngredientsState = initialIngredientsListState,
+  action: TIngredientsListActions
+): TIngredientsState {
   switch (action.type) {
     case GET_INGREDIENTS_REQUEST: {
       return {

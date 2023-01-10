@@ -3,6 +3,15 @@ import {
   SET_ORDER_REQUEST,
   SET_ORDER_SUCCESS,
 } from "@/services/actions/order";
+import { TOrderActions } from "@/services/actions-creators/order";
+
+type TOrderState = {
+  number: number;
+  name: string;
+  errorText: string;
+  orderRequest: boolean;
+  orderRequestFailed: boolean;
+};
 
 const initialOrderState = {
   number: 0,
@@ -12,7 +21,10 @@ const initialOrderState = {
   orderRequestFailed: false,
 };
 
-export const orderReducer = (state = initialOrderState, action) => {
+export const orderReducer = (
+  state: TOrderState = initialOrderState,
+  action: TOrderActions
+): TOrderState => {
   switch (action.type) {
     case SET_ORDER_REQUEST: {
       return {

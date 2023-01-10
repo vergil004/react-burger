@@ -6,11 +6,14 @@ import {
   ProfilePage,
   LoginPage,
   IngredientPage,
+  FeedPage,
+  FeedIdPage,
 } from "@/pages";
 import { AppHeader } from "@/components/app-header/app-header";
 import { ProtectedRoute } from "@/components/protected-route/protected-route";
 import { Modal } from "@/components/modal/modal";
 import { IngredientDetails } from "@/components/ingredient-details/ingredient-details";
+import { FeedDetails } from "@/components/feed-details/feed-details";
 
 export const Routers = () => {
   const location = useLocation<any>();
@@ -35,6 +38,9 @@ export const Routers = () => {
         <ProtectedRoute exact={true} path="/profile/orders">
           <ProfilePage />
         </ProtectedRoute>
+        <ProtectedRoute exact={true} path="/profile/orders/:id">
+          <FeedIdPage />
+        </ProtectedRoute>
         <Route exact={true} path="/login">
           <LoginPage />
         </Route>
@@ -47,20 +53,44 @@ export const Routers = () => {
         <Route exact={true} path="/reset-password">
           <LoginPage />
         </Route>
+        <Route exact={true} path="/feed/:id">
+          <FeedIdPage />
+        </Route>
+        <Route exact={true} path="/feed/">
+          <FeedPage />
+        </Route>
         <Route>
           <NotFoundPage />
         </Route>
       </Switch>
 
       {background && (
-        <Route
-          path="/ingredients/:ingredientId"
-          children={
-            <Modal closeModal={handleModalClose} title="Детали ингредиента">
-              <IngredientDetails />
-            </Modal>
-          }
-        />
+        <div>
+          <Route
+            path="/ingredients/:ingredientId"
+            children={
+              <Modal closeModal={handleModalClose} title="Детали ингредиента">
+                <IngredientDetails />
+              </Modal>
+            }
+          />
+          <Route
+            path="/feed/:id"
+            children={
+              <Modal closeModal={handleModalClose}>
+                <FeedDetails isModal={true} />
+              </Modal>
+            }
+          />
+          <Route
+            path="/profile/orders/:id"
+            children={
+              <Modal closeModal={handleModalClose}>
+                <FeedDetails isModal={true} />
+              </Modal>
+            }
+          />
+        </div>
       )}
     </>
   );

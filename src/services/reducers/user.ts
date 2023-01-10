@@ -4,6 +4,15 @@ import {
   SET_USER_FAILED,
   USER_LOGOUT,
 } from "@/services/actions/user";
+import { IUser } from "@/utils/types";
+import { TUserActions } from "@/services/actions-creators/user";
+
+type TUserState = {
+  data: IUser | null;
+  isLoaded: boolean;
+  isLoading: boolean;
+  error: string | null;
+};
 
 const initialUserState = {
   data: null,
@@ -12,7 +21,10 @@ const initialUserState = {
   error: null,
 };
 
-export function userReducer(state = initialUserState, action) {
+export function userReducer(
+  state: TUserState = initialUserState,
+  action: TUserActions
+): TUserState {
   switch (action.type) {
     case GET_USER_REQUEST: {
       return {
@@ -40,7 +52,7 @@ export function userReducer(state = initialUserState, action) {
     }
     case USER_LOGOUT: {
       return {
-        state: initialUserState,
+        ...initialUserState,
       };
     }
     default: {

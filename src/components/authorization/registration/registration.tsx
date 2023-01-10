@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "@/utils/custom-hooks";
 import {
   EmailInput,
   PasswordInput,
@@ -12,7 +12,6 @@ import AuthStyles from "@/components/authorization/authorization.module.css";
 import { registrationRequest } from "@/services/actions/user";
 
 export const Registration = () => {
-  const useAppDispatch: () => any = useDispatch;
   const dispatch = useAppDispatch();
 
   const { values, handleChange } = useForm({

@@ -2,8 +2,6 @@
     display: block;
     padding: 0;
     margin: 0;
-    max-height: calc(100vh - 168px);
-    overflow-y: auto;
 }
 .orders__item{
     list-style-type: none;

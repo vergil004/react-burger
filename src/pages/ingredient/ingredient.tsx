@@ -1,11 +1,11 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "@/utils/custom-hooks";
 import { Loader } from "@/components/loader/loader";
 import { IngredientDetails } from "@/components/ingredient-details/ingredient-details";
 import ingredientStyles from "./ingredient.module.css";
 
 export const IngredientPage = () => {
-  const { allItems } = useSelector((state: any) => {
+  const { allItems } = useSelector((state) => {
     return state.ingredients;
   });
 

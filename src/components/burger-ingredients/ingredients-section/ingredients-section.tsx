@@ -5,7 +5,7 @@ import { IIngredient } from "@/utils/types";
 
 type TSection = {
   title: string;
-  items: Array<IIngredient>;
+  items: ReadonlyArray<IIngredient>;
 };
 
 export const IngredientsSection: FC<TSection> = ({ title, items }) => (

@@ -6,15 +6,23 @@ import {
   SET_ORDER_OF_INGREDIENTS,
 } from "@/services/actions/constructor-list";
 
-const initialConstructorListState = {
+import { IIngredient } from "@/utils/types";
+import { TConstructorAction } from "@/services/actions-creators/constructor-list";
+
+type TConstructorState = {
+  bun: IIngredient | null;
+  ingredients: ReadonlyArray<IIngredient & { key: string }>;
+};
+
+const initialConstructorListState: TConstructorState = {
   bun: null,
   ingredients: [],
 };
 
 export function constructorListReducer(
   state = initialConstructorListState,
-  action
-) {
+  action: TConstructorAction
+): TConstructorState {
   switch (action.type) {
     case ADD_CONSTRUCTOR__BUN: {
       return {
