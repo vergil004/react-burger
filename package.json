@@ -2,6 +2,7 @@
   "name": "react-burger",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://vergil004.github.io/react-burger/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.0",
     "@types/node": "16.18.1",
@@ -28,7 +29,11 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "deploy-script": "npm run build && scp -r ./build/* vergil004@158.160.57.152:/home/vergil004/stellar-frontend",
+    "cypress:open": "./node_modules/.bin/cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -53,7 +58,9 @@
     "@types/jest": "27.5.2",
     "@types/react-router-dom": "^5.3.3",
     "@types/uuid": "^9.0.0",
+    "cypress": "^12.3.0",
     "eslint-config-prettier": "8.5.0",
+    "gh-pages": "^4.0.0",
     "prettier": "2.7.1"
   }
 }

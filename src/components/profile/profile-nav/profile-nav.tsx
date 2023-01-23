@@ -13,6 +13,7 @@ export const ProfileNav = () => {
         <NavLink
           activeClassName={profileNavStyles.profileNav__itemActive}
           className={profileNavStyles.profileNav__item}
+          exact
           to="/profile/"
         >
           Профиль
@@ -20,6 +21,7 @@ export const ProfileNav = () => {
         <NavLink
           activeClassName={profileNavStyles.profileNav__itemActive}
           className={profileNavStyles.profileNav__item}
+          exact
           to="/profile/orders"
         >
           История заказов
