@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
     "baseUrl": "./",
-    "paths": {
-      "@/*": ["src/*"],
-      "@components": ["src/components/*"]
-    },
     "target": "es6",
     "lib": [
       "dom",
@@ -29,7 +25,8 @@
     ]
   },
   "include": [
-    "src"
+    "src",
+    "./jest-setup.ts"
   ],
   "exclude": [
     "node_modules",

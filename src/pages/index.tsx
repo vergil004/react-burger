@@ -1,10 +1,10 @@
-import { MainPage } from "@/pages/main/main";
-import { NotFoundPage } from "@/pages/not-found/not-found";
-import { ProfilePage } from "@/pages/profile/profie";
-import { LoginPage } from "@/pages/login/login";
-import { IngredientPage } from "@/pages/ingredient/ingredient";
-import { FeedPage } from "@/pages/feed/feed";
-import { FeedIdPage } from "@/pages/feed-id/feed-id";
+import { MainPage } from "./main/main";
+import { NotFoundPage } from "./not-found/not-found";
+import { ProfilePage } from "./profile/profie";
+import { LoginPage } from "./login/login";
+import { IngredientPage } from "./ingredient/ingredient";
+import { FeedPage } from "./feed/feed";
+import { FeedIdPage } from "./feed-id/feed-id";
 
 export {
   MainPage,

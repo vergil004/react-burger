@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import ingredientsStyle from "@/components/burger-ingredients/burger-ingredients.module.css";
-import { Ingredient } from "@/components/burger-ingredients/ingredient/ingredient";
-import { IIngredient } from "@/utils/types";
+import ingredientsStyle from "../burger-ingredients.module.css";
+import { Ingredient } from "../ingredient/ingredient";
+import { IIngredient } from "../../../utils/types";
 
 type TSection = {
   title: string;

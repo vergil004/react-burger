@@ -1,9 +1,9 @@
 import React, { useRef, useCallback } from "react";
-import { useSelector } from "@/utils/custom-hooks";
+import { useSelector } from "../../utils/custom-hooks";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import { IngredientsSection } from "./ingredients-section/ingredients-section";
-import { Loader } from "@/components/loader/loader";
-import { AppError } from "@/components/app-error/app-error";
+import { Loader } from "../loader/loader";
+import { AppError } from "../app-error/app-error";
 import ingredientsStyle from "./burger-ingredients.module.css";
 
 export const BurgerIngredients = React.memo(function BurgerIngredients() {

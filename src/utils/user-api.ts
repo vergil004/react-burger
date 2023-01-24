@@ -1,6 +1,6 @@
-import { requestAPI, BASE_URL, checkResponse } from "@/utils/helpers";
-import { getCookie, setCookie, deleteCookie } from "@/utils/cookie";
-import { TMethodRequest, IRequest } from "@/utils/types";
+import { BASE_URL, checkResponse, requestAPI } from "./helpers";
+import { getCookie, setCookie, deleteCookie } from "./cookie";
+import { TMethodRequest, IRequest } from "./types";
 
 type TToken = {
   token: string | null;

@@ -1,7 +1,7 @@
 import React, { useEffect, FC, PropsWithChildren } from "react";
 import { Route, Redirect } from "react-router-dom";
-import { useSelector, useAppDispatch } from "@/utils/custom-hooks";
-import { getUserData } from "@/services/actions/user";
+import { useSelector, useAppDispatch } from "../../utils/custom-hooks";
+import { getUserData } from "../../services/actions/user";
 
 type TProtected = {
   children: React.ReactNode;

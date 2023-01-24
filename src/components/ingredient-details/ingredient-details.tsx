@@ -1,9 +1,9 @@
 import React from "react";
-import { useSelector } from "@/utils/custom-hooks";
+import { useSelector } from "../../utils/custom-hooks";
 import { useRouteMatch } from "react-router-dom";
-import { Loader } from "@/components/loader/loader";
+import { Loader } from "../loader/loader";
 import detailsStyles from "./ingredient-details.module.css";
-import { IIngredient } from "@/utils/types";
+import { IIngredient } from "../../utils/types";
 
 type Tparams = {
   ingredientId: string;

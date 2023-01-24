@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import { useAppDispatch, useSelector } from "@/utils/custom-hooks";
+import { useAppDispatch, useSelector } from "../../utils/custom-hooks";
 import {
   Input,
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import profileStyles from "./profile.module.css";
-import { updateUser } from "@/services/actions/user";
+import { updateUser } from "../../services/actions/user";
 
 type TDisabled = {
   name?: boolean;

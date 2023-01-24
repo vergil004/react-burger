@@ -1,7 +1,7 @@
 import React from "react";
-import { useSelector } from "@/utils/custom-hooks";
-import { Loader } from "@/components/loader/loader";
-import { IngredientDetails } from "@/components/ingredient-details/ingredient-details";
+import { useSelector } from "../../utils/custom-hooks";
+import { Loader } from "../../components/loader/loader";
+import { IngredientDetails } from "../../components/ingredient-details/ingredient-details";
 import ingredientStyles from "./ingredient.module.css";
 
 export const IngredientPage = () => {

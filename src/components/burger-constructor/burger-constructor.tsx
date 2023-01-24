@@ -7,22 +7,21 @@ import {
   CurrencyIcon,
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { Modal } from "@/components/modal/modal";
-import { OrderDetails } from "@/components/order-details/order-details";
-import { ConstructorItem } from "@/components/burger-constructor/constructor-item/constructor-item";
-import { useSelector } from "@/utils/custom-hooks";
-import { useAppDispatch } from "@/utils/custom-hooks";
+import { Modal } from "../modal/modal";
+import { OrderDetails } from "../order-details/order-details";
+import { ConstructorItem } from "./constructor-item/constructor-item";
+import { useSelector, useAppDispatch } from "../../utils/custom-hooks";
 import {
   addBunToConstructor,
   addIngredientToConstructor,
   setOrderIngredients,
-} from "@/services/actions-creators/constructor-list";
-import { setOrderData } from "@/services/actions/order";
-import { setOrderFailed } from "@/services/actions-creators/order";
-import { getUserData } from "@/services/actions/user";
-import { IIngredient, IKeyIngredient } from "@/utils/types";
+} from "../../services/actions-creators/constructor-list";
+import { setOrderData } from "../../services/actions/order";
+import { setOrderFailed } from "../../services/actions-creators/order";
+import { getUserData } from "../../services/actions/user";
+import { IIngredient, IKeyIngredient } from "../../utils/types";
 import constructorStyles from "./burger-constructor.module.css";
-import forgottenImage from "@/images/forgotten.jpeg";
+import forgottenImage from "../../images/forgotten.jpeg";
 
 export const BurgerConstructor = React.memo(function BurgerConstructor() {
   const { bun, ingredients } = useSelector((state) => {

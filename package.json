@@ -5,6 +5,7 @@
   "homepage": "https://vergil004.github.io/react-burger/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.0",
+    "@testing-library/jest-dom": "^5.16.5",
     "@types/node": "16.18.1",
     "@types/react": "18.0.23",
     "@types/react-dom": "18.0.7",
@@ -26,9 +27,9 @@
     "web-vitals": "2.1.4"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
@@ -60,7 +61,11 @@
     "@types/uuid": "^9.0.0",
     "cypress": "^12.3.0",
     "eslint-config-prettier": "8.5.0",
+    "fetch-mock": "^9.11.0",
     "gh-pages": "^4.0.0",
-    "prettier": "2.7.1"
+    "jest": "^27.5.1",
+    "jest-dom": "^4.0.0",
+    "prettier": "2.7.1",
+    "redux-mock-store": "^1.5.4"
   }
 }

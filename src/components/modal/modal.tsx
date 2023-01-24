@@ -2,7 +2,8 @@ import React, { useEffect, FC, KeyboardEvent, PropsWithChildren } from "react";
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { ModalOverlay } from "@/components/modal-overlay/modal-overlay";
+// import { ModalOverlay } from "@/components/modal-overlay/modal-overlay";
+import { ModalOverlay } from "../modal-overlay/modal-overlay";
 import modalStyles from "./modal.module.css";
 
 const modalRoot = document.getElementById("modal") as HTMLElement;

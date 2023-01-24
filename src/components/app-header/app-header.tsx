@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "@/utils/custom-hooks";
+import { useSelector } from "../../utils/custom-hooks";
 import {
   Logo,
   BurgerIcon,

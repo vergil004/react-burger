@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Modal } from "@/components/modal/modal";
-import { Logout } from "@/components/profile/logout/logout";
+import { Modal } from "../../modal/modal";
+import { Logout } from "../logout/logout";
 import profileNavStyles from "./profile-nav.module.css";
 
 export const ProfileNav = () => {

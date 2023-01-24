@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
-import { ingredientsListReducer } from "@/services/reducers/ingredients-list";
-import { constructorListReducer } from "@/services/reducers/constructor-list";
-import { orderReducer } from "@/services/reducers/order";
-import { currentIngredientReducer } from "@/services/reducers/current-ingredient";
-import { userReducer } from "@/services/reducers/user";
-import { profileFeedReducer } from "@/services/reducers/profile-feed";
-import { feedReducer } from "@/services/reducers/feed";
+import { ingredientsListReducer } from "./ingredients-list";
+import { constructorListReducer } from "./constructor-list";
+import { orderReducer } from "./order";
+import { currentIngredientReducer } from "./current-ingredient";
+import { userReducer } from "./user";
+import { profileFeedReducer } from "./profile-feed";
+import { feedReducer } from "./feed";
 
 export const rootReducer = combineReducers({
   ingredients: ingredientsListReducer,

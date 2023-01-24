@@ -1,11 +1,11 @@
 import {
   ADD_CONSTRUCTOR__BUN,
-  ADD_TO_CONSTRUCTOR_INGREDIENTS_LIST,
+  CLEAR_CONSTRUCTOR,
   DELETE_FROM_CONSTRUCTOR_INGREDIENTS_LIST,
   SET_ORDER_OF_INGREDIENTS,
-  CLEAR_CONSTRUCTOR,
-} from "@/services/actions/constructor-list";
-import { IIngredient } from "@/utils/types";
+  ADD_TO_CONSTRUCTOR_INGREDIENTS_LIST,
+} from "../actions/constructor-list";
+import { IIngredient } from "../../utils/types";
 
 type TBun = {
   type: typeof ADD_CONSTRUCTOR__BUN;

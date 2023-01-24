@@ -1,13 +1,6 @@
-import {
-  WS_PROFILE_FEED_CONNECTION_SUCCESS,
-  WS_PROFILE_FEED_CONNECTION_START,
-  WS_PROFILE_FEED_GET_MESSAGE,
-  WS_PROFILE_FEED_CONNECTION_ERROR,
-  WS_PROFILE_FEED_CONNECTION_CLOSED,
-  WS_PROFILE_FEED_SET_MESSAGE,
-} from "@/services/actions/profile-feed";
-import { TProfileFeedActions } from "@/services/actions-creators/profile-feed";
-import { IFeedOrders } from "@/utils/types";
+import { WS_PROFILE_FEED_GET_MESSAGE } from "../actions/profile-feed";
+import { TProfileFeedActions } from "../actions-creators/profile-feed";
+import { IFeedOrders } from "../../utils/types";
 
 const initialProfileFeedState = {
   orders: [],

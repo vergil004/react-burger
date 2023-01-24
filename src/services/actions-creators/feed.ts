@@ -1,13 +1,12 @@
 import {
   WS_FEED_CONNECTION_CLOSED,
-  WS_FEED_CONNECTION_ERROR,
-  WS_FEED_CONNECTION_START,
-  WS_FEED_CONNECTION_SUCCESS,
-  WS_FEED_GET_MESSAGE,
   WS_FEED_SET_MESSAGE,
-} from "@/services/actions/feed";
-
-import { IFeedOrders } from "@/utils/types";
+  WS_FEED_CONNECTION_SUCCESS,
+  WS_FEED_CONNECTION_ERROR,
+  WS_FEED_GET_MESSAGE,
+  WS_FEED_CONNECTION_START,
+} from "../actions/feed";
+import { IFeedOrders } from "../../utils/types";
 
 type TStart = {
   type: typeof WS_FEED_CONNECTION_START;

@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import { useSelector } from "@/utils/custom-hooks";
+import { useSelector } from "../../utils/custom-hooks";
 import { useRouteMatch, useLocation } from "react-router-dom";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import detailsStyles from "./feed-details.module.css";
-import { statusLabel } from "@/utils/helpers";
+import { statusLabel } from "../../utils/helpers";
 
 type Tparams = {
   id: string;

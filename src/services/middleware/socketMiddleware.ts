@@ -1,10 +1,8 @@
 import type { Middleware, MiddlewareAPI } from "redux";
-import { RootState, AppDispatch } from "@/services/types";
-import { TWSActions } from "@/utils/types";
-import {
-  TProfileFeedActions,
-  profileFeedConnectionSuccess,
-} from "@/services/actions-creators/profile-feed";
+import { RootState, AppDispatch } from "../types";
+import { TWSActions } from "../../utils/types";
+
+import { TProfileFeedActions } from "../actions-creators/profile-feed";
 
 export function socketMiddleware(wsActions: TWSActions): Middleware {
   return (store: MiddlewareAPI<AppDispatch, RootState>) => {

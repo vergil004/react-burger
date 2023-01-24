@@ -6,8 +6,8 @@ import {
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import itemStyles from "./constructor-item.module.css";
-import { deleteIngredientFromConstructor } from "@/services/actions-creators/constructor-list";
-import { IKeyIngredient } from "@/utils/types";
+import { deleteIngredientFromConstructor } from "../../../services/actions-creators/constructor-list";
+import { IKeyIngredient } from "../../../utils/types";
 
 interface IConstructorItem {
   ingredient: IKeyIngredient;

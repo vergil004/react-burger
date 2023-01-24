@@ -1,9 +1,9 @@
 import React from "react";
-import { useSelector } from "@/utils/custom-hooks";
-import { Loader } from "@/components/loader/loader";
-import { AppError } from "@/components/app-error/app-error";
+import { useSelector } from "../../utils/custom-hooks";
+import { Loader } from "../loader/loader";
+import { AppError } from "../app-error/app-error";
 import orderStyles from "./order-details.module.css";
-import doneImage from "@/images/done.png";
+import doneImage from "../../images/done.png";
 
 export const OrderDetails = () => {
   const { number, orderRequest, orderRequestFailed, errorText } = useSelector(

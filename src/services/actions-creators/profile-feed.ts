@@ -1,11 +1,19 @@
+// import {
+//   WS_PROFILE_FEED_CONNECTION_CLOSED,
+//   WS_PROFILE_FEED_CONNECTION_START,
+//   WS_PROFILE_FEED_CONNECTION_SUCCESS,
+//   WS_PROFILE_FEED_GET_MESSAGE,
+//   WS_PROFILE_FEED_SET_MESSAGE,
+// } from "@/services/actions/profile-feed";
 import {
   WS_PROFILE_FEED_CONNECTION_CLOSED,
-  WS_PROFILE_FEED_CONNECTION_START,
-  WS_PROFILE_FEED_CONNECTION_SUCCESS,
   WS_PROFILE_FEED_GET_MESSAGE,
   WS_PROFILE_FEED_SET_MESSAGE,
-} from "@/services/actions/profile-feed";
-import { IFeedData, IFeedOrders } from "@/utils/types";
+  WS_PROFILE_FEED_CONNECTION_ERROR,
+  WS_PROFILE_FEED_CONNECTION_START,
+  WS_PROFILE_FEED_CONNECTION_SUCCESS,
+} from "../actions/profile-feed";
+import { IFeedOrders, IFeedData } from "../../utils/types";
 
 type TStart = {
   type: typeof WS_PROFILE_FEED_CONNECTION_START;

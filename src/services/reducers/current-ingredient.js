@@ -1,7 +1,7 @@
 import {
   SET_CURRENT_INGREDIENT,
   REMOVE_CURRENT_INGREDIENT,
-} from "@/services/actions/current-ingredient";
+} from "../actions/current-ingredient";
 
 const initialStateCurrentIngredient = null;
 

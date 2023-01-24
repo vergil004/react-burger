@@ -7,8 +7,8 @@ import {
   PasswordInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import AuthStyles from "../authorization.module.css";
-import { useForm } from "@/utils/custom-hooks";
-import { forgotPassword, resetPassword } from "@/utils/auth-api";
+import { useForm } from "../../../utils/custom-hooks";
+import { forgotPassword, resetPassword } from "../../../utils/auth-api";
 
 export const ForgotPassword = () => {
   const history = useHistory();

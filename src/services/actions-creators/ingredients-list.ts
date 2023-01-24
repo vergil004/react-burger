@@ -1,9 +1,9 @@
 import {
-  GET_INGREDIENTS_REQUEST,
   GET_INGREDIENTS_ERROR,
   GET_INGREDIENTS_SUCCESS,
-} from "@/services/actions/ingredients-list";
-import { IIngredient } from "@/utils/types";
+  GET_INGREDIENTS_REQUEST,
+} from "../actions/ingredients-list";
+import { IIngredient } from "../../utils/types";
 
 type TIngredientsRequest = {
   type: typeof GET_INGREDIENTS_REQUEST;

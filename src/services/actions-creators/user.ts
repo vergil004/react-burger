@@ -1,10 +1,10 @@
 import {
   GET_USER_REQUEST,
-  SET_USER_SUCCESS,
   SET_USER_FAILED,
+  SET_USER_SUCCESS,
   USER_LOGOUT,
-} from "@/services/actions/user";
-import { IUser } from "@/utils/types";
+} from "../actions/user";
+import { IUser } from "../../utils/types";
 
 type TUserRequest = {
   type: typeof GET_USER_REQUEST;
