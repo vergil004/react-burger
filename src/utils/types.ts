@@ -6,7 +6,7 @@ import {
   WS_FEED_CONNECTION_SUCCESS,
   WS_FEED_GET_MESSAGE,
   WS_FEED_SET_MESSAGE,
-} from "@/services/actions/feed";
+} from "../services/actions/feed";
 import {
   WS_PROFILE_FEED_CONNECTION_CLOSED,
   WS_PROFILE_FEED_CONNECTION_ERROR,
@@ -14,7 +14,7 @@ import {
   WS_PROFILE_FEED_CONNECTION_SUCCESS,
   WS_PROFILE_FEED_GET_MESSAGE,
   WS_PROFILE_FEED_SET_MESSAGE,
-} from "@/services/actions/profile-feed";
+} from "../services/actions/profile-feed";
 
 export const ingredientPropTypes = PropTypes.shape({
   _id: PropTypes.string.isRequired,
@@ -91,6 +91,7 @@ export interface IFeedOrders {
   orders: Array<IFeedData>;
   total: number;
   totalToday: number;
+  wsConnection?: boolean;
 }
 
 export type TWSFeedActions = {

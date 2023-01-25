@@ -1,16 +1,15 @@
-import { getUserInfo, updateUserInfo, logout } from "@/utils/user-api";
-import { loginUser, registration } from "@/utils/auth-api";
+import { getUserInfo, updateUserInfo, logout } from "../../utils/user-api";
+import { loginUser, registration } from "../../utils/auth-api";
 import {
-  setUserSuccess,
-  setUserFailed,
-  getUserRequest,
   setUserLogut,
-} from "@/services/actions-creators/user";
-
-import { AppDispatch } from "@/services/types";
-import { IRegistration } from "@/utils/types";
-import { ILogin } from "@/utils/types";
-import { AppThunk } from "@/services/types";
+  setUserSuccess,
+  getUserRequest,
+  setUserFailed,
+} from "../actions-creators/user";
+import { AppDispatch } from "../types";
+import { IRegistration } from "../../utils/types";
+import { ILogin } from "../../utils/types";
+import { AppThunk } from "../types";
 
 export const GET_USER_REQUEST: "GET_USER_REQUEST" = "GET_USER_REQUEST";
 export const SET_USER_SUCCESS: "SET_USER_SUCCESS" = "SET_USER_SUCCESS";

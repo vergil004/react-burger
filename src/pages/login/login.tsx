@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useHistory, Redirect, useLocation } from "react-router-dom";
-import { useAppDispatch, useSelector } from "@/utils/custom-hooks";
-import { Login } from "@/components/authorization/login/login";
-import { Registration } from "@/components/authorization/registration/registration";
-import { ForgotPassword } from "@/components/authorization/forgot-password/forgot-password";
-import { Loader } from "@/components/loader/loader";
+import { useAppDispatch, useSelector } from "../../utils/custom-hooks";
+import { Login } from "../../components/authorization/login/login";
+import { Registration } from "../../components/authorization/registration/registration";
+import { ForgotPassword } from "../../components/authorization/forgot-password/forgot-password";
+import { Loader } from "../../components/loader/loader";
 import loginPageStyles from "./login.module.css";
-import { getUserData } from "@/services/actions/user";
+import { getUserData } from "../../services/actions/user";
 
 type TLocation = {
   from: string;

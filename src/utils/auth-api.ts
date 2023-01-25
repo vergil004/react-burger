@@ -1,6 +1,6 @@
-import { requestPostAPI, BASE_URL } from "@/utils/helpers";
-import { setCookie } from "@/utils/cookie";
-import { IRegistration, IReset, ILogin, IUser } from "@/utils/types";
+import { requestPostAPI, BASE_URL } from "./helpers";
+import { setCookie } from "./cookie";
+import { IRegistration, IUser, IReset, ILogin } from "./types";
 
 export async function forgotPassword(email: string) {
   return await requestPostAPI(`${BASE_URL}/password-reset`, {

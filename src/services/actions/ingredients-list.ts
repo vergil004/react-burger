@@ -1,10 +1,10 @@
 import {
   getIngredientsRequest,
-  getIngredientsSuccess,
   getIngredientsFailed,
-} from "@/services/actions-creators/ingredients-list";
-import { getIngredientsData } from "@/utils/burger-api";
-import { AppDispatch } from "@/services/types";
+  getIngredientsSuccess,
+} from "../actions-creators/ingredients-list";
+import { getIngredientsData } from "../../utils/burger-api";
+import { AppDispatch } from "../types";
 
 export const GET_INGREDIENTS_REQUEST = "GET_INGREDIENTS_REQUEST";
 export const GET_INGREDIENTS_SUCCESS = "GET_INGREDIENTS_SUCCESS";

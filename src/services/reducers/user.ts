@@ -3,9 +3,9 @@ import {
   SET_USER_SUCCESS,
   SET_USER_FAILED,
   USER_LOGOUT,
-} from "@/services/actions/user";
-import { IUser } from "@/utils/types";
-import { TUserActions } from "@/services/actions-creators/user";
+} from "../actions/user";
+import { IUser } from "../../utils/types";
+import { TUserActions } from "../actions-creators/user";
 
 type TUserState = {
   data: IUser | null;
@@ -14,7 +14,7 @@ type TUserState = {
   error: string | null;
 };
 
-const initialUserState = {
+export const initialUserState = {
   data: null,
   isLoaded: false,
   isLoading: false,

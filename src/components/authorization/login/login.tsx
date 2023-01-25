@@ -1,14 +1,14 @@
 import React, { useCallback } from "react";
 import { Link, Redirect, useLocation } from "react-router-dom";
-import { useAppDispatch, useSelector } from "@/utils/custom-hooks";
+import { useAppDispatch, useSelector } from "../../../utils/custom-hooks";
 import {
   EmailInput,
   PasswordInput,
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useForm } from "@/utils/custom-hooks";
+import { useForm } from "../../../utils/custom-hooks";
 import AuthStyles from "../authorization.module.css";
-import { loginRequest } from "@/services/actions/user";
+import { loginRequest } from "../../../services/actions/user";
 interface stateType {
   from: { pathname: string };
 }

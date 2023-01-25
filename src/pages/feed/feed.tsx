@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import { useAppDispatch, useSelector } from "@/utils/custom-hooks";
-import { Orders } from "@/components/orders/orders";
+import { useAppDispatch, useSelector } from "../../utils/custom-hooks";
+import { Orders } from "../../components/orders/orders";
 import {
-  feedConnectionStart,
   feedConnectionClosed,
-} from "@/services/actions-creators/feed";
-import { FeedInfo } from "@/components/feed-info/feed-info";
-import { BASE_WS_URL } from "@/utils/helpers";
+  feedConnectionStart,
+} from "../../services/actions-creators/feed";
+import { FeedInfo } from "../../components/feed-info/feed-info";
+import { BASE_WS_URL } from "../../utils/helpers";
 import feedPageStyles from "./feed.module.css";
 
 export const FeedPage = () => {

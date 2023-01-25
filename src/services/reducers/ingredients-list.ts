@@ -4,8 +4,8 @@ import {
   GET_INGREDIENTS_SUCCESS,
 } from "../actions/ingredients-list";
 
-import { IIngredient } from "@/utils/types";
-import { TIngredientsListActions } from "@/services/actions-creators/ingredients-list";
+import { IIngredient } from "../../utils/types";
+import { TIngredientsListActions } from "../actions-creators/ingredients-list";
 
 type TIngredientsState = {
   buns: ReadonlyArray<IIngredient>;
@@ -18,7 +18,7 @@ type TIngredientsState = {
   error: string;
 };
 
-const initialIngredientsListState = {
+export const initialIngredientsListState = {
   buns: [],
   allItems: [],
   ingredients: [],

@@ -8,12 +8,12 @@ import {
   IngredientPage,
   FeedPage,
   FeedIdPage,
-} from "@/pages";
-import { AppHeader } from "@/components/app-header/app-header";
-import { ProtectedRoute } from "@/components/protected-route/protected-route";
-import { Modal } from "@/components/modal/modal";
-import { IngredientDetails } from "@/components/ingredient-details/ingredient-details";
-import { FeedDetails } from "@/components/feed-details/feed-details";
+} from "../pages";
+import { AppHeader } from "../components/app-header/app-header";
+import { ProtectedRoute } from "../components/protected-route/protected-route";
+import { Modal } from "../components/modal/modal";
+import { IngredientDetails } from "../components/ingredient-details/ingredient-details";
+import { FeedDetails } from "../components/feed-details/feed-details";
 
 export const Routers = () => {
   const location = useLocation<any>();

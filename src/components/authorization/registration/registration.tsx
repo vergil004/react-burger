@@ -1,15 +1,15 @@
 import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
-import { useAppDispatch } from "@/utils/custom-hooks";
+import { useAppDispatch } from "../../../utils/custom-hooks";
 import {
   EmailInput,
   PasswordInput,
   Input,
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useForm } from "@/utils/custom-hooks";
-import AuthStyles from "@/components/authorization/authorization.module.css";
-import { registrationRequest } from "@/services/actions/user";
+import { useForm } from "../../../utils/custom-hooks";
+import AuthStyles from "./../authorization.module.css";
+import { registrationRequest } from "../../../services/actions/user";
 
 export const Registration = () => {
   const dispatch = useAppDispatch();

@@ -1,9 +1,9 @@
 import {
   SET_ORDER_ERROR,
-  SET_ORDER_REQUEST,
   SET_ORDER_SUCCESS,
-} from "@/services/actions/order";
-import { TOrderActions } from "@/services/actions-creators/order";
+  SET_ORDER_REQUEST,
+} from "../actions/order";
+import { TOrderActions } from "../actions-creators/order";
 
 type TOrderState = {
   number: number;
@@ -13,7 +13,7 @@ type TOrderState = {
   orderRequestFailed: boolean;
 };
 
-const initialOrderState = {
+export const initialOrderState = {
   number: 0,
   name: "",
   errorText: "",

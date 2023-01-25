@@ -1,7 +1,7 @@
 import React, { useCallback, FC } from "react";
-import { useAppDispatch } from "@/utils/custom-hooks";
+import { useAppDispatch } from "../../../utils/custom-hooks";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import { userLogout } from "@/services/actions/user";
+import { userLogout } from "../../../services/actions/user";
 import logoutStyles from "./logout.module.css";
 
 type TLogout = {

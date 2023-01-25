@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Modal } from "@/components/modal/modal";
-import { Logout } from "@/components/profile/logout/logout";
+import { Modal } from "../../modal/modal";
+import { Logout } from "../logout/logout";
 import profileNavStyles from "./profile-nav.module.css";
 
 export const ProfileNav = () => {
@@ -13,6 +13,7 @@ export const ProfileNav = () => {
         <NavLink
           activeClassName={profileNavStyles.profileNav__itemActive}
           className={profileNavStyles.profileNav__item}
+          exact
           to="/profile/"
         >
           Профиль
@@ -20,6 +21,7 @@ export const ProfileNav = () => {
         <NavLink
           activeClassName={profileNavStyles.profileNav__itemActive}
           className={profileNavStyles.profileNav__item}
+          exact
           to="/profile/orders"
         >
           История заказов

@@ -6,7 +6,7 @@ import "./index.css";
 import { App } from "./components/app/app";
 import reportWebVitals from "./reportWebVitals";
 import "@ya.praktikum/react-developer-burger-ui-components";
-import { store } from "@/services/store";
+import { store } from "./services/store";
 
 ReactDOM.render(
   <React.StrictMode>

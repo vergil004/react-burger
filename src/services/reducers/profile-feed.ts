@@ -1,18 +1,15 @@
 import {
-  WS_PROFILE_FEED_CONNECTION_SUCCESS,
-  WS_PROFILE_FEED_CONNECTION_START,
   WS_PROFILE_FEED_GET_MESSAGE,
-  WS_PROFILE_FEED_CONNECTION_ERROR,
-  WS_PROFILE_FEED_CONNECTION_CLOSED,
-  WS_PROFILE_FEED_SET_MESSAGE,
-} from "@/services/actions/profile-feed";
-import { TProfileFeedActions } from "@/services/actions-creators/profile-feed";
-import { IFeedOrders } from "@/utils/types";
+  WS_PROFILE_FEED_CONNECTION_START,
+} from "../actions/profile-feed";
+import { TProfileFeedActions } from "../actions-creators/profile-feed";
+import { IFeedOrders } from "../../utils/types";
 
-const initialProfileFeedState = {
+export const initialProfileFeedState = {
   orders: [],
   total: 0,
   totalToday: 0,
+  wsConnection: false,
 };
 
 export const profileFeedReducer = (
@@ -20,6 +17,12 @@ export const profileFeedReducer = (
   action: TProfileFeedActions
 ): IFeedOrders => {
   switch (action.type) {
+    case WS_PROFILE_FEED_CONNECTION_START: {
+      return {
+        ...state,
+        wsConnection: true,
+      };
+    }
     case WS_PROFILE_FEED_GET_MESSAGE: {
       return {
         ...state,

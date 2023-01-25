@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useSelector } from "@/utils/custom-hooks";
+import { useSelector } from "../../../utils/custom-hooks";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import itemStyles from "./orders-item.module.css";
-import { IFeedData } from "@/utils/types";
-import { statusLabel } from "@/utils/helpers";
+import { IFeedData } from "../../../utils/types";
+import { statusLabel } from "../../../utils/helpers";
 
 interface IOrderItem {
   order: IFeedData;

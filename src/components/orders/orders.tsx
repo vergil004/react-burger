@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { OrdersItem } from "@/components/orders/orders-item/orders-items";
+import { OrdersItem } from "./orders-item/orders-items";
 import ordersStyles from "./orders.module.css";
-import { IFeedData } from "@/utils/types";
+import { IFeedData } from "../../utils/types";
 
 interface IOrders {
   orders: Array<IFeedData>;

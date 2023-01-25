@@ -1,14 +1,12 @@
 import {
-  setOrderSuccess,
-  setOrderFailed,
   setOrderRequest,
-} from "@/services/actions-creators/order";
-
-import { sendOrderData } from "@/utils/burger-api";
-import { clearConstructor } from "@/services/actions-creators/constructor-list";
-
-import { AppDispatch } from "@/services/types";
-import { AppThunk } from "@/services/types";
+  setOrderFailed,
+  setOrderSuccess,
+} from "../actions-creators/order";
+import { sendOrderData } from "../../utils/burger-api";
+import { clearConstructor } from "../actions-creators/constructor-list";
+import { AppDispatch } from "../types";
+import { AppThunk } from "../types";
 
 export const SET_ORDER_REQUEST: "SET_ORDER_REQUEST" = "SET_ORDER_REQUEST";
 export const SET_ORDER_SUCCESS: "SET_ORDER_SUCCESS" = "SET_ORDER_SUCCESS";

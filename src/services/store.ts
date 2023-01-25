@@ -1,9 +1,9 @@
 import { compose, createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import { rootReducer } from "@/services/reducers/root-reducer";
-import { socketMiddleware } from "@/services/middleware/socketMiddleware";
-import { wsActionsFeedProfile } from "@/services/actions/profile-feed";
-import { wsActionsFeed } from "@/services/actions/feed";
+import { rootReducer } from "./reducers/root-reducer";
+import { socketMiddleware } from "./middleware/socketMiddleware";
+import { wsActionsFeedProfile } from "./actions/profile-feed";
+import { wsActionsFeed } from "./actions/feed";
 
 declare global {
   interface Window {

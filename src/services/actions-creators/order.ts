@@ -1,8 +1,8 @@
 import {
   SET_ORDER_ERROR,
-  SET_ORDER_REQUEST,
   SET_ORDER_SUCCESS,
-} from "@/services/actions/order";
+  SET_ORDER_REQUEST,
+} from "../actions/order";
 
 type TOrderRequest = {
   type: typeof SET_ORDER_REQUEST;

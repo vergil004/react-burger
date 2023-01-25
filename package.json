@@ -2,8 +2,10 @@
   "name": "react-burger",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.0",
+    "@testing-library/jest-dom": "^5.16.5",
     "@types/node": "16.18.1",
     "@types/react": "18.0.23",
     "@types/react-dom": "18.0.7",
@@ -25,10 +27,14 @@
     "web-vitals": "2.1.4"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
-    "eject": "react-scripts eject"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "deploy-script": "npm run build && scp -r ./build/* vergil004@158.160.57.152:/home/vergil004/stellar-frontend",
+    "cypress:open": "./node_modules/.bin/cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -53,7 +59,13 @@
     "@types/jest": "27.5.2",
     "@types/react-router-dom": "^5.3.3",
     "@types/uuid": "^9.0.0",
+    "cypress": "^12.3.0",
     "eslint-config-prettier": "8.5.0",
-    "prettier": "2.7.1"
+    "fetch-mock": "^9.11.0",
+    "gh-pages": "^4.0.0",
+    "jest": "^27.5.1",
+    "jest-dom": "^4.0.0",
+    "prettier": "2.7.1",
+    "redux-mock-store": "^1.5.4"
   }
 }

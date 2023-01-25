@@ -1,6 +1,5 @@
-import { requestPostAPI } from "@/utils/helpers";
-import { BASE_URL } from "@/utils/helpers";
-import { getCookie } from "@/utils/cookie";
+import { requestPostAPI, BASE_URL } from "./helpers";
+import { getCookie } from "./cookie";
 
 export function getIngredientsData() {
   return requestPostAPI(`${BASE_URL}/ingredients`);

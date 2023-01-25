@@ -4,7 +4,7 @@ import {
   useSelector as selectorHook,
   useDispatch,
 } from "react-redux";
-import { RootState, AppDispatch, AppThunk } from "@/services/types";
+import { RootState, AppDispatch } from "../services/types";
 
 type TEvent = (event: ChangeEvent<HTMLInputElement>) => void;
 

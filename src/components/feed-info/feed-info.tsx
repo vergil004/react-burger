@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { IFeedOrders } from "@/utils/types";
+import { IFeedOrders } from "../../utils/types";
 import feedInfoStyles from "./feed-info.module.css";
 
 function notUndefinedCheck<T>(item: T | undefined): item is T {
