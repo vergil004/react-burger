@@ -19,7 +19,6 @@ export const Routers = () => {
   const location = useLocation<any>();
   const history = useHistory();
   const background = location.state && location.state.background;
-  console.log(location);
   const handleModalClose = () => {
     history.goBack();
   };
