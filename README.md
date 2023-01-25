@@ -1,7 +1,7 @@
 #  STELLAR BURGER
 
 ### Сайт проекта:
- [https://peqoud004.students.nomoredomains.rocks/](https://vik.students.nomoredomains.rocks/)
+ [https://peqoud004.students.nomoredomains.rocks/]
 
 ### Тип проекта: 
  Учебный проект написанный с использованием React, Redux, TypeScript с регистрацией и авторизацией.
