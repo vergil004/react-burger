@@ -2,7 +2,7 @@ import { WS_PROFILE_FEED_GET_MESSAGE } from "../actions/profile-feed";
 import { TProfileFeedActions } from "../actions-creators/profile-feed";
 import { IFeedOrders } from "../../utils/types";
 
-const initialProfileFeedState = {
+export const initialProfileFeedState = {
   orders: [],
   total: 0,
   totalToday: 0,

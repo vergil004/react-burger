@@ -91,6 +91,7 @@ export interface IFeedOrders {
   orders: Array<IFeedData>;
   total: number;
   totalToday: number;
+  wsConnection?: boolean;
 }
 
 export type TWSFeedActions = {

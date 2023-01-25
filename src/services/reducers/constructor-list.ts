@@ -13,7 +13,7 @@ type TConstructorState = {
   ingredients: ReadonlyArray<IIngredient & { key: string }>;
 };
 
-const initialConstructorListState: TConstructorState = {
+export const initialConstructorListState: TConstructorState = {
   bun: null,
   ingredients: [],
 };
